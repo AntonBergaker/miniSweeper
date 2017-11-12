@@ -1,16 +1,64 @@
-gridWidth = 60;
-gridHeight = 60;
+gridWidth = 20;
+gridHeight = 36;
+gridMines = 99;
+
+backColor = c_white;
+solidColor = -1
+clearedColor = -1
+textColor = c_black;
+mineColor = -1;
+
+updateDrawing = false;
+firstStep = true;
+
+global.darkMode = false;
+
+if (global.darkMode) {
+	solidColor = $7E231A;
+	clearedColor = $282010;
+	textColor = c_white;
+	backColor = c_black;
+	mineColor = c_white;
+}
 
 mineGrid = ds_grid_create(gridWidth, gridHeight);
 clearedGrid = ds_grid_create(gridWidth, gridHeight);
 flagGrid = ds_grid_create(gridWidth, gridHeight);
 nearGrid = ds_grid_create(gridWidth, gridHeight);
 
+aboutToClearGrid = ds_grid_create(gridWidth, gridHeight);
+
+flagEaseGrid = ds_grid_create(gridWidth, gridHeight);
+removeEaseGrid = ds_grid_create(gridWidth, gridHeight);
+mineEaseGrid = ds_grid_create(gridWidth, gridHeight);
+
+aboutToResetGrid = ds_grid_create(gridWidth, gridHeight);
+
+flagEaseList = ds_list_create();
+removeEaseList = ds_list_create();
+mineEaseList = ds_list_create();
+resetEaseList = ds_list_create();
 
 lastPanX = 0;
 lastPanY = 0;
 panSpeedX = 0;
 panSpeedY = 0;
+
+redrawFrames = 0;
+
+won = 0;
+wonTimer = 0;
+
+lost = 0;
+lostTimer = 0;
+
+resetting = 0;
+
+fieldWidth  = gridWidth*160 + 50;
+fieldHeight = gridHeight*160+ 50;
+
+pinchStartDistance = 0;
+pinchStartScale = 0;
 
 for (var i=4;i>=0;i--) {
 	panDiffsX[i] = 0;
@@ -18,38 +66,20 @@ for (var i=4;i>=0;i--) {
 }
 
 mip = 1;
-mipInv = 1/mip;
+mipScale = power(2,mip);
 
+scr_place_mines(gridMines);
+scr_calculate_grid_near();
 
-for (var xx=0;xx<gridWidth;xx++) {
-	for (var yy=0;yy<gridHeight;yy++) {
-		mineGrid[# xx,yy] = choose(1,0,0,0,0);
-	}
-}
+firstPress = true;
+gameTime = 0;
 
-for (var xx=0;xx<gridWidth;xx++) {
-	for (var yy=0;yy<gridHeight;yy++) {
-		if (!mineGrid[# xx,yy]) {
-			nearGrid[# xx,yy] = scr_get_nearby(mineGrid,xx,yy);
-		}
-	}
-}
+toBeCleared = ds_list_create();
+
 
 ds_grid_clear(clearedGrid,0);
 
-for (var i=4;i>=0;i--) {
-	touchX[i] = 0;
-	touchY[i] = 0;
-	touchPressed[i] = 0;
-	touchReleased[i] = 0;
-	touchPressX[i] = 0;
-	touchPressY[i] = 0;
-	touchReleaseX[i] = 0;
-	touchReleaseY[i] = 0;
-	touchPressTime[i] = 0;
-	touchCompleted[i] = 0;
-	touchAction[i] = TouchAction.None;
-}
+scr_mouse_init();
 
 enum TouchAction {
 	None,
@@ -58,4 +88,4 @@ enum TouchAction {
 	Pinch2
 }
 
-instance_create_depth(x,y,0,oCamera);
+instance_create_depth(0,0,0,oCamera);

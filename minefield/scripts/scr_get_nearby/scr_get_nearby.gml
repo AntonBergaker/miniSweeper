@@ -1,4 +1,4 @@
-/// @param minegrid
+/// @param grid
 /// @param x
 /// @param y
 
