@@ -395,9 +395,15 @@ if (resetting) {
 
 
 if (os_type == os_android && os_is_paused()) {
-	redrawFrames = 3;	
+	redrawFrames = 3;
+	scr_save_grid();
 }
 
+saveTimer+= deltaTimeS;
+if (saveTimer > 10  && lost == 0 && won == 0 && resetting == 0) {
+	scr_save_grid();
+	saveTimer = 0;
+}
 
 
 var _len = ds_list_size(toBeCleared);
@@ -453,12 +459,12 @@ if (won==1) {
 }
 
 if (lost == 1) {	
-	lostTimer+=deltaTimeS;
-	
-	if (lostTimer > 1) {
-		lost = 2;
-		instance_create_depth(x,y,-10,oMenuGameEnd);
+	lost = 2;
+	if (file_exists("save.sav")) {
+		file_delete("save.sav");	
 	}
+	instance_create_depth(x,y,-10,oMenuGameEnd);
+	
 }
 if (lost == 2) {
 		

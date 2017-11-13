@@ -40,6 +40,7 @@ removeEaseList = ds_list_create();
 mineEaseList = ds_list_create();
 resetEaseList = ds_list_create();
 
+
 lastPanX = 0;
 lastPanY = 0;
 panSpeedX = 0;
@@ -69,16 +70,22 @@ for (var i=4;i>=0;i--) {
 mip = 1;
 mipScale = power(2,mip);
 
-scr_place_mines(gridMines);
+//If a save exists import it
+if (file_exists("save.sav")) {
+	scr_load_grid();
+	firstPress = false;
+} else {
+	scr_place_mines(gridMines);
+	firstPress = true;
+}
 scr_calculate_grid_near();
 
-firstPress = true;
+saveTimer = 0;
+
 gameTime = 0;
 
 toBeCleared = ds_list_create();
 
-
-ds_grid_clear(clearedGrid,0);
 
 scr_mouse_init();
 
