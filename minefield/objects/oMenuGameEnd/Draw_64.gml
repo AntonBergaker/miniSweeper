@@ -5,12 +5,16 @@ if !firstStep {
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
 	draw_set_font(fMineTextMip0);
-	draw_text(x,y-110,"You Lost");
+	if (lost) {
+		draw_text(x,y-110,t_lost);
+	} else {
+		draw_text(x,y-110,t_won);
+	}
 	
 	draw_sprite_ext(sSmallBox,0,x,y+20,1,1,0,$49E047,1);
 	
 	draw_set_font(fMediumMenu);
-	draw_text(x,y+20,"Retry");
+	draw_text(x,y+20,lost ? t_retry : t_again);
 	
 	draw_text(x,y+115,"Exit");
 }

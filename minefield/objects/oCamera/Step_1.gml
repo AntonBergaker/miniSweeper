@@ -9,7 +9,9 @@ if (global.windowWidth != window_get_width() || global.windowHeight != window_ge
 		
 	window_set_size(global.windowWidth,global.windowHeight);
 		
-	surface_resize(application_surface,global.internalWidth,global.internalHeight);
+	if (surface_exists(oGridControl.surf)) {
+		surface_resize(oGridControl.surf,global.internalWidth,global.internalHeight);
+	}
 	view_xport[0] = 0;
 	view_yport[0] = 0;
 	view_wport[0] = global.windowWidth;

@@ -14,9 +14,8 @@ if (os_type == os_android) {
 }
 
 window_set_size(global.windowWidth,global.windowHeight);
-surface_resize(application_surface,global.internalWidth*2,global.internalHeight*2);
 
-game_set_speed(60,gamespeed_fps)
+game_set_speed(99999,gamespeed_fps)
 
 timer = 0;
 
@@ -25,6 +24,7 @@ device_mouse_dbclick_enable(0);
 
 scr_init_variables();
 
-show_debug_overlay(1)
+application_surface_draw_enable(0);
+application_surface_enable(0);
 
 randomize();

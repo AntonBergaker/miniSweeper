@@ -15,4 +15,4 @@ switch mip {
 		draw_set_font(fMineTextMip3);
 		break;
 }
-draw_text_transformed(argument0,argument1,argument2,mipScale,mipScale,0);
+draw_text_transformed(argument0,argument1,argument2,argument3,argument3,0);

@@ -106,13 +106,7 @@ if (won == 0 && lost == 0 && resetting == 0) {
 					_yy = coord_to_grid_y(_yy);	
 				
 					if (inside_grid(_xx,_yy) && !clearedGrid[# _xx, _yy]) {
-						flagGrid[# _xx, _yy] = !flagGrid[# _xx, _yy];
-						if (flagGrid[# _xx, _yy]) {
-							audio_play(aFlagUp,1,random_range(0.95,1.05));	
-						} else {
-							audio_play(aFlagDown,1,random_range(0.95,1.05));
-						}
-						ds_list_add(flagEaseList, [_xx, _yy]);
+						scr_flag_cell(_xx,_yy);
 					}
 				}
 			}
@@ -131,14 +125,7 @@ if (won == 0 && lost == 0 && resetting == 0) {
 			
 					if (_xx2 == _xx && _yy2 == _yy) {
 						if (inside_grid(_xx,_yy) && !clearedGrid[# _xx, _yy]) {
-							flagGrid[# _xx, _yy] = !flagGrid[# _xx, _yy];
-							if (flagGrid[# _xx, _yy]) {
-								audio_play(aFlagUp,1,random_range(0.95,1.05));	
-							} else {
-								audio_play(aFlagDown,1,random_range(0.95,1.05));
-							}
-							ds_list_add(flagEaseList, [_xx, _yy]);
-							Haptics_VibrateIntensity(100,2);
+							scr_flag_cell(_xx,_yy);
 						}
 					}
 			
@@ -257,7 +244,9 @@ if (won == 0 && lost == 0 && resetting == 0) {
 
 	panSpeedY = lerp_time(panSpeedY,0,0.2,deltaTimeS*2.5);
 	panSpeedY = value_shift(panSpeedY, 0, abs(lengthdir_y(_len,_dir)) * deltaTimeS);
-
+	if (!firstPress) {
+		gameplayTime += deltaTimeS;
+	}
 }
 
 ///Easing
@@ -275,6 +264,7 @@ for (var i=0;i<_len;i++) {
 		ds_list_delete(flagEaseList,0);
 		i--;
 		_len--;
+		ds_list_add(updateCellList,[_x,_y]);
 	}
 }
 
@@ -293,6 +283,7 @@ for (var i=0;i<_len;i++) {
 		ds_list_delete(removeEaseList,0);
 		i--;
 		_len--;
+		ds_list_add(updateCellList,[_x,_y]);
 	}
 }
 
@@ -390,17 +381,25 @@ if (resetting) {
 		resetting = false;
 		wonTimer = 0;
 		lostTimer = 0;
+		gameplayTime = 0;
+		timerX = 0;
+		minesLeft = gridMines;
+	} else {
+		gameplayTime = lerp_time(gameplayTime,0,0.1,deltaTimeS);
+		minesLeft = lerp_time(minesLeft,gridMines,0.1,deltaTimeS);
 	}
 }
 
 
 if (os_type == os_android && os_is_paused()) {
 	redrawFrames = 3;
-	scr_save_grid();
+	if (lost == 0 && won == 0 && resetting == 0 && firstPress == 0) {
+		scr_save_grid();
+	}
 }
 
 saveTimer+= deltaTimeS;
-if (saveTimer > 10  && lost == 0 && won == 0 && resetting == 0) {
+if (saveTimer > 10  && lost == 0 && won == 0 && resetting == 0 && firstPress == 0) {
 	scr_save_grid();
 	saveTimer = 0;
 }
@@ -452,9 +451,14 @@ if (_updatedField) {
 
 if (won==1) {
 	wonTimer+=deltaTimeS;	
-	if (wonTimer > 5) {
+	if (wonTimer > 1) {
 		won = 2;
 		wonTimer = 0;
+			lost = 2;
+		if (file_exists("save.sav")) {
+			file_delete("save.sav");	
+		}
+		instance_create_depth(x,y,-10,oMenuGameEnd);
 	}
 }
 
@@ -464,7 +468,7 @@ if (lost == 1) {
 		file_delete("save.sav");	
 	}
 	instance_create_depth(x,y,-10,oMenuGameEnd);
-	
+	oMenuGameEnd.lost = true;
 }
 if (lost == 2) {
 		

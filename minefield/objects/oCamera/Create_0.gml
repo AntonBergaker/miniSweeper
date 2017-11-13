@@ -1,6 +1,5 @@
 camera = camera_create_view(0,0,global.internalWidth,global.internalHeight,0,noone,0,0,0,0);
 
-surface_resize(application_surface,global.internalWidth*2,global.internalHeight*2);
 view_enabled    = true;
 view_visible[0] = true;
 view_camera[0] = camera;
