@@ -107,6 +107,11 @@ if (won == 0 && lost == 0 && resetting == 0) {
 				
 					if (inside_grid(_xx,_yy) && !clearedGrid[# _xx, _yy]) {
 						flagGrid[# _xx, _yy] = !flagGrid[# _xx, _yy];
+						if (flagGrid[# _xx, _yy]) {
+							audio_play(aFlagUp,1,random_range(0.95,1.05));	
+						} else {
+							audio_play(aFlagDown,1,random_range(0.95,1.05));
+						}
 						ds_list_add(flagEaseList, [_xx, _yy]);
 					}
 				}
@@ -127,6 +132,11 @@ if (won == 0 && lost == 0 && resetting == 0) {
 					if (_xx2 == _xx && _yy2 == _yy) {
 						if (inside_grid(_xx,_yy) && !clearedGrid[# _xx, _yy]) {
 							flagGrid[# _xx, _yy] = !flagGrid[# _xx, _yy];
+							if (flagGrid[# _xx, _yy]) {
+								audio_play(aFlagUp,1,random_range(0.95,1.05));	
+							} else {
+								audio_play(aFlagDown,1,random_range(0.95,1.05));
+							}
 							ds_list_add(flagEaseList, [_xx, _yy]);
 							Haptics_VibrateIntensity(100,2);
 						}
@@ -252,9 +262,6 @@ if (won == 0 && lost == 0 && resetting == 0) {
 
 ///Easing
 var _len = ds_list_size(flagEaseList);
-if (_len > 0) {
-	updateDrawing = true;	
-}
 
 for (var i=0;i<_len;i++) {
 	var _arr = flagEaseList[| i];
@@ -273,9 +280,6 @@ for (var i=0;i<_len;i++) {
 
 
 var _len = ds_list_size(removeEaseList);
-if (_len > 0) {
-	updateDrawing = true;	
-}
 
 for (var i=0;i<_len;i++) {
 	var _arr = removeEaseList[| i];
@@ -335,13 +339,15 @@ if (resetting) {
 			mineEaseGrid[# _x, _y] = max(_val,0);
 			if (_val <= 0) {
 				mineGrid[# _x, _y] = false;
+				audio_play(aBombDown,0.2);
 			}
 		} else if (flagGrid[# _x, _y]) {
 			var _val = flagEaseGrid[# _x, _y];
 			_val -= deltaTimeS*2;
 			flagEaseGrid[# _x, _y] = max(_val,0);
 			if (_val <= 0) {
-				flagGrid[# _x, _y] = false;	
+				flagGrid[# _x, _y] = false;
+				audio_play(aFlagDown,0.2);
 			}
 		} else if (clearedGrid[# _x, _y]) {
 			var _val = removeEaseGrid[# _x, _y];
@@ -376,6 +382,7 @@ if (resetting) {
 		ds_grid_clear(aboutToResetGrid,0);
 		ds_grid_clear(mineEaseGrid,0);
 		ds_grid_clear(mineGrid,0);
+		ds_grid_clear(nearGrid,0);
 		scr_place_mines(gridMines);
 		scr_calculate_grid_near();
 		won = false;
@@ -387,7 +394,7 @@ if (resetting) {
 }
 
 
-os_is_paused() {
+if (os_type == os_android && os_is_paused()) {
 	redrawFrames = 3;	
 }
 
@@ -403,11 +410,7 @@ for (var i=0;i<_len;i++) {
 		var _y = _arr[1];
 		
 		if (!clearedGrid[# _x, _y]) {
-			ds_list_add(removeEaseList, [_x, _y]);
-			clearedGrid[# _x, _y] = true;
-			if (nearGrid[# _x, _y] == 0) {
-				scr_clear_all_around_recursive(_x, _y);
-			}
+			scr_clear_place(_x,_y);
 		}
 
 		ds_list_delete(toBeCleared,i);
@@ -415,6 +418,14 @@ for (var i=0;i<_len;i++) {
 		_len--;
 	}
 }
+
+if (pitch > 0) {
+	pitch-= deltaTimeS*10;
+	if (pitch < 0) {
+		pitch = 0;	
+	}
+}
+
 
 if (_updatedField) {
 	var _won = true;

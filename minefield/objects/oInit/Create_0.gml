@@ -25,4 +25,6 @@ device_mouse_dbclick_enable(0);
 
 scr_init_variables();
 
+show_debug_overlay(1)
+
 randomize();

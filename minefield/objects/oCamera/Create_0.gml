@@ -12,4 +12,4 @@ view_hport[0] = global.windowHeight;
 width = global.internalWidth*3;
 height = global.internalHeight*3;
 
-timer = 5;
+timer = 3;

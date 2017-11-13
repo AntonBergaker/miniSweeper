@@ -1,5 +1,5 @@
-gridWidth = 20;
-gridHeight = 36;
+gridWidth = 18;
+gridHeight = 32;
 gridMines = 99;
 
 backColor = c_white;
@@ -7,6 +7,7 @@ solidColor = -1
 clearedColor = -1
 textColor = c_black;
 mineColor = -1;
+pitch = 0;
 
 updateDrawing = false;
 firstStep = true;
