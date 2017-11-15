@@ -11,7 +11,7 @@ if !firstStep {
 		draw_text(x,y-110,t_won);
 	}
 	
-	draw_sprite_ext(sSmallBox,0,x,y+20,1,1,0,$49E047,1);
+	draw_sprite_ext(sSmallBox,0,x,y+20,1,1,0,global.buttonColor,1);
 	
 	draw_set_font(fMediumMenu);
 	draw_text(x,y+20,lost ? t_retry : t_again);

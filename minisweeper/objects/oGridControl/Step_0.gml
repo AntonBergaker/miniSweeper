@@ -1,4 +1,7 @@
 ///Check for starting moves
+if (!enabled) {
+	exit;	
+}
 
 if (firstStep) {
 	updateDrawing = true;

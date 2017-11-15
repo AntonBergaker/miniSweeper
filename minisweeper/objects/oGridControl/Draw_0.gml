@@ -1,3 +1,7 @@
+if (!enabled) {
+	exit;	
+}
+
 if (!surface_exists(surf)) {
 	surf = surface_create(global.internalWidth, global.internalHeight);
 	updateDrawing = true;
@@ -5,10 +9,10 @@ if (!surface_exists(surf)) {
 if (surface_exists(surf)) {
 	surface_set_target(surf);
 	if (updateDrawing) {
-		draw_set_color(backColor);
+		draw_set_color(global.backColor);
 		draw_rectangle(0,0,global.internalWidth,global.internalHeight,0);
 		
-		draw_set_color(textColor);
+		draw_set_color(global.textColor);
 		draw_set_valign(fa_middle);
 		draw_set_halign(fa_center);
 
@@ -29,7 +33,7 @@ if (surface_exists(surf)) {
 		var _len3 = ds_list_size(updateCellList);
 		
 		if (_len1 || _len2 || _len3) {
-			draw_set_color(textColor);
+			draw_set_color(global.textColor);
 			draw_set_valign(fa_middle);
 			draw_set_halign(fa_center);	
 		}

@@ -1,3 +1,7 @@
+if (!enabled) {
+	exit;	
+}
+
 var _change = mouse_wheel_down() - mouse_wheel_up();
 
 if _change != 0

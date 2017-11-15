@@ -2,25 +2,12 @@ gridWidth = 18;
 gridHeight = 32;
 gridMines = 99;
 
-backColor = c_white;
-solidColor = -1
-clearedColor = -1
-textColor = c_black;
-mineColor = -1;
 pitch = 0;
+
+enabled = false;
 
 updateDrawing = false;
 firstStep = true;
-
-global.darkMode = false;
-
-if (global.darkMode) {
-	solidColor = $7E231A;
-	clearedColor = $282010;
-	textColor = c_white;
-	backColor = c_black;
-	mineColor = c_white;
-}
 
 mineGrid = ds_grid_create(gridWidth, gridHeight);
 clearedGrid = ds_grid_create(gridWidth, gridHeight);
