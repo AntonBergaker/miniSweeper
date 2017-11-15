@@ -1,5 +1,6 @@
 if (!surface_exists(surf)) {
 	surf = surface_create(global.internalWidth, global.internalHeight);
+	updateDrawing = true;
 }
 if (surface_exists(surf)) {
 	surface_set_target(surf);
