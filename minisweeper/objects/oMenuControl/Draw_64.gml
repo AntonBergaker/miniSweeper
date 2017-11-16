@@ -18,3 +18,10 @@ for (var i=0;i<_len;i++) {
 		scr_menu_draw_button(_inst, _x + _inst.x * _scaleW, _y + _inst.y * _scaleH, _scaleW * _inst.width, _scaleH * _inst.height);	
 	}
 }
+_len = ds_list_size(labels);
+for (var i=0;i<_len;i++) {
+	var _inst = labels[|i];
+	if (instance_exists(_inst)) {
+		scr_menu_draw_label(_inst, _x + _inst.x * _scaleW, _y + _inst.y * _scaleH, _scaleW * _inst.width, _scaleH * _inst.height);	
+	}
+}

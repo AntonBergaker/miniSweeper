@@ -4,6 +4,10 @@
 var _xx = argument0;
 var _yy = argument1;
 
+if (resetting) {
+	scr_reset_grid();	
+}
+
 ds_list_add(removeEaseList, [_xx, _yy]);
 if !(clearedGrid[# _xx, _yy]) {
 	clearedGrid[# _xx, _yy] = true;

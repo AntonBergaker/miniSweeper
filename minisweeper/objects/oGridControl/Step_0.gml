@@ -10,7 +10,7 @@ if (firstStep) {
 
 var _updatedField = false;
 
-if (won == 0 && lost == 0 && resetting == 0) {
+if (locked == false) {
 	for (var i=0;i<5;i++) {
 		if (touchAction[i] == TouchAction.None) {
 		
@@ -29,6 +29,10 @@ if (won == 0 && lost == 0 && resetting == 0) {
 				if (inside_grid(_xx,_yy)) {
 					if (_xx2 == _xx && _yy2 == _yy) {
 						if (touchPressTime[i] < 0.2 - mineGrid[# _xx,_yy]*0.1) {
+							if (resetting) {
+								scr_reset_grid();	
+							}
+							
 							if (!flagGrid[# _xx,_yy]) {
 								if (firstPress) {
 									var __xx1 = max(_xx - 2,0);
@@ -371,22 +375,7 @@ if (resetting) {
 		}
 	}
 	if (_len == 0) {
-		firstPress = true;	
-		ds_grid_clear(aboutToClearGrid,0);
-		ds_grid_clear(aboutToResetGrid,0);
-		ds_grid_clear(mineEaseGrid,0);
-		ds_grid_clear(mineGrid,0);
-		ds_grid_clear(nearGrid,0);
-		scr_place_mines(gridMines);
-		scr_calculate_grid_near();
-		won = false;
-		lost = false;
-		resetting = false;
-		wonTimer = 0;
-		lostTimer = 0;
-		gameplayTime = 0;
-		timerX = 0;
-		minesLeft = gridMines;
+		scr_reset_grid();
 	} else {
 		gameplayTime = lerp_time(gameplayTime,0,0.1,deltaTimeS);
 		minesLeft = lerp_time(minesLeft,gridMines,0.1,deltaTimeS);
@@ -449,6 +438,7 @@ if (_updatedField) {
 	
 	if (_won) {
 		won = 1;
+		locked = true;
 	}
 }
 
@@ -465,7 +455,8 @@ if (won==1) {
 	}
 }
 
-if (lost == 1) {	
+if (lost == 1) {
+	locked = true;
 	lost = 2;
 	if (file_exists("save.sav")) {
 		file_delete("save.sav");	

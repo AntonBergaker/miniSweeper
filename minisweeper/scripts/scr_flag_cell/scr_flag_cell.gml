@@ -4,6 +4,10 @@
 var _xx = argument0;
 var _yy = argument1;
 
+if (resetting) {
+	scr_reset_grid();	
+}
+
 flagGrid[# _xx, _yy] = !flagGrid[# _xx, _yy];
 if (flagGrid[# _xx, _yy]) {
 	audio_play(aFlagUp,1,random_range(0.95,1.05));

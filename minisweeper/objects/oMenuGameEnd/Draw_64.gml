@@ -16,5 +16,5 @@ if !firstStep {
 	draw_set_font(fMediumMenu);
 	draw_text(x,y+20,lost ? t_retry : t_again);
 	
-	draw_text(x,y+115,"Exit");
+	draw_text(x,y+115,"Menu");
 }

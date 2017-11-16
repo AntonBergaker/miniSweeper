@@ -2,7 +2,7 @@
     "id": "98dd7359-9aa3-47f1-ab11-9839b96bb695",
     "modelName": "GMObject",
     "mvc": "1.0",
-    "name": "oMenuText",
+    "name": "oMenuObjectLabel",
     "eventList": [
         
     ],

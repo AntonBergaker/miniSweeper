@@ -5,5 +5,8 @@ aFont = fMediumMenu;
 aWidth = 0.6;
 aHeight = 0.1;
 
+menuTime = 0;
+
 buttons = ds_list_create();
-texts = ds_list_create();
+labels = ds_list_create();
+scr_mouse_init();

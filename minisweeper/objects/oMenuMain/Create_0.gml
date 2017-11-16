@@ -18,14 +18,17 @@ if (global.darkMode) {
 
 if (file_exists("save.sav")) {
 	oGridControl.enabled = true;
+	menu = noone;
 	instance_destroy();
 } else {
 	menu = scr_menu_create(0,0,1,1);
 	menu.depth = depth-1;
 
+	scr_menu_set_button_settings(menu,fa_center,fa_middle,fMineTextMip0,0.6,0.1)
+	playButton = scr_menu_create_button(menu,0.5,0.5,"Play","play",true);
 
-	scr_menu_set_button_settings(menu,fa_center,fa_middle,fMineTextMip0,0.5,0.15)
-	playButton = scr_menu_create_button(menu,0.5,0.5,"Play",true);
-
-	settingsButton = scr_menu_create_button(menu,0.5,0.7,"Settings",false);
+	settingsButton = scr_menu_create_button(menu,0.5,0.7,"Settings","settings",false);
+	
+	scr_menu_set_button_settings(menu,fa_center,fa_middle,fThinMenu,0.8,0.2)
+	nameLabel = scr_menu_create_label(menu, 0.5, 0.2, "miniSweeper")
 }

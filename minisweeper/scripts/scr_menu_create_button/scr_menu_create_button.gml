@@ -2,12 +2,14 @@
 ///@param x
 ///@param y
 ///@param text
+///@param tag
 ///@param [filled]
 var _menu = argument[0];
 var _inst = instance_create_depth(argument[1],argument[2],0,oMenuObjectButton);
 _inst.text = argument[3];
-if (argument_count > 4) {
-	_inst.filled = argument[4];
+_inst.tag = argument[4];
+if (argument_count > 5) {
+	_inst.filled = argument[5];
 } else {
 	_inst.filled = false;	
 }

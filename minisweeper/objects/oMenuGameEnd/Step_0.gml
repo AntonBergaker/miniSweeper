@@ -42,6 +42,7 @@ if (_reset) {
 			scr_reset_place_recursive( irandom(gridWidth-1), irandom(gridHeight-1));
 		}
 		resetting = true;
+		locked = false;
 	}
 	instance_destroy();
 }
