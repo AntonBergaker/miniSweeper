@@ -7,7 +7,7 @@
 ///@param standardSeperationString
 
 var _menu = argument[0];
-var _inst = instance_create_depth(argument[1],argument[2],0,oMenuObjectButton);
+var _inst = instance_create_depth(argument[1],argument[2],0,oMenuObjectSlider);
 
 _inst.width = _menu.aWidth;
 _inst.height = _menu.aHeight;
@@ -21,7 +21,7 @@ if (!_inst.usesData) {
 	_inst.boundLower  = _arr[0];
 	_inst.boundHigher = _arr[1];
 	_inst.selected = argument[5];
-	_inst.selectedIndex = argument[5] - _inst.boundLower;
+	_inst.selectedIndex = (argument[5] - _inst.boundLower);
 	_inst.positionX = _inst.selectedIndex;
 } else {
 	_inst.data = argument[4];
@@ -30,6 +30,7 @@ if (!_inst.usesData) {
 	_inst.positionX = _inst.selectedIndex;
 }
 
+_inst.selectedIndex *= -1;
 _inst.standardSeperation = argument[6];
 
 ds_list_add(_menu.sliders, _inst);

@@ -407,6 +407,14 @@
             }
         },
         {
+            "Key": "6627c689-525c-4232-9560-70164799b28c",
+            "Value": {
+                "id": "aa80571c-9dde-4b88-b026-f62ca495dc8b",
+                "resourcePath": "scripts\\mod_negative\\mod_negative.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "6946ce06-96bf-4096-b681-4e467bf3607a",
             "Value": {
                 "id": "b0c2abb6-ce54-401a-8f1f-01cefa06fa74",
@@ -1088,6 +1096,7 @@
         "9055c0fd-266b-45e3-a354-3ab6ab91d2a2",
         "48344925-2600-4286-a35a-6b963236910f",
         "e243af81-90c6-4b6d-9572-b2f26c47f22f",
+        "6627c689-525c-4232-9560-70164799b28c",
         "484a3c48-d5ae-487a-b1f8-1cebc722b15b",
         "e859409e-a356-495f-a672-cbaf60f643f8",
         "9073ef12-57bd-419c-94f0-a5b6da0eb773",

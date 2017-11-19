@@ -24,7 +24,6 @@ timer = 0;
 
 device_mouse_dbclick_enable(0);
 
-
 scr_init_variables();
 
 application_surface_draw_enable(0);

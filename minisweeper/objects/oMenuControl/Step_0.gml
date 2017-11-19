@@ -67,17 +67,50 @@ if (_released) {
 var _len = ds_list_size(sliders);
 for (var i=0;i<_len;i++) {
 	var _inst = sliders[| i];
+	
+	if (abs(_inst.speedX) > 0) {
+		_inst.positionX += _inst.speedX;
+		_inst.speedX = lerp_time(_inst.speedX,0,0.2,deltaTimeS*2.5);
+
+		_inst.speedX = value_shift(_inst.speedX, 0, deltaTimeS/1000);
+
+
+		_inst.selectedIndex = -round(_inst.positionX);
+		if (_inst.usesData) {
+			var _max = array_length_1d(_inst.data);
+			var _ind = mod_negative(_inst.selectedIndex, _max);
+			_inst.selected = _inst.data[_ind];
+			
+		} else {
+			var _ind = mod_negative(_inst.selectedIndex, _inst.boundHigher - _inst.boundLower);
+			_inst.selected = _ind + _inst.boundLower;	
+		}
+	}
 	if (_inst.pressed) {
-		var _x = (touchX[_pressedIndex]*_width - x/width);	
-		var _diff = _x - _inst.pressedLastX;
+		if (touchReleased[_inst.pressedFinger]) {
+			_inst.pressed = false;
+			_inst.pressedFinger = -1;
+			var _maxSpeed = 0;
+			for (var ii=0;ii<5;ii++) {
+				if (abs(_inst.lastSpeedsX[ii]) > abs(_maxSpeed)) {
+					_maxSpeed = _inst.lastSpeedsX[ii];
+				}
+				
+			
+			_inst.speedX = _maxSpeed/5;
+			
+			}
+		} else {
+			var _x = (touchX[_pressedIndex]*_width - x/width);	
+			var _diff = _x - _inst.pressedLastX;
 		
-		_inst.positionX += _diff;
-		_inst.pressedLastX = _x;
-		var _diff2 = (_inst.positionX - _inst.selectedIndex)/_inst.entrySeperation;
-		if (abs(_diff2) > 0.5) {
-			var _move = round(_diff2);
-			_inst.selectedIndex += _move;
-			log(_inst.selectedIndex);
+			for (var ii=4;ii>=1;ii--) {
+				_inst.lastSpeedsX[ii] = _inst.lastSpeedsX[ii-1];
+			}
+		
+			_inst.speedX = _diff/_inst.entrySeperation;
+			_inst.lastSpeedsX[0] = _inst.speedX;
+			_inst.pressedLastX = _x;
 		}
 		
 	} else if (_pressed) {

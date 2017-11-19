@@ -8,3 +8,10 @@ pressedFinger = -1;
 pressed = false;
 pressedLastX = x;
 entrySeperation = 0.2;
+
+lastSpeedsX = [0,0,0,0,0];
+
+lastW = 0;
+lastH = 0;
+lastX = x;
+lastY = y;

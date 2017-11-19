@@ -27,28 +27,23 @@ var _scale = _height/_tHeight;
 
 var _ind = _inst.selectedIndex;
 var _startInd = _ind - 3;
-var _sep = string_width(_inst.standardSeperation)/2 + _width/5;
-var _xx = _x + (_inst.positionX - _inst.selectedIndex)*_width;
+
+var _sep = string_width(_inst.standardSeperation)*_scale + _width/10;
 
 _inst.entrySeperation = (_sep / _width);
+
+var _xx = _x + ((_inst.positionX - _inst.selectedIndex*-1)*_width*_inst.entrySeperation);
+
 
 for (var i=-3;i<=3;i++) {
 	if (_inst.usesData) {
 		var _max = array_length_1d(_inst.data);
-		var _ind = (_startInd + i); //sorry
-		while _ind <0 { _ind+= _max; }
-		_ind = _ind mod _max;
+		_ind = mod_negative(i + _inst.selectedIndex, _max);
 		var _str = _inst.data[_ind];
 	} else {
-		var _ind = _startInd + i;
-		while (_ind) > _inst.boundHigher {
-			_ind = _ind - _inst.boundHigher + _inst.boundLower;
-		}
-		while (_ind < _inst.boundLower) {
-			_ind = _ind + _inst.boundHigher - _inst.boundLower + 1;	
-		}
+		var _ind = mod_negative(i + _inst.selectedIndex, _inst.boundHigher - _inst.boundLower + 1);
 		
-		var _str = string(_ind);
+		var _str = string(_ind + _inst.boundLower);
 	}
 	draw_text_transformed_color(_xx + i*_sep,_y,_str,_scale,_scale,0,global.textColor, global.textColor, global.textColor, global.textColor, alpha);
 }

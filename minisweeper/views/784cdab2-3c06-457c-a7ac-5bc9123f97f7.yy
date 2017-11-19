@@ -10,7 +10,8 @@
         "aa686bc9-b068-4b50-8d22-4fdea8fddf15",
         "9055c0fd-266b-45e3-a354-3ab6ab91d2a2",
         "48344925-2600-4286-a35a-6b963236910f",
-        "e243af81-90c6-4b6d-9572-b2f26c47f22f"
+        "e243af81-90c6-4b6d-9572-b2f26c47f22f",
+        "6627c689-525c-4232-9560-70164799b28c"
     ],
     "filterType": "GMScript",
     "folderName": "math",
