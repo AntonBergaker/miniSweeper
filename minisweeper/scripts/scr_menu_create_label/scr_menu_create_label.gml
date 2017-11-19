@@ -14,3 +14,4 @@ _inst.valign = _menu.aValign;
 _inst.halign = _menu.aHalign
 
 ds_list_add(_menu.labels, _inst);
+return _inst;

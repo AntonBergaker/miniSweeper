@@ -11,6 +11,14 @@ var _scaleH = _guiH * height;
 
 draw_set_color(global.textColor);
 
+_len = ds_list_size(sprites);
+for (var i=0;i<_len;i++) {
+	var _inst = sprites[|i];
+	if (instance_exists(_inst)) {
+		scr_menu_draw_sprite(_inst, _x + _inst.x * _scaleW, _y + _inst.y * _scaleH, _scaleW * _inst.width, _scaleH * _inst.height);	
+	}
+}
+
 _len = ds_list_size(buttons);
 for (var i=0;i<_len;i++) {
 	var _inst = buttons[|i];
@@ -23,5 +31,12 @@ for (var i=0;i<_len;i++) {
 	var _inst = labels[|i];
 	if (instance_exists(_inst)) {
 		scr_menu_draw_label(_inst, _x + _inst.x * _scaleW, _y + _inst.y * _scaleH, _scaleW * _inst.width, _scaleH * _inst.height);	
+	}
+}
+_len = ds_list_size(sliders);
+for (var i=0;i<_len;i++) {
+	var _inst = sliders[|i];
+	if (instance_exists(_inst)) {
+		scr_menu_draw_slider(_inst, _x + _inst.x * _scaleW, _y + _inst.y * _scaleH, _scaleW * _inst.width, _scaleH * _inst.height);	
 	}
 }

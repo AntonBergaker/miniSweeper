@@ -5,3 +5,4 @@ if (lastH != height || lastW != width || lastX != x || lastY != y) {
 	lastHeight = height;
 	scr_calculate_button_area();
 }
+clickedFade -= deltaTimeS;

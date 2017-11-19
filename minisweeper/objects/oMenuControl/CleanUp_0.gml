@@ -1,8 +1,8 @@
-var _len = ds_list_size(buttons)
-for (var i=0;i<_len;i++) {
-	instance_destroy(buttons[| i]);	
-}
-var _len = ds_list_size(labels)
-for (var i=0;i<_len;i++) {
-	instance_destroy(labels[| i]);	
+if (!cleanedUp) {
+	cleanedUp = true;
+	scr_list_instance_destroy(buttons);
+	scr_list_instance_destroy(labels);
+	scr_list_instance_destroy(sprites);
+	scr_list_instance_destroy(sliders);
+
 }

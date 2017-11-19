@@ -22,4 +22,4 @@ if (_sWidth > 1) {
 	_scale /= _sWidth;
 }
 
-draw_text_transformed(_x,_y,_inst.text,_scale,_scale,0);
+draw_text_transformed_color(_x,_y,_inst.text,_scale,_scale,0,global.textColor,global.textColor,global.textColor,global.textColor,alpha);

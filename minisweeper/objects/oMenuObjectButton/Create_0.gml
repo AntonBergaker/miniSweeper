@@ -8,3 +8,4 @@ pressedY = 0;
 pressedTime = 0;
 pressedFinger = -1;
 tag = "";
+clickedFade = 0;

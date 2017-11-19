@@ -19,8 +19,8 @@ if (surface_exists(surf)) {
 		var _startX = clamp(coord_to_grid_x(oCamera.x)-1,0,gridWidth -1);
 		var _startY = clamp(coord_to_grid_y(oCamera.y)-1,0,gridHeight-1);
 
-		var _endX = clamp(coord_to_grid_x(oCamera.x+oCamera.width )+1,0,gridWidth);
-		var _endY = clamp(coord_to_grid_y(oCamera.y+oCamera.height)+1,0,gridHeight);
+		var _endX = ceil(clamp(coord_to_grid_x(oCamera.x+oCamera.width )+1,0,gridWidth));
+		var _endY = ceil(clamp(coord_to_grid_y(oCamera.y+oCamera.height)+1,0,gridHeight));
 
 		for (var xx=_startX;xx<_endX;xx++) {
 			for (var yy=_startY;yy<_endY;yy++) {

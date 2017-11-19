@@ -12,5 +12,29 @@ if (_ratio) > 0.6 {
 	menu.height = 1;
 }
 	
+if (fadeIn) {
+	fadeInTimer+=deltaTimeS;
+	if (fadeInTimer >= 1) {
+		fadeIn = false;	
+	}
+}
+
+if (fadeOut) {
+	fadeOutTimer+=deltaTimeS*1.5;
+	if (fadeOutTimer >= 1) {
+		instance_destroy();	
+		exit;
+	}
+}
+
+alpha = 1;
+if (fadeIn) {
+	alpha *= fadeInTimer;	
+}
+if (fadeOut) {
+	alpha *= (1-fadeOutTimer);	
+}
+
+menu.alpha = alpha;
 menu.x = 0.5-menu.width/2;
 menu.y = 0.5-menu.height/2;

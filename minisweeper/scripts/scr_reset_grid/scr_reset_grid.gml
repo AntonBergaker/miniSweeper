@@ -16,6 +16,8 @@ scr_calculate_grid_near();
 won = false;
 lost = false;
 resetting = false;
+hideOnReset = false;
+hideOnResetTimer = 0;
 wonTimer = 0;
 lostTimer = 0;
 gameplayTime = 0;

@@ -337,7 +337,9 @@ if (resetting) {
 			mineEaseGrid[# _x, _y] = max(_val,0);
 			if (_val <= 0) {
 				mineGrid[# _x, _y] = false;
-				audio_play(aBombDown,0.2);
+				if (!hideOnReset) {
+					audio_play(aBombDown,0.2);
+				}
 			}
 		} else if (flagGrid[# _x, _y]) {
 			var _val = flagEaseGrid[# _x, _y];
@@ -345,15 +347,22 @@ if (resetting) {
 			flagEaseGrid[# _x, _y] = max(_val,0);
 			if (_val <= 0) {
 				flagGrid[# _x, _y] = false;
-				audio_play(aFlagDown,0.2);
+				if (!hideOnReset) {
+					audio_play(aFlagDown,0.2);
+				}
 			}
-		} else if (clearedGrid[# _x, _y]) {
+		} else if (!hideOnReset && clearedGrid[# _x, _y]) {
 			var _val = removeEaseGrid[# _x, _y];
 			_val -= deltaTimeS*2;
 			removeEaseGrid[# _x, _y] = max(_val,0);
 			if (_val <= 0) {
 				clearedGrid[# _x, _y] = false;	
 			}
+		} else if (hideOnReset) {
+			clearedGrid[# _x, _y] = true;
+			var _val = removeEaseGrid[# _x, _y];
+			_val += deltaTimeS*2;
+			removeEaseGrid[# _x, _y] = min(_val,1);
 		} else {
 			_remove = true;	
 		}
@@ -365,7 +374,6 @@ if (resetting) {
 	
 		if abs(_val - .2) < deltaTimeS*4 {
 			scr_reset_place_recursive(_x, _y);	
-			log(_x,_y);
 		}
 	
 		if (_remove && _val > .4) {
@@ -376,12 +384,20 @@ if (resetting) {
 	}
 	if (_len == 0) {
 		scr_reset_grid();
+		if (hideOnReset) {
+			enabled = false;
+			locked = false;
+		}
 	} else {
 		gameplayTime = lerp_time(gameplayTime,0,0.1,deltaTimeS);
 		minesLeft = lerp_time(minesLeft,gridMines,0.1,deltaTimeS);
 	}
 }
 
+if (hideOnReset) {
+	hideOnResetTimer += deltaTimeS;
+	hideOnResetTimer = clamp(hideOnResetTimer,0,1);
+}
 
 if (os_type == os_android && os_is_paused()) {
 	redrawFrames = 3;
@@ -447,11 +463,11 @@ if (won==1) {
 	if (wonTimer > 1) {
 		won = 2;
 		wonTimer = 0;
-			lost = 2;
+		lost = 2;
 		if (file_exists("save.sav")) {
 			file_delete("save.sav");	
 		}
-		instance_create_depth(x,y,-10,oMenuGameEnd);
+		instance_create_layer(x,y,"MenuGameEnd",oMenuGameEnd);
 	}
 }
 
@@ -461,9 +477,6 @@ if (lost == 1) {
 	if (file_exists("save.sav")) {
 		file_delete("save.sav");	
 	}
-	instance_create_depth(x,y,-10,oMenuGameEnd);
+	instance_create_layer(x,y,"MenuGameEnd",oMenuGameEnd);
 	oMenuGameEnd.lost = true;
-}
-if (lost == 2) {
-		
 }

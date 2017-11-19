@@ -39,6 +39,7 @@ redrawFrames = 0;
 won = 0;
 wonTimer = 0;
 
+
 lost = 0;
 lostTimer = 0;
 
@@ -49,6 +50,7 @@ minesGuiBounce = 0;
 gameplayTime = 0;
 
 resetting = 0;
+hideOnReset = false;
 
 fieldWidth  = gridWidth*160 + 50;
 fieldHeight = gridHeight*160+ 50;
