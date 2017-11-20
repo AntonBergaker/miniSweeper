@@ -1,5 +1,4 @@
 if room == rMain {
-	
 	//also fit the zoom
 	if (width > oGridControl.fieldWidth && height > oGridControl.fieldHeight) {
 		var _fieldRatio = oGridControl.fieldWidth/oGridControl.fieldHeight;

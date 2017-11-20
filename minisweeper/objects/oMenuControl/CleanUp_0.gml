@@ -4,5 +4,4 @@ if (!cleanedUp) {
 	scr_list_instance_destroy(labels);
 	scr_list_instance_destroy(sprites);
 	scr_list_instance_destroy(sliders);
-
 }

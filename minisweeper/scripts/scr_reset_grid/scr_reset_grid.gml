@@ -6,6 +6,7 @@ ds_grid_clear(mineEaseGrid,0);
 ds_list_clear(mineEaseList);
 ds_list_clear(resetEaseList);
 ds_list_clear(flagEaseList);
+ds_list_clear(updateCellList);
 ds_grid_clear(removeEaseGrid,0);
 ds_grid_clear(flagEaseGrid,0);
 ds_grid_clear(flagGrid,0);

@@ -9,6 +9,9 @@ pressed = false;
 pressedLastX = x;
 entrySeperation = 0.2;
 
+surf = -1;
+updated = false;
+
 lastSpeedsX = [0,0,0,0,0];
 
 lastW = 0;

@@ -37,7 +37,7 @@ if (minesX > 0 || minesLeft <= 5) {
 	var _bounce = ease_quadOut_peek(1,1.3,minesGuiBounce,0.5,1);
 	
 	draw_sprite_ext(sWhiteStuff,0,_xx,_yy,-1.5,1,0,global.backColor,1);
-	draw_sprite_ext(sMineUncolored,1,_xx-60,_yy,1,1,0,global.mineColor,1);
+	draw_sprite_ext(sMine,1,_xx-60,_yy,1,1,0,global.mineColor,1);
 	if (_bounce != 0) {
 		draw_text_transformed(_xx-20+_bounce*5,_yy,string(round(minesLeft)),1/_bounce,_bounce,0);
 	} else {

@@ -5,6 +5,7 @@ pressColorFilled = c_white;
 pressColor = c_gray
 
 selected = noone;
+updatedSlider = noone;
 
 var _guiW = display_get_gui_width();
 var _guiH = display_get_gui_height();
@@ -67,26 +68,51 @@ if (_released) {
 var _len = ds_list_size(sliders);
 for (var i=0;i<_len;i++) {
 	var _inst = sliders[| i];
+	_inst.updated = false;
+	if (!surface_exists(_inst.surf)) {
+		_inst.updated = true;
+	}
+	
+	if ((_inst.positionX mod 1) != 0) {
+		if (abs(_inst.speedX) < deltaTimeS/5) {
+			var _target = -_inst.selectedIndex;
+			var _diff = abs((_inst.positionX + _inst.speedX) - _target);
+			if (_inst.positionX < _target) {
+				_inst.speedX += _diff*0.2*deltaTimeS;	
+			} else {
+				_inst.speedX -= _diff*0.2*deltaTimeS;
+			}
+			
+			
+			_inst.updated = true;
+		}
+	}
 	
 	if (abs(_inst.speedX) > 0) {
+		_inst.updated = true;
 		_inst.positionX += _inst.speedX;
-		_inst.speedX = lerp_time(_inst.speedX,0,0.2,deltaTimeS*2.5);
+		_inst.speedX = lerp_time(_inst.speedX,0,0.2,deltaTimeS*1.2);
 
 		_inst.speedX = value_shift(_inst.speedX, 0, deltaTimeS/1000);
 
-
+		var _preIndex = _inst.selectedIndex;
 		_inst.selectedIndex = -round(_inst.positionX);
-		if (_inst.usesData) {
-			var _max = array_length_1d(_inst.data);
-			var _ind = mod_negative(_inst.selectedIndex, _max);
-			_inst.selected = _inst.data[_ind];
+		
+		if (_preIndex != _inst.selectedIndex) {
+			if (_inst.usesData) {
+				var _max = array_length_1d(_inst.data);
+				var _ind = mod_negative(_inst.selectedIndex, _max);
+				_inst.selected = _inst.data[_ind];
 			
-		} else {
-			var _ind = mod_negative(_inst.selectedIndex, _inst.boundHigher - _inst.boundLower);
-			_inst.selected = _ind + _inst.boundLower;	
+			} else {
+				var _ind = mod_negative(_inst.selectedIndex, _inst.boundHigher - _inst.boundLower);
+				_inst.selected = _ind + _inst.boundLower;	
+			}
+			updatedSlider = _inst;
 		}
 	}
 	if (_inst.pressed) {
+		_inst.updated = true;
 		if (touchReleased[_inst.pressedFinger]) {
 			_inst.pressed = false;
 			_inst.pressedFinger = -1;
@@ -117,6 +143,7 @@ for (var i=0;i<_len;i++) {
 		var _x = (touchPressX[_pressedIndex]*_width - x/width);
 		var _y = (touchPressY[_pressedIndex]*_height - y/height);	
 		if (point_in_rectangle(_x,_y,_inst.x0,_inst.y0,_inst.x1,_inst.y1)) {
+			_inst.updated = true;
 			_inst.pressed = true;
 			_inst.pressedFinger = _pressedIndex;
 			_inst.pressedLastX = _x;

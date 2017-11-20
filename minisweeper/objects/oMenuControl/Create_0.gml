@@ -10,6 +10,7 @@ pressColor = c_gray
 selected = noone;
 active = true;
 alpha = 1;
+updatedSlider = noone;
 
 cleanedUp = false;
 

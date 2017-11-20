@@ -1,6 +1,6 @@
-gridWidth = 18;
-gridHeight = 32;
-gridMines = 99;
+gridWidth = global.gridWidth;
+gridHeight = global.gridHeight;
+gridMines = global.mineCount;
 
 pitch = 0;
 
@@ -10,24 +10,18 @@ locked = false;
 updateDrawing = false;
 firstStep = true;
 
-mineGrid = ds_grid_create(gridWidth, gridHeight);
-clearedGrid = ds_grid_create(gridWidth, gridHeight);
-flagGrid = ds_grid_create(gridWidth, gridHeight);
-nearGrid = ds_grid_create(gridWidth, gridHeight);
 
-aboutToClearGrid = ds_grid_create(gridWidth, gridHeight);
 
-flagEaseGrid = ds_grid_create(gridWidth, gridHeight);
-removeEaseGrid = ds_grid_create(gridWidth, gridHeight);
-mineEaseGrid = ds_grid_create(gridWidth, gridHeight);
-
-aboutToResetGrid = ds_grid_create(gridWidth, gridHeight);
-
-flagEaseList = ds_list_create();
-removeEaseList = ds_list_create();
-mineEaseList = ds_list_create();
-resetEaseList = ds_list_create();
-updateCellList = ds_list_create();
+//If a save exists import it
+if (file_exists("save.sav")) {
+	scr_load_grid();
+	firstPress = false;
+} else {
+	scr_grid_create_grids();
+	scr_place_mines(gridMines);
+	firstPress = true;
+	minesLeft = gridMines;
+}
 
 lastPanX = 0;
 lastPanY = 0;
@@ -51,6 +45,7 @@ gameplayTime = 0;
 
 resetting = 0;
 hideOnReset = false;
+hideOnResetTimer = 0;
 
 fieldWidth  = gridWidth*160 + 50;
 fieldHeight = gridHeight*160+ 50;
@@ -69,8 +64,6 @@ mipScale = power(2,mip);
 surf = -1;
 
 
-minesLeft = gridMines;
-
 saveTimer = 0;
 
 gameTime = 0;
@@ -87,14 +80,7 @@ enum TouchAction {
 	Pinch2
 }
 
-//If a save exists import it
-if (file_exists("save.sav")) {
-	scr_load_grid();
-	firstPress = false;
-} else {
-	scr_place_mines(gridMines);
-	firstPress = true;
-}
+
 scr_calculate_grid_near();
 
 

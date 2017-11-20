@@ -30,7 +30,7 @@ if (!_inst.usesData) {
 	_inst.positionX = _inst.selectedIndex;
 }
 
-_inst.selectedIndex *= -1;
+_inst.positionX *= -1;
 _inst.standardSeperation = argument[6];
 
 ds_list_add(_menu.sliders, _inst);

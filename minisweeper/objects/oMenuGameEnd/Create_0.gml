@@ -31,7 +31,7 @@ playButton = scr_menu_create_button(menu,0.5,0.55,lost ? t_retry : t_again,"retr
 
 settingsButton = scr_menu_create_button(menu,0.5,0.73,"Menu","menu",false);
 	
-scr_menu_set_button_settings(menu,fa_center,fa_middle,fThinMenu,0.7,0.20)
-nameLabel = scr_menu_create_label(menu, 0.5, 0.2, lost ? t_lost : t_won);
+scr_menu_set_button_settings(menu,fa_center,fa_middle,fThinMenu,0.55,0.13)
+nameLabel = scr_menu_create_label(menu, 0.5, 0.22, lost ? t_lost : t_won);
 
 backGround = scr_menu_create_sprite(menu, 0.5,0.45,1.7,1.7,sBigBox);

@@ -94,7 +94,7 @@ if (locked == false) {
 				var _xx2 = touchPressX[i];
 				var _yy2 = touchPressY[i];
 				if (!touchCompleted[i] && touchAction[i] == TouchAction.None) {
-					if (point_distance(_xx1,_yy1,_xx2,_yy2) > 40) {
+					if (point_distance(_xx1,_yy1,_xx2,_yy2) > 10*(oCamera.width/global.internalWidth)) {
 						touchAction[i] = TouchAction.Pan;
 						lastPanX = _xx2 - oCamera.x;
 						lastPanY = _yy2 - oCamera.y;
@@ -204,9 +204,16 @@ if (locked == false) {
 				
 					oCamera.width  = pinchStartScale * _change;
 					oCamera.height = oCamera.width/global.displayRatio;
-				
-					var _halfX = oCamera.width/2;
-					var _halfY = oCamera.height/2;
+					
+					
+					var _maxZoom = min(0.5,72/global.dpi);
+					//And don't make it too small
+					var _zoomLevel = oCamera.width / global.internalWidth;
+	
+					if (_zoomLevel < _maxZoom) {
+						oCamera.width = global.internalWidth * _maxZoom;
+						oCamera.height = oCamera.width / global.displayRatio;
+					}
 				
 					oCamera.x = _mX - oCamera.width * _normalX;
 					oCamera.y = _mY - oCamera.height* _normalY;
@@ -363,6 +370,9 @@ if (resetting) {
 			var _val = removeEaseGrid[# _x, _y];
 			_val += deltaTimeS*2;
 			removeEaseGrid[# _x, _y] = min(_val,1);
+			if ( min(_val,1) == 1) {
+				_remove = true;	
+			}
 		} else {
 			_remove = true;	
 		}
@@ -382,11 +392,11 @@ if (resetting) {
 			_len--;		
 		}
 	}
-	if (_len == 0) {
-		scr_reset_grid();
+	if (_len == 0 || hideOnResetTimer >= 0.9999) {
 		if (hideOnReset) {
 			enabled = false;
 			locked = false;
+			scr_reset_grid();
 		}
 	} else {
 		gameplayTime = lerp_time(gameplayTime,0,0.1,deltaTimeS);
@@ -467,6 +477,17 @@ if (won==1) {
 		if (file_exists("save.sav")) {
 			file_delete("save.sav");	
 		}
+		var _str = scr_format_gridstring(gridWidth, gridHeight, gridMines);
+		var _val = ds_map_find_value(global.highScores, _str);
+		if (_val == undefined) {
+			global.highScores[? _str] = gameplayTime;
+			scr_save_settings();
+		} else if (gameplayTime < _val) {
+			ds_map_replace(global.highScores, _str, gameplayTime);
+			scr_save_settings();
+		}
+		
+		
 		instance_create_layer(x,y,"MenuGameEnd",oMenuGameEnd);
 	}
 }
