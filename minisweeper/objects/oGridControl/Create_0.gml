@@ -11,7 +11,6 @@ updateDrawing = false;
 firstStep = true;
 
 
-
 //If a save exists import it
 if (file_exists("save.sav")) {
 	scr_load_grid();
@@ -21,6 +20,7 @@ if (file_exists("save.sav")) {
 	scr_place_mines(gridMines);
 	firstPress = true;
 	minesLeft = gridMines;
+	leftToClear = gridWidth * gridHeight - gridMines;
 }
 
 lastPanX = 0;

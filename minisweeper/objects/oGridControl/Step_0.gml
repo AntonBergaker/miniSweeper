@@ -8,7 +8,6 @@ if (firstStep) {
 	firstStep = false;
 }
 
-var _updatedField = false;
 
 if (locked == false) {
 	for (var i=0;i<5;i++) {
@@ -48,12 +47,10 @@ if (locked == false) {
 								}
 								if (!clearedGrid[# _xx, _yy]) {
 									scr_clear_place(_xx, _yy);
-									_updatedField = true;
 								} else {
 									var _nearFlags = scr_get_nearby(flagGrid, _xx, _yy);
 									if (_nearFlags == nearGrid[# _xx, _yy]) {
 										scr_clear_near(_xx,_yy);
-										_updatedField = true;
 									}
 								}
 							}
@@ -448,23 +445,14 @@ if (pitch > 0) {
 }
 
 
-if (_updatedField) {
-	var _won = true;
-	for (var xx=0;xx<gridWidth;xx++) {
-		for (var yy=0;yy<gridHeight;yy++) {
-			if (clearedGrid[# xx,yy] == 0 && mineGrid[# xx,yy] == 0) {
-				_won = false;
-				xx+=gridWidth+1;
-				break;
-			}
-		}
-	}
+
 	
-	if (_won) {
-		won = 1;
-		locked = true;
-	}
+if (won == 0 && leftToClear == 0) {
+	won = 1;
+	locked = true;
 }
+
+log(leftToClear);
 
 if (won==1) {
 	wonTimer+=deltaTimeS;	

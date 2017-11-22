@@ -19,7 +19,7 @@ if (_inst.filled) {
 	
 	if (_fade >= 0) {
 		if (_pressIn >= 1) {
-			draw_sprite_ext(sSmallBox,0,_x,_y,_width/374,_height/84,0,merge_color(global.buttonColor,pressColorFilled,0.2*_fade),alpha);
+			draw_sprite_ext(sSmallBox,0,_x,_y,_width/374,_height/84,0,merge_color(global.buttonColor,pressColorFilled,0.2*_fade),alpha*_inst.alpha);
 		} else {
 			draw_sprite_ext(sSmallBox,0,_x,_y,_width/374,_height/84,0,global.buttonColor,alpha);
 			
@@ -35,7 +35,7 @@ if (_inst.filled) {
 			
 			
 			draw_set_alpha(1);
-			draw_sprite_ext(sSmallBox,0,_x,_y,_width/374,_height/84,0,c_white,alpha);
+			draw_sprite_ext(sSmallBox,0,_x,_y,_width/374,_height/84,0,c_white,alpha*_inst.alpha);
 			gpu_set_blendenable(true);
 			gpu_set_colorwriteenable(true,true,true,true);
 			
@@ -47,7 +47,7 @@ if (_inst.filled) {
 
 		}
 	} else {
-		draw_sprite_ext(sSmallBox,0,_x,_y,_width/374,_height/84,0,global.buttonColor,1);
+		draw_sprite_ext(sSmallBox,0,_x,_y,_width/374,_height/84,0,global.buttonColor,alpha*_inst.alpha);
 	}
 } else {
 	var _pressIn = menuTime - _inst.pressedTime;
@@ -77,7 +77,7 @@ if (_inst.filled) {
 			
 			gpu_set_blendmode_ext(bm_dest_alpha,bm_inv_dest_alpha);
 			gpu_set_alphatestenable(true);
-			draw_sprite_ext(sCircle,0,_x+_xx,_y+_yy,_raidus/128,_raidus/128,0,pressColor,alpha);
+			draw_sprite_ext(sCircle,0,_x+_xx,_y+_yy,_raidus/128,_raidus/128,0,pressColor,alpha*_inst.alpha);
 			gpu_set_alphatestenable(false);
 			gpu_set_blendmode(bm_normal);
 

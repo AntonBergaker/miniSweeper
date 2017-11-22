@@ -4,7 +4,8 @@ A mobile version of a classic game with a similar name.
 
 Couldn't find an Android version that didn't make me accidently click the damn bomb everytime I tried to flag.
 
-Made in GameMaker Studio 2 for Android. Could probably work on iOS.
+Made in GameMaker Studio 2 primarly for Android. Could probably work on iOS aswell.
+PC build is available under releases
 
 ## Features
 * Controls that makes it really hard to mess up

@@ -25,3 +25,4 @@ gameplayTime = 0;
 timerX = 0;
 minesLeft = gridMines;
 updateDrawing = true;
+leftToClear = gridWidth * gridHeight - gridMines;

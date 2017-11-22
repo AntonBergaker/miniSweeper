@@ -6,7 +6,8 @@ if (!fadeOut) {
 				oGridControl.enabled = true;
 				if (rebootGrid) {
 					with oGridControl {
-						if (other.updateSize) {
+						if (other.updateSize || global.gridWidth != gridWidth
+						|| global.gridHeight != gridHeight || global.mineCount != gridMines) {
 							scr_grid_update_size();
 						}
 						scr_reset_grid();	

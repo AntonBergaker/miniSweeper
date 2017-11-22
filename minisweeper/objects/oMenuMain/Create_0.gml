@@ -1,4 +1,5 @@
-fadeIn = false;
+fadeIn = true;
+fadeInInit = true;
 fadeInTimer = 0;
 rebootGrid = false;
 fadeOut = false;
@@ -7,6 +8,7 @@ alpha = 0;
 updateSize = false;
 
 presetTimer = 0;
+bestTimeTimer = 0;
 
 
 if (file_exists("save.sav")) {
@@ -25,7 +27,7 @@ if (file_exists("save.sav")) {
 	settingsButton = scr_menu_create_button(menu,0.5,0.75,"Settings","settings",false);
 	
 	scr_menu_set_button_settings(menu,fa_center,fa_middle,fLightMenu,0.4,0.07)
-	sizeToggle = scr_menu_create_button(menu,0.5,0.62,"Presets","sizeToggle",false);
+	sizeToggle = scr_menu_create_button(menu,0.5,0.62,"Custom","sizeToggle",false);
 	
 	scr_menu_set_button_settings(menu,fa_center,fa_middle,fThinMenu,0.8,0.2)
 	nameLabel = scr_menu_create_label(menu, 0.5, 0.2, "miniSweeper")
@@ -49,5 +51,10 @@ if (file_exists("save.sav")) {
 	
 	recordLabel = scr_menu_create_label(menu, 0.15, 0.48, "10:20:42");
 	recordLabel.alpha = 0.8;
+	
+	var _result = global.highScores[? scr_format_gridstring_unordered(global.gridWidth, global.gridHeight, global.mineCount)];
+	if (_result != undefined) {
+		bestTimeTimer = 1;
+	}
 }
 

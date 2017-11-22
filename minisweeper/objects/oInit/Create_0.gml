@@ -15,7 +15,7 @@ if (os_type == os_android) {
 	global.dpi = 72;
 }
 
-//show_debug_overlay(1)
+show_debug_overlay(1)
 
 window_set_size(global.windowWidth,global.windowHeight);
 

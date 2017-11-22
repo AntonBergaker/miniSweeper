@@ -27,6 +27,7 @@ if (!destroy) {
 				}
 				var _inst = instance_create_layer(0,0,"MenuMain",oMenuMain);
 				_inst.fadeIn = true;
+				_inst.fadeInInit = false;
 				_inst.rebootGrid = true;
 				introTimer = -1;
 				destroy = true;
