@@ -5,14 +5,17 @@ if (file_exists("save.json")) {
 	var _map = json_decode(_str);
 	var _gridSize = _map[? "grid_size"];
 	if (_gridSize != undefined) {
-		global.gridWidth  = ds_map_find_default(_gridSize,"width" ,global.gridWidth );
-		global.gridHeight = ds_map_find_default(_gridSize,"height",global.gridHeight);
-		global.mineCount  = ds_map_find_default(_gridSize,"mines" ,global.mineCount );
+		global.gridWidth  = ds_map_find_default(_gridSize,"width"  ,global.gridWidth );
+		global.gridHeight = ds_map_find_default(_gridSize,"height" ,global.gridHeight);
+		global.mineCount  = ds_map_find_default(_gridSize,"mines"  ,global.mineCount );
+		global.presetGrid = ds_map_find_default(_gridSize,"preset" ,global.presetGrid);
 	}
 	var _highScores = _map[? "highscores"];
 	if (_highScores != undefined) {
 		ds_map_copy(global.highScores, _highScores);	
 	}
+	
+	global.currentTheme = ds_map_find_default(_map, "theme", global.currentTheme);
 	
 	
 	file_text_close(_file);

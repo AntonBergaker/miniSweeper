@@ -56,6 +56,6 @@ if (clearedGrid[# xx,yy]) {
 	if (flagEaseGrid[# xx,yy] > 0) {
 		var _xSize = ease_backOut(0,1,flagEaseGrid[# xx,yy],1, 3.5);
 		var _ySize = lerp(_xSize, ease_expoIn(0,1, flagEaseGrid[# xx,yy], 1),0.5);
-		draw_sprite_ext(sFlag,mip,_xx,_yy+30*_sScale,_scale*_ySize,_scale*_xSize,0,c_white,1);	
+		draw_sprite_ext(sFlag,mip,_xx,_yy+30*_sScale,_scale*_ySize,_scale*_xSize,0,global.flagColor,1);	
 	}
 }

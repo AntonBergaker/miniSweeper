@@ -94,7 +94,7 @@ if (locked == false) {
 				var _xx2 = touchPressX[i];
 				var _yy2 = touchPressY[i];
 				if (!touchCompleted[i] && touchAction[i] == TouchAction.None) {
-					if (point_distance(_xx1,_yy1,_xx2,_yy2) > 10*(oCamera.width/global.internalWidth)) {
+					if (point_distance(_xx1,_yy1,_xx2,_yy2) > 40*(oCamera.width/global.internalWidth)) {
 						touchAction[i] = TouchAction.Pan;
 						lastPanX = _xx2 - oCamera.x;
 						lastPanY = _yy2 - oCamera.y;
@@ -104,17 +104,15 @@ if (locked == false) {
 			}
 		
 		
-			if (os_type != os_android) {
-				if device_mouse_check_button_pressed(i,mb_right) {
-					var _xx = touchX[i];
-					var _yy = touchY[i];
+			if device_mouse_check_button_pressed(i,mb_right) {
+				var _xx = touchX[i];
+				var _yy = touchY[i];
 		
-					_xx = coord_to_grid_x(_xx);
-					_yy = coord_to_grid_y(_yy);	
+				_xx = coord_to_grid_x(_xx);
+				_yy = coord_to_grid_y(_yy);	
 				
-					if (inside_grid(_xx,_yy) && !clearedGrid[# _xx, _yy]) {
-						scr_flag_cell(_xx,_yy);
-					}
+				if (inside_grid(_xx,_yy) && !clearedGrid[# _xx, _yy]) {
+					scr_flag_cell(_xx,_yy);
 				}
 			}
 		
@@ -409,7 +407,7 @@ if (hideOnReset) {
 	hideOnResetTimer = clamp(hideOnResetTimer,0,1);
 }
 
-if (os_type == os_android && os_is_paused()) {
+if ((os_type == os_android || os_type == os_ios) && os_is_paused()) {
 	redrawFrames = 3;
 	if (lost == 0 && won == 0 && resetting == 0 && firstPress == 0) {
 		scr_save_grid();
@@ -477,7 +475,7 @@ if (won==1) {
 		if (file_exists("save.sav")) {
 			file_delete("save.sav");	
 		}
-		var _str = scr_format_gridstring(gridWidth, gridHeight, gridMines);
+		var _str = scr_format_gridstring_unordered(gridWidth, gridHeight, gridMines);
 		var _val = ds_map_find_value(global.highScores, _str);
 		if (_val == undefined) {
 			global.highScores[? _str] = gameplayTime;

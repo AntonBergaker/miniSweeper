@@ -26,7 +26,7 @@ targetY = _guiY/2;
 
 menu = scr_menu_create(-1,-1,0.6,0.6);
 menu.depth = depth-1;
-scr_menu_set_button_settings(menu,fa_center,fa_middle,fMineTextMip0,0.5,0.17)
+scr_menu_set_button_settings(menu,fa_center,fa_middle,fLightMenu,0.5,0.17)
 playButton = scr_menu_create_button(menu,0.5,0.55,lost ? t_retry : t_again,"retry",true);
 
 settingsButton = scr_menu_create_button(menu,0.5,0.73,"Menu","menu",false);
@@ -34,4 +34,4 @@ settingsButton = scr_menu_create_button(menu,0.5,0.73,"Menu","menu",false);
 scr_menu_set_button_settings(menu,fa_center,fa_middle,fThinMenu,0.55,0.13)
 nameLabel = scr_menu_create_label(menu, 0.5, 0.22, lost ? t_lost : t_won);
 
-backGround = scr_menu_create_sprite(menu, 0.5,0.45,1.7,1.7,sBigBox);
+backGround = scr_menu_create_sprite(menu, 0.5,0.45,1.7,1.7,sBigBox, ThemeColors.Card);

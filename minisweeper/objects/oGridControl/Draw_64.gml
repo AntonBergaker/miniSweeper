@@ -8,9 +8,6 @@ var _guiX = display_get_gui_width();
 var _guiY = display_get_gui_height();
 
 var _yy = _guiY-40;
-if (os_type == os_android) {
-	_yy = 50;	
-}
 
 draw_set_font(fMineTextMip0);
 draw_set_color(global.textColor);

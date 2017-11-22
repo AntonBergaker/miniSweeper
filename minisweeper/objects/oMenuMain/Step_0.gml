@@ -27,6 +27,16 @@ if (fadeOut) {
 	}
 }
 
+var _result = global.highScores[? scr_format_gridstring_unordered(global.gridWidth, global.gridHeight, global.mineCount)];
+if (_result == undefined) {
+	recordLabel.text = "";
+} else {
+	recordLabel.text = scr_get_formatted__time( _result);
+}
+
+minesLabel.text =  string(round((100*global.mineCount)/(global.gridWidth*global.gridHeight))) + "%*";
+minesLabel.alpha = lerp(0,0.7,presetTimer);
+
 alpha = 1;
 if (fadeIn) {
 	alpha *= fadeInTimer;	

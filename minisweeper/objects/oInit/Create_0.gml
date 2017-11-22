@@ -15,13 +15,14 @@ if (os_type == os_android) {
 	global.dpi = 72;
 }
 
-show_debug_overlay(1)
+//show_debug_overlay(1)
 
 window_set_size(global.windowWidth,global.windowHeight);
 
 global.gridWidth = 7;
 global.gridHeight = 10;
 global.mineCount = 10;
+global.presetGrid = true;
 global.highScores = ds_map_create();
 
 global.saveVersion = 0;
@@ -32,6 +33,11 @@ global.currentTheme = "Default";
 scr_load_settings();
 scr_theme_apply(global.currentTheme);
 timer = 0;
+
+global.onPhone = true;
+if (os_type == os_windows || os_type == os_macosx || os_type == os_linux) {
+	global.onPhone = false;	
+}
 
 device_mouse_dbclick_enable(0);
 
