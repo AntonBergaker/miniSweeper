@@ -15,7 +15,7 @@
     "layers": [
         {
             "__type": "GMRInstanceLayer_Model:#YoYoStudio.MVCFormat",
-            "name": "MenuOptions",
+            "name": "MenuSettings",
             "id": "cc5eccfd-962c-40b0-8967-fa09f8cb82c9",
             "depth": 0,
             "grid_x": 32,

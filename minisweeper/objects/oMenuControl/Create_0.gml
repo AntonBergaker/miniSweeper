@@ -20,4 +20,5 @@ buttons = ds_list_create();
 labels = ds_list_create();
 sprites = ds_list_create();
 sliders = ds_list_create();
+
 scr_mouse_init();

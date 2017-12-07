@@ -14,5 +14,5 @@ var _height = argument4;
 var _sWidth = 512;
 var _sHeight = 32;
 
-draw_sprite_ext(sSliderLine,0,_x,_y-_height/2.2, _width/_sWidth, _width/_sWidth, 0, global.textColor, alpha*0.5);
-draw_sprite_ext(sSliderLine,0,_x,_y+_height/2.2, _width/_sWidth, _width/_sWidth, 0, global.textColor, alpha*0.5);
+draw_sprite_ext(sSliderLine,0,_x,_y-_height/_inst.linesMod, _width/_sWidth, _width/_sWidth, 0, global.textColor, _inst.alpha * alpha*0.5);
+draw_sprite_ext(sSliderLine,0,_x,_y+_height/_inst.linesMod, _width/_sWidth, _width/_sWidth, 0, global.textColor, _inst.alpha * alpha*0.5);

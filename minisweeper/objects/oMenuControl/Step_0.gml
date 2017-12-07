@@ -70,33 +70,38 @@ if (_released) {
 	}
 }
 
+log(global.gridWidth,global.gridHeight,global.mineCount);
+
 var _len = ds_list_size(sliders);
 for (var i=0;i<_len;i++) {
 	var _inst = sliders[| i];
 	_inst.updated = false;
+	
 	if (_inst.enabled) {
 		if (!surface_exists(_inst.surf)) {
-			_inst.updated = true;
+			_inst.updatedDraw = true;
 		}
 	
 	
 		if ((_inst.positionX mod 1) != 0) {
-			if (abs(_inst.speedX) < deltaTimeS/5) {
-				var _target = -_inst.selectedIndex;
-				var _diff = abs((_inst.positionX + _inst.speedX) - _target);
-				if (_inst.positionX < _target) {
-					_inst.speedX += _diff*0.2*deltaTimeS;	
-				} else {
-					_inst.speedX -= _diff*0.2*deltaTimeS;
+			if (!_inst.pressed) {
+				if (abs(_inst.speedX) < deltaTimeS/5) {
+					var _target = -_inst.selectedIndex;
+					var _diff = abs((_inst.positionX + _inst.speedX) - _target);
+					if (_inst.positionX < _target) {
+						_inst.speedX += _diff*0.2*deltaTimeS;	
+					} else {
+						_inst.speedX -= _diff*0.2*deltaTimeS;
+					}
+			
+			
+					_inst.updatedDraw = true;
 				}
-			
-			
-				_inst.updated = true;
 			}
 		}
 	
 		if (abs(_inst.speedX) > 0) {
-			_inst.updated = true;
+			_inst.updatedDraw = true;
 			_inst.positionX += _inst.speedX;
 			_inst.speedX = lerp_time(_inst.speedX,0,0.2,deltaTimeS*1.2);
 
@@ -121,20 +126,14 @@ for (var i=0;i<_len;i++) {
 	}
 	
 	if (_inst.pressed) {
-		_inst.updated = true;
+		_inst.updatedDraw = true;
 		if (touchReleased[_inst.pressedFinger] || !_inst.enabled || _inst.locked) {
 			_inst.pressed = false;
 			_inst.pressedFinger = -1;
 			var _maxSpeed = 0;
-			for (var ii=0;ii<5;ii++) {
-				if (abs(_inst.lastSpeedsX[ii]) > abs(_maxSpeed)) {
-					_maxSpeed = _inst.lastSpeedsX[ii];
-				}
-				
 			
-			_inst.speedX = _maxSpeed/5;
-			
-			}
+			_inst.speedX = array_average(_inst.lastSpeedsX);
+
 		} else {
 			var _x = (touchX[_pressedIndex]*_width - x/width);	
 			var _diff = _x - _inst.pressedLastX;

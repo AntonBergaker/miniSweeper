@@ -39,7 +39,7 @@ if (_len > 0) {
 	var _anyupdated = false;
 	for (var i=0;i<_len;i++) {
 		var _inst = sliders[|i];
-		if (instance_exists(_inst) && _inst.updated) {
+		if (instance_exists(_inst) && _inst.updatedDraw && _inst.enabled) {
 			_anyupdated = true;
 			break;
 		}
@@ -48,7 +48,7 @@ if (_len > 0) {
 	if (_anyupdated) {
 		for (var i=0;i<_len;i++) {
 			var _inst = sliders[|i];
-			if (instance_exists(_inst) && _inst.updated) {
+			if (instance_exists(_inst) && _inst.updatedDraw && _inst.enabled) {
 				scr_menu_draw_slider_text(_inst, _scaleW * _inst.width, _scaleH * _inst.height);	
 			}
 		}
@@ -57,8 +57,9 @@ if (_len > 0) {
 
 		for (var i=0;i<_len;i++) {
 			var _inst = sliders[|i];
-			if (instance_exists(_inst) && _inst.updated) {
+			if (instance_exists(_inst) && _inst.updatedDraw && _inst.enabled) {
 				scr_menu_draw_slider_mask(_inst, _scaleW * _inst.width, _scaleH * _inst.height);	
+				_inst.updatedDraw = false;
 			}
 		}
 	
@@ -67,9 +68,9 @@ if (_len > 0) {
 	
 	for (var i=0;i<_len;i++) {
 		var _inst = sliders[|i];
-		if (instance_exists(_inst)) {
+		if (instance_exists(_inst)  && _inst.enabled) {
 			if (surface_exists(_inst.surf)) {
-				draw_surface_ext(_inst.surf, _x + (_inst.x - _inst.width/2) * _scaleW, _y + (_inst.y - _inst.height/2) * _scaleH,1,1,0,c_white,alpha)	
+				draw_surface_ext(_inst.surf, _x + (_inst.x - _inst.width/2) * _scaleW, _y + (_inst.y - _inst.height/2) * _scaleH,1,1,0,c_white,alpha*_inst.alpha)	
 			}
 			scr_menu_draw_slider_lines(_inst, _x + _inst.x * _scaleW, _y + _inst.y * _scaleH, _scaleW * _inst.width, _scaleH * _inst.height);	
 		}

@@ -1,5 +1,5 @@
 timer++;
 
 if timer > 10 {
-	room_goto_next();	
+	room_goto_next();
 }

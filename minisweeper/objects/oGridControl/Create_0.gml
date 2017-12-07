@@ -7,6 +7,7 @@ pitch = 0;
 enabled = false;
 locked = false;
 
+
 updateDrawing = false;
 firstStep = true;
 

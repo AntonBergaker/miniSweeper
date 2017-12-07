@@ -21,6 +21,7 @@ if !(clearedGrid[# _xx, _yy]) {
 if (mineGrid[# _xx, _yy]) {
 	if (lost == false) {
 		lost = true;
+		leftToClear++;
 		audio_play(aBombFirst,0.8,random_range(0.9,1.1));
 	}
 	ds_list_add(mineEaseList, [_xx, _yy]);

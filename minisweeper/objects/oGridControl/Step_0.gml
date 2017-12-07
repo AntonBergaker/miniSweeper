@@ -452,7 +452,7 @@ if (won == 0 && leftToClear == 0) {
 	locked = true;
 }
 
-log(leftToClear);
+
 
 if (won==1) {
 	wonTimer+=deltaTimeS;	

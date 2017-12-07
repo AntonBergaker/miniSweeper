@@ -23,6 +23,29 @@ if (!fadeOut) {
 				fadeOut = true;
 				menu.enabled = false;
 				break;
+			
+			case "settings":
+				instance_create_layer(0,0,"MenuSettings", oMenuSettings)
+				break;
+			
+			case "sizeToggle":
+				global.presetGrid = !global.presetGrid;
+				scr_save_settings();
+				if (global.presetGrid) {
+					var _inst = sizeSelection;
+					var _str = scr_format_gridstring(global.gridWidth, global.gridHeight, global.mineCount);
+					if (!array_contains(sizeSelection.data, _str)) {
+						log("Didn't find old");
+						sizeSelection.data[@ 3] = _str;
+					}
+					
+					scr_menu_slider_set_position(sizeSelection, _str);
+				} else {
+					scr_menu_slider_set_position(widthSelection , global.gridWidth);
+					scr_menu_slider_set_position(heightSelection, global.gridHeight);
+					scr_menu_slider_set_position(mineSelection  , global.mineCount);
+				}
+				break;
 		}
 	}
 	
@@ -47,6 +70,23 @@ if (!fadeOut) {
 				scr_save_settings();
 				break;
 			
+			case heightSelection:
+				global.gridHeight = _updated.selected;
+				updateSize = true;
+				scr_save_settings();
+				break;
+				
+			case widthSelection:
+				global.gridWidth = _updated.selected;
+				updateSize = true;
+				scr_save_settings();
+				break;
+				
+			case mineSelection:
+				global.mineCount = _updated.selected;
+				updateSize = true;
+				scr_save_settings();
+				break;
 		}
 	}
 }

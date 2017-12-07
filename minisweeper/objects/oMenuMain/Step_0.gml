@@ -35,12 +35,63 @@ if (_result == undefined) {
 	recordLabel.text = scr_get_formatted__time( _result);
 	bestTimeTimer += deltaTimeS*3;
 }
+
 bestTimeTimer = clamp(bestTimeTimer,0,1);
-recordLabel.x = ease_quadOut(-0.1,0.15, bestTimeTimer, 1);
-recordLabel.alpha = ease_quadIn(0,1,clamp(bestTimeTimer,0,0.2),0.2)
+
+if (global.presetGrid) {
+	customTimer -= deltaTimeS;
+} else {
+	customTimer += deltaTimeS;	
+}
 
 minesLabel.text =  string(round((100*global.mineCount)/(global.gridWidth*global.gridHeight))) + "%*";
-minesLabel.alpha = lerp(0,0.7,presetTimer);
+
+customTimer = clamp(customTimer,0,1);
+
+recordLabel.x     = ease_quadOut(-0.1,0.15, bestTimeTimer, 1);
+recordLabel.alpha = ease_quadIn (0,1, clamp(bestTimeTimer,0,0.2),0.2)
+
+var _ease = ease_quadInOut(0,1,customTimer, 1);
+
+var _mTimer = clamp(customTimer*3 - 2,0,1);
+minesLabel.x      = ease_quadOut(1.1, 0.85, _mTimer, 1);
+minesLabel.alpha = ease_quadIn (0,1, clamp(_mTimer,0,0.2),0.2)
+
+playButton.y	 = lerp(playButtonY    , playButtonYCustom    , _ease);
+nameLabel.y		 = lerp(nameLabelY     , nameLabelYCustom     , _ease);
+recordLabel.y	 = lerp(recordLabelY   , recordLabelYCustom   , _ease);
+minesLabel.y	 = lerp(minesLabelY	   , minesLabelYCustom    , _ease);
+settingsButton.y = lerp(settingsButtonY, settingsButtonYCustom, _ease);
+sizeToggle.y	 = lerp(sizeToggleY	   , sizeToggleYCustom    , _ease);
+
+heightSelection.alpha = lerp(0,1,_ease);
+widthSelection.alpha  = lerp(0,1,_ease);
+mineSelection.alpha   = lerp(0,1,_ease);
+
+sizeSelection.alpha   = lerp(1,0,_ease);
+
+sliderWidthLabel.alpha   = lerp(0,0.7,_ease);
+sliderHeightLabel.alpha  = lerp(0,0.7,_ease);
+sliderMineLabel.alpha    = lerp(0,0.7,_ease);
+
+sizeToggle.text = global.presetGrid ? "Custom" : "Preset"
+
+
+if (customTimer) < 1  {
+	sizeSelection.enabled = true;
+} else {
+	sizeSelection.enabled = false;	
+}
+if (customTimer > 0) {
+	widthSelection.enabled = true;
+	heightSelection.enabled = true;
+	mineSelection.enabled = true;
+} else {
+	widthSelection.enabled = false;
+	heightSelection.enabled = false;
+	mineSelection.enabled = false;
+}
+
 
 alpha = 1;
 if (fadeIn) {

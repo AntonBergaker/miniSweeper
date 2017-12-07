@@ -20,17 +20,12 @@ if (!_inst.usesData) {
 	var _arr = argument[4];
 	_inst.boundLower  = _arr[0];
 	_inst.boundHigher = _arr[1];
-	_inst.selected = argument[5];
-	_inst.selectedIndex = (argument[5] - _inst.boundLower);
-	_inst.positionX = _inst.selectedIndex;
 } else {
 	_inst.data = argument[4];
-	_inst.selected = argument[5];
-	_inst.selectedIndex = array_find_index( _inst.data, _inst.selected);
-	_inst.positionX = _inst.selectedIndex;
 }
 
-_inst.positionX *= -1;
+scr_menu_slider_set_position(_inst, argument[5])
+
 _inst.standardSeperation = argument[6];
 
 ds_list_add(_menu.sliders, _inst);

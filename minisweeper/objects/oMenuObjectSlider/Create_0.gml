@@ -8,9 +8,11 @@ pressedFinger = -1;
 pressed = false;
 pressedLastX = x;
 entrySeperation = 0.2;
+linesMod = 2.2;
 
 surf = -1;
 updated = false;
+updatedDraw = true;
 
 lastSpeedsX = [0,0,0,0,0];
 

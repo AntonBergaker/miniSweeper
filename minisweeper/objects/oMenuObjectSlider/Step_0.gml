@@ -5,5 +5,6 @@ if (lastH != height || lastW != width || lastX != x || lastY != y) {
 	lastY = y;
 	lastWidth = width;
 	lastHeight = height;
+	updatedDraw = true;
 	scr_calculate_button_area();
 }
