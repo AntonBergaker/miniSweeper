@@ -18,7 +18,6 @@ if (file_exists("save.sav")) {
 	firstPress = false;
 } else {
 	scr_grid_create_grids();
-	scr_place_mines(gridMines);
 	firstPress = true;
 	minesLeft = gridMines;
 	leftToClear = gridWidth * gridHeight - gridMines;

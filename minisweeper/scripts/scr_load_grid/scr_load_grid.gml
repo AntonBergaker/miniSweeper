@@ -33,6 +33,7 @@ if (file_exists("save.sav")) {
 	ds_grid_copy(removeEaseGrid, clearedGrid);
 	
 
-	minesLeft = ds_grid_get_sum(mineGrid,0,0,gridWidth-1,gridHeight-1) - ds_grid_get_sum(flagGrid,0,0,gridWidth-1,gridHeight-1);
-	leftToClear = gridWidth*gridHeight - ds_grid_get_sum(clearedGrid,0,0,gridWidth-1,gridHeight-1) - gridMines;
+	minesLeft = ds_grid_get_sum(mineGrid,0,0,gridWidth-1,gridHeight-1);
+	leftToClear = gridWidth*gridHeight - ds_grid_get_sum(clearedGrid,0,0,gridWidth-1,gridHeight-1) - minesLeft;
+	minesLeft -= ds_grid_get_sum(flagGrid,0,0,gridWidth-1,gridHeight-1);
 }

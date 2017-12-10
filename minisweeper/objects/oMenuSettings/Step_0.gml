@@ -13,13 +13,12 @@ if (_ratio) > 0.6 {
 menu.height = 1;
 
 
-
 if (fadeIn < 1) {
 	fadeIn+= deltaTimeS;
-	alpha = fadeIn;	
 	if (fadeIn > 1) {
-		fadeIn = 1;	
+		fadeIn = 1;
 	}
+	alpha = fadeIn;
 }
 
 menu.alpha = alpha;

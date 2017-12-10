@@ -55,6 +55,7 @@ if (_inst.filled) {
 	if (_inst.pressed) {
 		_fade = 1;
 	}
+
 	if (_inst.clickedFade >= 0) {
 		if (_pressIn >= 1) {
 			draw_sprite_ext(sSmallBoxStraight,0,_x,_y,_width/374,_height/84,0,pressColor,0.05*_fade);
@@ -64,6 +65,42 @@ if (_inst.filled) {
 			var _yy = _inst.pressedY * _height;
 			var _alpha = ((0.3 - _pressIn * 0.25) * _fade) * alpha;
 			
+			var _rHeight = 84;
+			var _rWidth = 374;
+			
+			/*
+			var _xxx = _xx - _raidus;
+			var _yyy = _yy - _raidus;
+			
+			var _x1 = 0;
+			if (_xx - _raidus) < -_rWidth/2 {
+				_x1 = -_rWidth/2 - (_xx - _raidus);
+				_xxx = -_rWidth/2;
+			}
+			
+			var _x2 = 0;
+			if (_xx + _raidus) > _rWidth/2 {
+				_x2 = _rWidth/2 - (_xx + _raidus);	
+			}
+			
+			var _x2 = (265 - _x1 - _x2);
+			
+			var _y1 = 0;
+			if (_yy - _raidus) < -_rHeight/2 {
+				_y1 = -_rHeight/2 - (_yy - _raidus);
+				 _yyy = -_rHeight/2;
+			}
+			
+			var _y2 = 0;
+			if (_yy + _raidus) > _rHeight/2 {
+				_y2 = _rHeight/2 - (_yy + _raidus);	
+			}	
+			
+			var _y2 = (265 - _y1 - _y2);
+			
+			var _sc = _raidus/128;
+			draw_sprite_general(sCircle, 0, _x1 / _sc, _y1 / _sc, _x2/_sc, _y2/_sc, _x + _xxx, _y + _yyy, _sc, _sc, 0, pressColor, pressColor, pressColor, pressColor, _alpha*_inst.alpha);
+			*/
 			gpu_set_blendenable(false)
 			gpu_set_colorwriteenable(false,false,false,true);
 			draw_set_alpha(0);

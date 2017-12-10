@@ -12,8 +12,6 @@ ds_grid_clear(flagEaseGrid,0);
 ds_grid_clear(flagGrid,0);
 ds_grid_clear(mineGrid,0);
 ds_grid_clear(nearGrid,0);
-scr_place_mines(gridMines);
-scr_calculate_grid_near();
 won = false;
 lost = false;
 resetting = false;

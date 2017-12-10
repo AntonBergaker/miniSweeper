@@ -34,15 +34,7 @@ if (locked == false) {
 							
 							if (!flagGrid[# _xx,_yy]) {
 								if (firstPress) {
-									var __xx1 = max(_xx - 2,0);
-									var __yy1 = max(_yy - 2,0);
-									var __xx2 = min(_xx + 2,gridWidth -1);
-									var __yy2 = min(_yy + 2,gridHeight-1);
-									while (ds_grid_get_sum(mineGrid, __xx1, __yy1, __xx2, __yy2) >= 1) {
-										ds_grid_clear(mineGrid,0);
-										scr_place_mines(gridMines);
-									}
-									scr_calculate_grid_near();
+									scr_grid_mines_from_press(_xx, _yy);
 									firstPress = false;
 								}
 								if (!clearedGrid[# _xx, _yy]) {
@@ -258,6 +250,7 @@ if (locked == false) {
 	}
 }
 
+
 ///Easing
 var _len = ds_list_size(flagEaseList);
 
@@ -444,10 +437,9 @@ if (pitch > 0) {
 	}
 }
 
-
-
 	
-if (won == 0 && leftToClear == 0) {
+
+if (won == 0 && leftToClear <= 0 && enabled && !firstPress && lost == 0) {
 	won = 1;
 	locked = true;
 }

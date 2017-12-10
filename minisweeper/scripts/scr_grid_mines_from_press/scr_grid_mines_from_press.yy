@@ -1,8 +1,8 @@
 {
-    "id": "2a0864cf-a697-47b4-95cb-42de2335c579",
+    "id": "6217eb49-886c-4026-8ffe-273a12e1fe01",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "scr_menu_create_slide_select",
+    "name": "scr_grid_mines_from_press",
     "IsCompatibility": false,
     "IsDnD": false
 }

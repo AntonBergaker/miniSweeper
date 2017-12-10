@@ -18,7 +18,13 @@ var _pressedIndex = 0;
 var _released = false;
 var _releasedIndex = 0;
 
-if (active) {
+while (!instance_exists(global.menuStack[| 0])) {
+	ds_list_delete(global.menuStack, 0);
+}
+
+var _active = (active && global.menuStack[| 0] == id)
+
+if (_active) {
 	for (var i=0;i<5;i++) {
 		if (touchPressed[i]) {	
 			_pressed = true;
@@ -30,6 +36,7 @@ if (active) {
 		}
 	}
 }
+
 
 var _len = ds_list_size(buttons);
 if (_pressed) {
@@ -69,8 +76,6 @@ if (_released) {
 		}
 	}
 }
-
-log(global.gridWidth,global.gridHeight,global.mineCount);
 
 var _len = ds_list_size(sliders);
 for (var i=0;i<_len;i++) {
@@ -159,5 +164,8 @@ for (var i=0;i<_len;i++) {
 			}
 		}
 	}
+}
+var _len = ds_list_size(toggles);
+if (_pressed) {
 	
 }
