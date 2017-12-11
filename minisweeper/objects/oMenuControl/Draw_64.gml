@@ -76,3 +76,11 @@ if (_len > 0) {
 		}
 	}
 }
+
+var _len = ds_list_size(toggles);
+for (var i=0;i<_len;i++) {
+	var _inst = toggles[| i];	
+	if (instance_exists(_inst)) {
+		scr_menu_draw_toggle(_inst, _x + _inst.x * _scaleW, _y + _inst.y * _scaleH, _scaleW * _inst.width, _scaleH * _inst.height);		
+	}
+}

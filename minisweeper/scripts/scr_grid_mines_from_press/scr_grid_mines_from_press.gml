@@ -31,7 +31,7 @@ if (_broke) {
 	//Create a list of all free positions
 	var _list = ds_list_create();
 	for (var xx = 0; xx<gridWidth; xx++) {
-		for (var yy = 0; yy<gridWidth; yy++) {
+		for (var yy = 0; yy<gridHeight; yy++) {
 			if (!mineGrid[# xx, yy]) {
 				if (xx < _xx1 || xx > _xx2 || yy < _yy1 || yy > _yy2) {
 					ds_list_add(_list, [xx, yy]);

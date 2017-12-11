@@ -423,6 +423,14 @@
             }
         },
         {
+            "Key": "58349f28-d64a-4b36-882e-6645eb25a2ee",
+            "Value": {
+                "id": "1a690178-447d-4cd8-9b61-a79784a45185",
+                "resourcePath": "scripts\\scr_menu_draw_toggle\\scr_menu_draw_toggle.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "59593358-4adc-480f-b1af-4387058c4b67",
             "Value": {
                 "id": "884e1f29-59ab-4e5f-9cc3-e34107b9a49d",
@@ -1413,6 +1421,7 @@
         "47364e46-3688-41fd-9b1c-b66cc23923ff",
         "ec3d6e07-5c04-4b13-99d5-1225ab99f0e6",
         "c8c11ab2-deea-49ff-8fea-98946a4b405f",
+        "58349f28-d64a-4b36-882e-6645eb25a2ee",
         "d7a49aad-1641-4bdf-8a39-52744ef72e97",
         "5f44eb7b-9742-449c-8ef6-1d41f8d2b16f",
         "65006304-4171-4ba5-9241-cab130b2702b",

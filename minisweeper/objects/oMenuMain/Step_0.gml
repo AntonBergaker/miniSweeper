@@ -44,7 +44,8 @@ if (global.presetGrid) {
 	customTimer += deltaTimeS;	
 }
 
-minesLabel.text =  string(round((100*global.mineCount)/(global.gridWidth*global.gridHeight))) + "%*";
+var _minePercent = clamp(round((100*global.mineCount)/(global.gridWidth*global.gridHeight)),0,100);
+minesLabel.text = string(_minePercent) + "%*";
 
 customTimer = clamp(customTimer,0,1);
 
@@ -54,7 +55,7 @@ recordLabel.alpha = ease_quadIn (0,1, clamp(bestTimeTimer,0,0.2),0.2)
 var _ease = ease_quadInOut(0,1,customTimer, 1);
 
 var _mTimer = clamp(customTimer*3 - 2,0,1);
-minesLabel.x      = ease_quadOut(1.1, 0.85, _mTimer, 1);
+minesLabel.x     = ease_quadOut(1.1, 0.85, _mTimer, 1);
 minesLabel.alpha = ease_quadIn (0,1, clamp(_mTimer,0,0.2),0.2)
 
 playButton.y	 = lerp(playButtonY    , playButtonYCustom    , _ease);
