@@ -7,6 +7,9 @@ if (global.windowWidth != window_get_width() || global.windowHeight != window_ge
 		global.windowWidth = window_get_width();
 		global.windowHeight = window_get_height();
 		
+		if (!global.onPhone) {
+			scr_save_settings();
+		}
 		
 		window_set_size(global.windowWidth,global.windowHeight);
 		

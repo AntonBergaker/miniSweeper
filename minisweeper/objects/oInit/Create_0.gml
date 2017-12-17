@@ -1,4 +1,9 @@
-if (os_type == os_android) {
+global.onPhone = true;
+if (os_type == os_windows || os_type == os_macosx || os_type == os_linux || os_type == os_uwp) {
+	global.onPhone = false;	
+}
+
+if (os_type == os_android || os_type == os_ios) {
 	global.displayRatio = window_get_width()/window_get_height();
 	global.internalWidth = window_get_width();
 	global.internalHeight = window_get_height();
@@ -7,17 +12,18 @@ if (os_type == os_android) {
 	global.dpi = display_get_dpi_x();
 	
 } else {
-	global.displayRatio = 1366/768;
-	global.internalWidth = 1366;
-	global.internalHeight = global.internalWidth/global.displayRatio;
-	global.windowHeight = 768;
-	global.windowWidth = 1366;
+	var _width = clamp(display_get_width(),0,1366);
+	var _height = clamp(display_get_height(),0,768);
+	global.displayRatio = _width/_height;
+	global.internalWidth = _width;
+	global.internalHeight = _height;
+	global.windowHeight = _height;
+	global.windowWidth = _width;
 	global.dpi = 72;
 }
 
 show_debug_overlay(1)
 
-window_set_size(global.windowWidth,global.windowHeight);
 
 global.gridWidth = 7;
 global.gridHeight = 10;
@@ -31,13 +37,18 @@ scr_themes_create();
 global.currentTheme = "Default";
 
 scr_load_settings();
+if (!global.onPhone) {
+	var _width = global.windowWidth;
+	var _height = global.windowHeight;
+	global.displayRatio = _width/_height;
+	global.internalWidth = _width;
+	global.internalHeight = _height;
+}
+
 scr_theme_apply(global.currentTheme);
 timer = 0;
 
-global.onPhone = true;
-if (os_type == os_windows || os_type == os_macosx || os_type == os_linux) {
-	global.onPhone = false;	
-}
+window_set_size(global.windowWidth,global.windowHeight);
 
 device_mouse_dbclick_enable(0);
 

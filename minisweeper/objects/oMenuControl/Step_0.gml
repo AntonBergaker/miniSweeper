@@ -37,7 +37,7 @@ if (_active) {
 	}
 }
 
-
+#region buttons
 var _len = ds_list_size(buttons);
 if (_pressed) {
 	var _x = (touchPressX[_pressedIndex]*_width - x/width);
@@ -76,7 +76,9 @@ if (_released) {
 		}
 	}
 }
+#endregion
 
+#region sliders
 var _len = ds_list_size(sliders);
 for (var i=0;i<_len;i++) {
 	var _inst = sliders[| i];
@@ -122,7 +124,7 @@ for (var i=0;i<_len;i++) {
 					_inst.selected = _inst.data[_ind];
 			
 				} else {
-					var _ind = mod_negative(_inst.selectedIndex, _inst.boundHigher - _inst.boundLower);
+					var _ind = mod_negative(_inst.selectedIndex, _inst.boundHigher - _inst.boundLower+1);
 					_inst.selected = _ind + _inst.boundLower;	
 				}
 				updatedSlider = _inst;
@@ -165,7 +167,44 @@ for (var i=0;i<_len;i++) {
 		}
 	}
 }
+#endregion sliders
+#region toggles
 var _len = ds_list_size(toggles);
 if (_pressed) {
+	var _x = (touchPressX[_pressedIndex]*_width - x/width);
+	var _y = (touchPressY[_pressedIndex]*_height - y/height);
 	
+	for (var i=0;i<_len;i++) {
+		var _inst = toggles[| i];
+		
+		if (_inst.enabled && !_inst.locked) {
+			if (point_in_rectangle(_x,_y,_inst.x0,_inst.y0,_inst.x1,_inst.y1)) {
+				_inst.pressed = true;
+				_inst.pressedTime = menuTime-touchPressTime[_pressedIndex];
+				_inst.pressedFinger = _pressedIndex;
+				_inst.clickedFade = 1;
+			}
+		}
+	}
 }
+if (_released) {
+	var _x = (touchX[_releasedIndex]*_width - x/width);
+	var _y = (touchY[_releasedIndex]*_height - y/height);
+	
+	for (var i=0;i<_len;i++) {
+		var _inst = toggles[| i];	
+		
+		if (_inst.pressedFinger == _releasedIndex) {
+			if (point_in_rectangle(_x,_y,_inst.x0,_inst.y0,_inst.x1,_inst.y1)) {
+				if (_inst.enabled && !_inst.locked) {
+					_inst.checked = !_inst.checked;
+					selected = _inst;
+				}
+			}
+			_inst.clickedFade = 1;
+			_inst.pressed = false;
+			_inst.pressedFinger = -1;
+		}
+	}
+}
+#endregion

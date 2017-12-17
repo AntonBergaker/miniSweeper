@@ -10,6 +10,14 @@ if (file_exists("save.json")) {
 		global.mineCount  = ds_map_find_default(_gridSize,"mines"  ,global.mineCount );
 		global.presetGrid = ds_map_find_default(_gridSize,"preset" ,global.presetGrid);
 	}
+	
+	if (!global.onPhone) {
+		var _windowSize = _map[? "window_size"];
+		if (_windowSize != undefined) {
+			global.windowWidth  = ds_map_find_default(_windowSize, "width" , global.windowWidth );
+			global.windowHeight = ds_map_find_default(_windowSize, "height", global.windowHeight);	
+		}
+	}
 	var _highScores = _map[? "highscores"];
 	if (_highScores != undefined) {
 		ds_map_copy(global.highScores, _highScores);	

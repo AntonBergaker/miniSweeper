@@ -15,3 +15,9 @@ var _scale = _width/_sWidth;
 
 
 draw_sprite_ext(sToggleLine,0,_x,_y,_scale,_scale,0,global.textColor,alpha*_inst.alpha*0.5);
+
+var _checkEase = ease_quadInOut(-1,1,_inst.checkedTimer,1);
+var _xx = (_width * 0.40) * _checkEase;
+
+var _col = merge_color(global.textColor, global.backColor, 0.7)
+draw_sprite_ext(sCircleSmall,0,_x+_xx,_y,_scale,_scale,0,_col,alpha*_inst.alpha);

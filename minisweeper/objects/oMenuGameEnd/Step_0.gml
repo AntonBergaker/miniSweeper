@@ -19,15 +19,21 @@ timer = clamp(timer,0,1);
 var _sRatio = 212/166;
 
 
-var _ratio = (_guiX/_guiY)/_sRatio;
-if (_ratio > 1) {
-	menu.height = 0.8;
-	menu.width = 0.8/_ratio;
+var _wRatio = _guiX/_guiY;
+
+
+var _ratio = _wRatio / _sRatio;
+
+if (_ratio > 0.6) {
+	menu.width = 0.6 / _wRatio;
+	menu.height = menu.width * _ratio;
 
 } else {
 	menu.width = 0.8;
 	menu.height = 0.8*_ratio;
 }
+
+
 
 menu.x = 0.5 - menu.width/2;
 menu.y = ease_quadOut(2, 0.5 - menu.height/2, timer,1);
