@@ -35,4 +35,6 @@ if (_minutes > 0 || _hours > 0) {
 	_str += string(_seconds);	
 }
 
+
+
 return _str;

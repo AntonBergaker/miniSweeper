@@ -15,6 +15,8 @@ updatedSlider = noone;
 cleanedUp = false;
 
 menuTime = 0;
+width = 1;
+height = 1;
 
 buttons = ds_list_create();
 labels = ds_list_create();

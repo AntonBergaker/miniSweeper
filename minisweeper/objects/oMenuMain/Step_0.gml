@@ -33,6 +33,9 @@ if (_result == undefined) {
 	bestTimeTimer -= deltaTimeS*3;
 } else {
 	recordLabel.text = scr_get_formatted__time( _result);
+	if (_result < 60) {
+		recordLabel.text += string_delete( string(argument0 mod 1), 1, 1);	
+	}
 	bestTimeTimer += deltaTimeS*3;
 }
 
