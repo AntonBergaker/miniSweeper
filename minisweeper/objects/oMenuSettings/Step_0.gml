@@ -1,5 +1,5 @@
-var _guiW = display_get_gui_width();
-var _guiH = display_get_gui_height();
+var _guiW = global.guiWidth;
+var _guiH = global.guiHeight;
 
 
 var _ratio = _guiW/_guiH;

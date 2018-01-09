@@ -39,3 +39,9 @@ if (redrawFrames > 0) {
 	redrawFrames--;
 	updateDrawing = true;
 }
+if (updateDrawing) {
+	with oCamera {
+		forceCheck = true;
+		event_perform(ev_step,ev_step_begin);
+	}
+}

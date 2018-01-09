@@ -7,8 +7,8 @@ pressColor = c_gray
 selected = noone;
 updatedSlider = noone;
 
-var _guiW = display_get_gui_width();
-var _guiH = display_get_gui_height();
+var _guiW = global.guiWidth;
+var _guiH = global.guiHeight;
 
 var _width  = 1/(_guiW * width);
 var _height = 1/(_guiH * height);

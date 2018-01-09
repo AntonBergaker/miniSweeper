@@ -84,7 +84,14 @@ if (locked == false) {
 				var _xx2 = touchPressX[i];
 				var _yy2 = touchPressY[i];
 				if (!touchCompleted[i] && touchAction[i] == TouchAction.None) {
-					if (point_distance(_xx1,_yy1,_xx2,_yy2) > 40*(oCamera.width/global.internalWidth)) {
+	
+					if (global.onPhone) {
+						var _dpi = global.dpi/5;
+					} else {
+						var _dpi = 40;	
+					}
+					
+					if (point_distance(_xx1,_yy1,_xx2,_yy2) > _dpi*(oCamera.width/global.internalWidth)) {
 						touchAction[i] = TouchAction.Pan;
 						lastPanX = _xx2 - oCamera.x;
 						lastPanY = _yy2 - oCamera.y;

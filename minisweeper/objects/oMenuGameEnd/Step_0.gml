@@ -1,5 +1,5 @@
-var _guiX = display_get_gui_width ();
-var _guiY = display_get_gui_height();
+var _guiX = global.guiWidth;
+var _guiY = global.guiHeight;
 
 introTimer -= deltaTimeS;
 if (introTimer <= 0) {

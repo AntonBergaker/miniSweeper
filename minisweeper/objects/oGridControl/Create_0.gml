@@ -10,6 +10,7 @@ locked = false;
 updateDrawing = false;
 firstStep = true;
 
+instance_create_depth(0,0,0,oCamera);
 
 //If a save exists import it
 if (file_exists("save.sav")) {
@@ -81,6 +82,3 @@ enum TouchAction {
 
 
 scr_calculate_grid_near();
-
-
-instance_create_depth(0,0,0,oCamera);

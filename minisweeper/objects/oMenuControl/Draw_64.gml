@@ -1,7 +1,7 @@
 var _len;
 
-var _guiW = display_get_gui_width();
-var _guiH = display_get_gui_height();
+var _guiW = global.guiWidth;
+var _guiH = global.guiHeight;
 
 var _x = x * _guiW;
 var _y = y * _guiH;

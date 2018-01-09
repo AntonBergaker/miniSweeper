@@ -26,6 +26,14 @@ if (file_exists("save.sav")) {
 	gameplayTime = file_text_read_real(_file);
 	file_text_readln(_file);
 	
+	oCamera.width = file_text_read_real(_file)*global.internalWidth;
+	oCamera.height = oCamera.width * global.displayRatio;
+	file_text_readln(_file);
+	
+	oCamera.x = file_text_read_real(_file);
+	file_text_readln(_file);
+	
+	oCamera.y = file_text_read_real(_file);
 	file_text_close(_file);
 	
 	ds_grid_copy(flagEaseGrid,flagGrid);

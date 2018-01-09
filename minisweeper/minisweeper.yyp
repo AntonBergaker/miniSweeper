@@ -167,6 +167,14 @@
             }
         },
         {
+            "Key": "1de66d91-bc1b-4c13-99c7-4899481cd946",
+            "Value": {
+                "id": "67b21674-c519-4a8a-8eb9-2528542e58f3",
+                "resourcePath": "fonts\\fLightHud\\fLightHud.yy",
+                "resourceType": "GMFont"
+            }
+        },
+        {
             "Key": "1df28e82-bb3e-4400-9c04-909616b089b2",
             "Value": {
                 "id": "e5cf7d2a-cfb8-40fc-b539-988817f46a54",

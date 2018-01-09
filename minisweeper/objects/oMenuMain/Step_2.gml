@@ -4,7 +4,7 @@ if (!fadeOut) {
 		switch (_selected.tag) {
 			case "play":
 				oGridControl.enabled = true;
-				if (rebootGrid) {
+				if (rebootGrid || updateSize) {
 					with oGridControl {
 						if (other.updateSize || global.gridWidth != gridWidth
 						|| global.gridHeight != gridHeight || global.mineCount != gridMines) {

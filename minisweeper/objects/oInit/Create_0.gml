@@ -10,6 +10,8 @@ if (os_type == os_android || os_type == os_ios) {
 	global.windowWidth = window_get_width();
 	global.windowHeight = window_get_height();
 	global.dpi = display_get_dpi_x();
+	global.guiWidth = display_get_gui_width();
+	global.guiHeight = display_get_gui_height();
 	
 } else {
 	var _width = clamp(display_get_width(),0,1366);
@@ -19,7 +21,9 @@ if (os_type == os_android || os_type == os_ios) {
 	global.internalHeight = _height;
 	global.windowHeight = _height;
 	global.windowWidth = _width;
-	global.dpi = 72;
+	global.dpi = display_get_dpi_x();
+	global.guiWidth = display_get_gui_width();
+	global.guiHeight = display_get_gui_height();
 }
 
 show_debug_overlay(1)
@@ -35,6 +39,7 @@ enum ShowMinesState {
 	Five,
 	Never
 }
+
 
 global.gridWidth = 7;
 global.gridHeight = 10;
