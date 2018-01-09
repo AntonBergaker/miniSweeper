@@ -50,7 +50,7 @@ if (surface_exists(_inst.surf)) {
 		}
 		var _xxx = _xx + i*_sep;
 		var _dist = clamp(1-(abs(_x - _xxx)/_width), 0.7,1);
-		
+
 		draw_text_transformed(_xx + i*_sep,_y,_str,_scale*_dist,_scale*_dist,0);
 	}
 	surface_reset_target();

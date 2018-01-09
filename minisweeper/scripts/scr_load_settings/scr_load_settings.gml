@@ -23,8 +23,19 @@ if (file_exists("save.json")) {
 		ds_map_copy(global.highScores, _highScores);	
 	}
 	
-	global.currentTheme = ds_map_find_default(_map, "theme", global.currentTheme);
-	
+	global.currentTheme    = ds_map_find_default(_map, "theme"          , global.currentTheme);
+	global.clearAnimation  = ds_map_find_default(_map, "clear_animation", global.clearAnimation);
+	global.tweenEnabled    = ds_map_find_default(_map, "tween"          , global.tweenEnabled);
+	global.showTimer	   = ds_map_find_default(_map, "timer"          , global.showTimer);
+	global.showTimerMenu   = ds_map_find_default(_map, "timermenu"      , global.showTimerMenu);
+	var _showMines	       = ds_map_find_default(_map, "show_mines"     , "five");
+	if (_showMines == "never") {
+		global.showMines = ShowMinesState.Never;	
+	} else if (_showMines == "always") {
+		global.showMines = ShowMinesState.Always;
+	} else {
+		global.showMines = ShowMinesState.Five;
+	}
 	
 	file_text_close(_file);
 	ds_map_destroy(_map)

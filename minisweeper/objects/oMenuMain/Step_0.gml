@@ -29,12 +29,12 @@ if (fadeOut) {
 }
 
 var _result = global.highScores[? scr_format_gridstring_unordered(global.gridWidth, global.gridHeight, global.mineCount)];
-if (_result == undefined) {
+if (_result == undefined || !global.showTimerMenu) {
 	bestTimeTimer -= deltaTimeS*3;
 } else {
 	recordLabel.text = scr_get_formatted__time( _result);
 	if (_result < 60) {
-		recordLabel.text += string_delete( string(argument0 mod 1), 1, 1);	
+		recordLabel.text += string_delete( string(_result mod 1), 1, 1);	
 	}
 	bestTimeTimer += deltaTimeS*3;
 }

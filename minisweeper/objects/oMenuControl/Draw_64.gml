@@ -53,7 +53,7 @@ if (_len > 0) {
 			}
 		}
 
-		gpu_set_blendmode(bm_subtract);
+		gpu_set_blendmode_ext(bm_zero, bm_inv_src_alpha);
 
 		for (var i=0;i<_len;i++) {
 			var _inst = sliders[|i];

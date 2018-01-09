@@ -24,6 +24,17 @@ if (os_type == os_android || os_type == os_ios) {
 
 show_debug_overlay(1)
 
+global.clearAnimation = true;
+global.tweenEnabled = true;
+global.showTimer = true;
+global.showTimerMenu = true;
+global.showMines = ShowMinesState.Five;
+
+enum ShowMinesState {
+	Always,
+	Five,
+	Never
+}
 
 global.gridWidth = 7;
 global.gridHeight = 10;

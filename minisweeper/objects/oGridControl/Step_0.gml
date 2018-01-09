@@ -35,6 +35,7 @@ if (locked == false) {
 							if (!flagGrid[# _xx,_yy]) {
 								if (firstPress) {
 									scr_grid_mines_from_press(_xx, _yy);
+									minesLeft -= ds_grid_get_sum(flagGrid, 0, 0, gridWidth-1, gridHeight-1)
 									firstPress = false;
 								}
 								if (!clearedGrid[# _xx, _yy]) {

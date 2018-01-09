@@ -12,13 +12,21 @@ if (_ratio) > 0.6 {
 
 menu.height = 1;
 
-
-if (fadeIn < 1) {
-	fadeIn+= deltaTimeS;
-	if (fadeIn > 1) {
-		fadeIn = 1;
+if (fadeOut) {
+		fadeIn-= deltaTimeS*2;
+		if (fadeIn < 0) {
+			instance_destroy();
+			exit;
+		}
+		alpha = fadeIn;
+} else {
+	if (fadeIn < 1) {
+		fadeIn+= deltaTimeS*2;
+		if (fadeIn > 1) {
+			fadeIn = 1;
+		}
+		alpha = fadeIn;
 	}
-	alpha = fadeIn;
 }
 
 menu.alpha = alpha;

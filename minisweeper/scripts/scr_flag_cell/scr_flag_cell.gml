@@ -17,5 +17,11 @@ if (flagGrid[# _xx, _yy]) {
 	minesLeft++;
 }
 minesGuiBounce = 1;
-ds_list_add(flagEaseList, [_xx, _yy]);
+
+if (global.tweenEnabled) {
+	ds_list_add(flagEaseList, [_xx, _yy]);
+} else {
+	flagEaseGrid[# _xx, _yy] = flagGrid[# _xx, _yy];
+	ds_list_add(updateCellList, [_xx, _yy]);
+}
 Haptics_VibrateIntensity(100,2);

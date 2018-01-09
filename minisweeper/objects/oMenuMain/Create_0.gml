@@ -86,7 +86,7 @@ if (file_exists("save.sav")) {
 	recordLabel.alpha = 0.8;
 	
 	var _result = global.highScores[? scr_format_gridstring_unordered(global.gridWidth, global.gridHeight, global.mineCount)];
-	if (_result != undefined) {
+	if (_result != undefined && global.showTimerMenu) {
 		bestTimeTimer = 1;
 	}
 	if (!global.presetGrid) {

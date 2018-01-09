@@ -15,7 +15,8 @@ if (_mineCount < _cellsCount - 9) {
 	do {
 		ds_grid_clear(mineGrid,0);
 		scr_grid_place_random_mines(gridMines);
-		if (i++ > 100) {
+		if (i++ > 1) {
+			log("hah");
 			_broke = true;
 			break;
 		}
@@ -52,7 +53,6 @@ if (_broke) {
 		var _xx = _arr[0];
 		var _yy = _arr[1];
 		
-		log(_minesToPlaceNow, ds_list_size(_list),i);
 		mineGrid[# _xx, _yy] = true;
 		i++;
 		_minesToPlaceNow--;
@@ -66,10 +66,11 @@ if (_broke) {
 			ds_grid_set_region(mineGrid, _xx1, _yy1, _xx2, _yy2, false);
 			while (_minesToPlaceNow > 0) {
 				var __xx = irandom_range(_xx1, _xx2);
-				var __yy = irandom_range(_xx1, _yy2);
+				var __yy = irandom_range(_yy1, _yy2);
 				if (!(__xx == argument0 && __yy == argument1) && !mineGrid[# __xx, __yy]) {
 					mineGrid[# __xx, __yy] = true;
 					_minesToPlaceNow--;
+					log(_minesToPlaceNow);
 				}
 			}
 		}

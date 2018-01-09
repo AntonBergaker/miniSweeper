@@ -6,7 +6,8 @@
     "children": [
         "7fc1e7b2-b970-418a-abb1-399b3f8db4f3",
         "56608832-c48d-40f9-89ae-be77b50ce588",
-        "1c5b2a89-8fb2-4914-a0a8-60b0c735ce99"
+        "1c5b2a89-8fb2-4914-a0a8-60b0c735ce99",
+        "fed514fa-acd2-433d-b824-95b043478ef5"
     ],
     "filterType": "GMScript",
     "folderName": "data structures",
