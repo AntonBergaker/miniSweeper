@@ -5,10 +5,12 @@ if (!enabled) {
 if (!surface_exists(surf)) {
 	surf = surface_create(global.internalWidth, global.internalHeight);
 	updateDrawing = true;
+	log("New surface");
 }
 if (surface_exists(surf)) {
 	surface_set_target(surf);
 	if (updateDrawing) {
+		show_debug_message("redrew everything");
 		draw_set_color(global.backColor);
 		draw_rectangle(0,0,global.internalWidth,global.internalHeight,0);
 		

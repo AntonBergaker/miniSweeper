@@ -239,7 +239,7 @@ if (locked == false) {
 	}
 
 	if (abs(panSpeedX) + abs(panSpeedY) > 0) {
-		updateDrawing = true;	
+		updateDrawing = true;
 	}
 
 	oCamera.x += panSpeedX;
@@ -325,7 +325,7 @@ for (var i=0;i<_len;i++) {
 if (resetting) {
 	var _len = ds_list_size(resetEaseList);
 	if (_len > 0) {
-		updateDrawing = true;	
+		updateDrawing = true;
 	}
 
 	for (var i=0;i<_len;i++) {
@@ -407,6 +407,7 @@ if (hideOnReset) {
 
 if ((os_type == os_android || os_type == os_ios) && os_is_paused()) {
 	redrawFrames = 3;
+	oCamera.forceCheck = 5;
 	if (lost == 0 && won == 0 && resetting == 0 && firstPress == 0) {
 		scr_save_grid();
 	}

@@ -4,7 +4,7 @@ if (!enabled) {
 
 var _change = mouse_wheel_down() - mouse_wheel_up();
 
-if _change != 0
+if (_change != 0)
 	{
 	var _normalX = (mouse_x-oCamera.x)/oCamera.width;
 	var _normalY = (mouse_y-oCamera.y)/oCamera.height;
@@ -38,10 +38,4 @@ mipScale = power(2,mip);
 if (redrawFrames > 0) {
 	redrawFrames--;
 	updateDrawing = true;
-}
-if (updateDrawing) {
-	with oCamera {
-		forceCheck = true;
-		event_perform(ev_step,ev_step_begin);
-	}
 }

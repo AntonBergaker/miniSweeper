@@ -44,7 +44,7 @@ if (minesX > 0 || _showMines) {
 	var _bounce = ease_quadOut_peek(1,1.3,minesGuiBounce,0.5,1);
 	
 	//draw_sprite_ext(sWhiteStuff,0,_xx,_yy,-1.5,1,0,global.backColor,1);
-	draw_sprite_ext(sMine,1,_xx-60*_dpiScale,_yy,_dpiScale,_dpiScale/1.5,0,global.textColor,1);
+	draw_sprite_ext(sMine,1,_xx-40*_dpiScale,_yy,_dpiScale/1.5,_dpiScale/1.5,0,global.textColor,1);
 	if (_bounce != 0) {
 		draw_text_transformed(_xx+(-20+_bounce*5)*_dpiScale,_yy,string(round(minesLeft)),1/_bounce*_dpiScale/1.5,_bounce*_dpiScale/1.5,0);
 	} else {
