@@ -6,13 +6,14 @@ if (instance_number(object_index) >= 2) {
 	}
 }
 
-backColorStart    = global.backColor;
-buttonColorStart  = global.buttonColor;
-solidColorStart   = global.solidColor;
-clearedColorStart = global.clearedColor;
-textColorStart    = global.textColor;
-mineColorStart    = global.mineColor;
-flagColorStart    = global.flagColor;
-cardColorStart    = global.cardColor;
+backColorStart       = global.backColor;
+buttonColorStart     = global.buttonColor;
+solidColorStart      = global.solidColor;
+clearedColorStart    = global.clearedColor;
+buttonTextColorStart = global.buttonColor;
+textColorStart       = global.textColor;
+mineColorStart       = global.mineColor;
+flagColorStart       = global.flagColor;
+cardColorStart       = global.cardColor;
 
 time = 0;

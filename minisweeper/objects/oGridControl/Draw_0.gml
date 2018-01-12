@@ -10,7 +10,6 @@ if (!surface_exists(surf)) {
 if (surface_exists(surf)) {
 	surface_set_target(surf);
 	if (updateDrawing) {
-		show_debug_message("redrew everything");
 		draw_set_color(global.backColor);
 		draw_rectangle(0,0,global.internalWidth,global.internalHeight,0);
 		

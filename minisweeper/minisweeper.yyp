@@ -983,6 +983,14 @@
             }
         },
         {
+            "Key": "abcda8a3-5fd0-49a8-a153-95f5728d8982",
+            "Value": {
+                "id": "8452f143-9d13-4116-86e6-74b79c81ec34",
+                "resourcePath": "sprites\\sPauseSquare\\sPauseSquare.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "b1a7243a-f18f-4c78-ac10-d8d02d408ece",
             "Value": {
                 "id": "f40bc60a-24c5-49b7-8473-d8d73c02297a",
@@ -1507,11 +1515,11 @@
         "67fe89cb-43e0-4382-a9bf-c4ec585c0613",
         "4489550c-62b6-4000-857c-c486614df96b",
         "d19ae44a-f805-44ce-9bc3-08a5f40514e6",
+        "8fcf0111-c8a1-4f91-b246-aac02e4b4cfd",
+        "e42431f6-c9eb-45c9-8889-045888020557",
         "3f7ea5ae-2de2-42a4-ad66-7718a4433482",
         "b7531a14-8e3d-4c37-9ab0-0e4dc031904c",
         "632cc365-1f84-42df-b02d-f268f9d78df5",
-        "e42431f6-c9eb-45c9-8889-045888020557",
-        "8fcf0111-c8a1-4f91-b246-aac02e4b4cfd",
         "9e86dbb2-8fdd-4f95-b825-1adcd1269c63"
     ],
     "tutorial": ""

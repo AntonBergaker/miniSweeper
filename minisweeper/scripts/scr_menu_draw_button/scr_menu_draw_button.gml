@@ -130,6 +130,6 @@ draw_set_halign(_inst.halign);
 draw_set_font(_inst.font);
 
 var _scale = min(_height/84,_width/374);
+var _col = _inst.filled ? global.buttonTextColor : global.textColor;
 
-
-draw_text_transformed_color(_x,_y,_inst.text,_scale,_scale,0,global.textColor,global.textColor,global.textColor,global.textColor,alpha);
+draw_text_transformed_color(_x,_y,_inst.text,_scale,_scale,0,_col, _col, _col, _col,alpha);

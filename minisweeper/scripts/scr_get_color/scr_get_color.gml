@@ -17,6 +17,8 @@ switch argument0 {
 		return global.flagColor;
 	case ThemeColors.Card:
 		return global.cardColor;
+	case ThemeColors.ButtonText:
+		return global.buttonTextColor;
 	default:
 		return c_white;
 }

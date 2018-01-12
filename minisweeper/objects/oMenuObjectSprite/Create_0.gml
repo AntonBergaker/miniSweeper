@@ -11,5 +11,6 @@ enum ThemeColors {
 	Mine,
 	Button,
 	Flag,
-	Card
+	Card,
+	ButtonText
 }

@@ -12,7 +12,7 @@ if (global.onPhone) {
 	_dpiScale*=0.4;	
 }
 
-var _yy = _guiY-40*_dpiScale;
+var _yy = _guiY-30*_dpiScale;
 
 draw_set_font(fMineTextMip0);
 draw_set_color(global.textColor);
@@ -24,7 +24,6 @@ if (global.showTimer) {
 	if (_targetX > timerX || resetting) {
 		timerX = lerp_time(timerX,_targetX,0.1,deltaTimeS);
 	}
-
 
 	//draw_sprite_ext(sWhiteStuff,0,_guiX-timerX,_yy,1.5,1,0,global.backColor,1);
 	draw_text_transformed(_guiX-20*_dpiScale,_yy,_str, _dpiScale/1.5, _dpiScale/1.5, 0);;
@@ -40,7 +39,7 @@ if (minesX > 0 || _showMines) {
 		minesX = clamp(minesX - deltaTimeS*3,0,1);
 	}
 	draw_set_halign(fa_left)
-	var _xx = ease_quadOut(0,100*_dpiScale,minesX,1);
+	var _xx = ease_quadOut(0,70*_dpiScale,minesX,1);
 	var _bounce = ease_quadOut_peek(1,1.3,minesGuiBounce,0.5,1);
 	
 	//draw_sprite_ext(sWhiteStuff,0,_xx,_yy,-1.5,1,0,global.backColor,1);
@@ -53,3 +52,7 @@ if (minesX > 0 || _showMines) {
 }
 
 minesGuiBounce = clamp(minesGuiBounce-deltaTimeS*6,0,1);
+
+
+draw_sprite_ext(sPauseSquare, 0, _guiX-20*_dpiScale,_dpiScale*50, _dpiScale/1.6, _dpiScale/1.6, 0, c_white, 1);
+draw_sprite_ext(sPauseSquare, 0, _guiX-40*_dpiScale,_dpiScale*50, _dpiScale/1.6, _dpiScale/1.6, 0, c_white, 1);

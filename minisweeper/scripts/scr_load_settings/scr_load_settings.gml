@@ -27,7 +27,7 @@ if (file_exists("save.json")) {
 	global.clearAnimation  = ds_map_find_default(_map, "clear_animation", global.clearAnimation);
 	global.tweenEnabled    = ds_map_find_default(_map, "tween"          , global.tweenEnabled);
 	global.showTimer	   = ds_map_find_default(_map, "timer"          , global.showTimer);
-	global.showTimerMenu   = ds_map_find_default(_map, "timermenu"      , global.showTimerMenu);
+	global.showTimerMenu   = ds_map_find_default(_map, "timer_menu"     , global.showTimerMenu);
 	var _showMines	       = ds_map_find_default(_map, "show_mines"     , "five");
 	if (_showMines == "never") {
 		global.showMines = ShowMinesState.Never;	

@@ -22,7 +22,7 @@ ds_map_add(_map, "theme", global.currentTheme);
 ds_map_add(_map, "clear_animation", global.clearAnimation == true);
 ds_map_add(_map, "tween"          , global.tweenEnabled == true);
 ds_map_add(_map, "timer"          , global.showTimer == true);
-ds_map_add(_map, "timermenu"      , global.showTimerMenu == true);
+ds_map_add(_map, "timer_menu"     , global.showTimerMenu == true);
 ds_map_add(_map, "show_mines"     , scr_showmines_get_string(global.showMines));
 
 if (file_exists("save.json")) {

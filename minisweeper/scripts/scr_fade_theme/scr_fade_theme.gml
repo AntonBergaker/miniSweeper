@@ -4,6 +4,7 @@ scr_fade_colors(
 	_map[? "backColor"],
 	_map[? "clearedColor"],
 	_map[? "textColor"],
+	_map[? "buttonTextColor"],
 	_map[? "mineColor"],
 	_map[? "buttonColor"],
 	_map[? "flagColor"],
