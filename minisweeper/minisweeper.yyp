@@ -34,7 +34,7 @@
             "Key": "002a3432-b7a8-48b6-bdbf-17e8d1983a17",
             "Value": {
                 "id": "3e0fc46e-204d-4d7b-869d-8a7fd723aba5",
-                "resourcePath": "sounds\\aBleep\\aBleep.yy",
+                "resourcePath": "sounds\\aBleepFlat\\aBleepFlat.yy",
                 "resourceType": "GMSound"
             }
         },
@@ -180,6 +180,14 @@
                 "id": "e5cf7d2a-cfb8-40fc-b539-988817f46a54",
                 "resourcePath": "scripts\\scr_clear_place\\scr_clear_place.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "2023baf7-a6e6-4e3b-a4df-bfea33707da4",
+            "Value": {
+                "id": "45fdf367-e4b6-4ea5-a267-d9eb58be68ca",
+                "resourcePath": "sounds\\aBleepChord3\\aBleepChord3.yy",
+                "resourceType": "GMSound"
             }
         },
         {
@@ -639,6 +647,14 @@
             }
         },
         {
+            "Key": "7444bfd3-4544-4949-85d6-d89bbb184db3",
+            "Value": {
+                "id": "f818e2f0-89ee-47f3-8b50-8199c97f9d5f",
+                "resourcePath": "sounds\\aBleepChord4\\aBleepChord4.yy",
+                "resourceType": "GMSound"
+            }
+        },
+        {
             "Key": "74e7d326-6cb7-42e8-af94-22fdc0bf889f",
             "Value": {
                 "id": "53a823ce-d180-4a02-843f-3536e5771d0b",
@@ -775,6 +791,14 @@
             }
         },
         {
+            "Key": "834c6082-79f5-4e9c-aa38-72507b1dbc71",
+            "Value": {
+                "id": "df68d042-5a82-41cc-a073-4a5f75d297fc",
+                "resourcePath": "scripts\\coord_to_gui_x\\coord_to_gui_x.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "83d2c34f-5921-4753-bbd5-c8381f22fa17",
             "Value": {
                 "id": "b84a63be-d926-456b-b4f2-9d9fb544ae78",
@@ -851,6 +875,14 @@
             "Value": {
                 "id": "62354c50-65f4-4188-8d4d-bceef3cbbc30",
                 "resourcePath": "scripts\\scr_grid_place_random_mines\\scr_grid_place_random_mines.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "93416042-03b8-4949-85d3-5b53e0ac8ba9",
+            "Value": {
+                "id": "d358121c-3391-4670-8e56-adc7f8d66134",
+                "resourcePath": "scripts\\coord_to_gui_y\\coord_to_gui_y.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -1520,7 +1552,9 @@
         "3f7ea5ae-2de2-42a4-ad66-7718a4433482",
         "b7531a14-8e3d-4c37-9ab0-0e4dc031904c",
         "632cc365-1f84-42df-b02d-f268f9d78df5",
-        "9e86dbb2-8fdd-4f95-b825-1adcd1269c63"
+        "9e86dbb2-8fdd-4f95-b825-1adcd1269c63",
+        "834c6082-79f5-4e9c-aa38-72507b1dbc71",
+        "93416042-03b8-4949-85d3-5b53e0ac8ba9"
     ],
     "tutorial": ""
 }

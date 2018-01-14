@@ -23,7 +23,7 @@ themeSlider = scr_menu_create_slider(menu, 0.5, 0.1*i, true, global.themeNames, 
 
 i++;
 scr_menu_set_button_settings(menu,fa_center,fa_middle,fLightMenu,0.8,0.05);
-textSlider = scr_menu_create_label(menu, 0.5, 0.1*i, "Show Mines");
+textSlider = scr_menu_create_label(menu, 0.5, 0.1*i, "Show Mines Left");
 i+=0.7;
 
 if (global.showMines == ShowMinesState.Always) {

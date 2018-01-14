@@ -54,5 +54,4 @@ if (minesX > 0 || _showMines) {
 minesGuiBounce = clamp(minesGuiBounce-deltaTimeS*6,0,1);
 
 
-draw_sprite_ext(sPauseSquare, 0, _guiX-20*_dpiScale,_dpiScale*50, _dpiScale/1.6, _dpiScale/1.6, 0, c_white, 1);
-draw_sprite_ext(sPauseSquare, 0, _guiX-40*_dpiScale,_dpiScale*50, _dpiScale/1.6, _dpiScale/1.6, 0, c_white, 1);
+draw_sprite_ext(sPauseSquare, 0, _guiX-40*_dpiScale,_dpiScale*40, _dpiScale/2, _dpiScale/2, 0, merge_color(global.textColor, global.backColor, 0.7), 1);

@@ -17,6 +17,13 @@ if (locked == false) {
 			if (touchReleased[i]) {
 				var _xx = touchReleaseX[i];
 				var _yy = touchReleaseY[i];
+				
+				//Check if you clicked the settings button
+				var _guiX = coord_to_gui_x(_xx);
+				var _guiY = coord_to_gui_y(_yy);
+				if (_guiY < global.guiHeight-60) {
+						
+				}
 		
 				_xx = coord_to_grid_x(_xx);
 				_yy = coord_to_grid_y(_yy);
