@@ -12,6 +12,10 @@ if (os_type == os_android || os_type == os_ios) {
 	global.dpi = display_get_dpi_x();
 	global.guiWidth = display_get_gui_width();
 	global.guiHeight = display_get_gui_height();
+	global.forceWindowX = window_get_x();
+	global.forceWindowY = window_get_y();
+	global.lastWindowX = window_get_x();
+	global.lastWindowY = window_get_y();
 	
 } else {
 	var _width = clamp(display_get_width(),0,1366);
@@ -24,6 +28,10 @@ if (os_type == os_android || os_type == os_ios) {
 	global.dpi = display_get_dpi_x();
 	global.guiWidth = display_get_gui_width();
 	global.guiHeight = display_get_gui_height();
+	global.forceWindowX = -1;
+	global.forceWindowY = -1;
+	global.lastWindowX = 0;
+	global.lastWindowY = 0;
 }
 
 show_debug_overlay(1)

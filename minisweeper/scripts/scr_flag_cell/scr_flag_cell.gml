@@ -10,10 +10,14 @@ if (resetting) {
 
 flagGrid[# _xx, _yy] = !flagGrid[# _xx, _yy];
 if (flagGrid[# _xx, _yy]) {
-	audio_play(aFlagUp,1,random_range(0.95,1.05));
+	audio_play(aFlagUp,1,random_range(0.97,1.03) + log10(log2(flagPitch/2+1+flagPitchRandomOffset)+1));
+	flagPitch+=1;
+	flagPitchTimer = 1;
 	minesLeft--;
 } else {
-	audio_play(aFlagDown,1,random_range(0.95,1.05));
+	audio_play(aFlagDown,1,random_range(0.97,1.03) + log10(log2(flagPitch/2+1+flagPitchRandomOffset)+1));
+	flagPitch +=1;
+	flagPitchTimer = 1;
 	minesLeft++;
 }
 minesGuiBounce = 1;

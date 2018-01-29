@@ -2,7 +2,18 @@ gridWidth = global.gridWidth;
 gridHeight = global.gridHeight;
 gridMines = global.mineCount;
 
-pitch = 0;
+//a variable keeping track of how many clearing sounds to play 
+soundsToPlay = 0;
+
+//a list keeping track of current sounds playing so we don't play too loudly
+
+clearPitch = 0;
+
+flagPitch = 0;
+flagPitchTimer = 0;
+flagPitchRandomOffset = 0;
+
+minePitch = 0;
 
 enabled = false;
 locked = false;

@@ -8,7 +8,7 @@ if (firstStep) {
 	firstStep = false;
 }
 
-
+#region Mouse controls
 if (locked == false) {
 	for (var i=0;i<5;i++) {
 		if (touchAction[i] == TouchAction.None) {
@@ -34,7 +34,7 @@ if (locked == false) {
 		
 				if (inside_grid(_xx,_yy)) {
 					if (_xx2 == _xx && _yy2 == _yy) {
-						if (touchPressTime[i] < 0.2 - mineGrid[# _xx,_yy]*0.1) {
+						if (touchPressTime[i] < 0.3 - mineGrid[# _xx,_yy]*0.1) {
 							if (resetting) {
 								scr_reset_grid();	
 							}
@@ -93,12 +93,14 @@ if (locked == false) {
 				if (!touchCompleted[i] && touchAction[i] == TouchAction.None) {
 	
 					if (global.onPhone) {
-						var _dpi = global.dpi/5;
+						var _dpi = global.dpi/7;
 					} else {
-						var _dpi = 40;	
+						var _dpi = 30;
 					}
 					
-					if (point_distance(_xx1,_yy1,_xx2,_yy2) > _dpi*(oCamera.width/global.internalWidth)) {
+					var _timePressed = touchPressTime[i];
+					
+					if (point_distance(_xx1,_yy1,_xx2,_yy2) > _dpi*(oCamera.width/global.internalWidth) && _timePressed > 0.10) {
 						touchAction[i] = TouchAction.Pan;
 						lastPanX = _xx2 - oCamera.x;
 						lastPanY = _yy2 - oCamera.y;
@@ -265,7 +267,9 @@ if (locked == false) {
 	}
 }
 
+#endregion
 
+#region Ease control
 ///Easing
 var _len = ds_list_size(flagEaseList);
 
@@ -412,20 +416,6 @@ if (hideOnReset) {
 	hideOnResetTimer = clamp(hideOnResetTimer,0,1);
 }
 
-if ((os_type == os_android || os_type == os_ios) && os_is_paused()) {
-	redrawFrames = 3;
-	oCamera.forceCheck = 5;
-	if (lost == 0 && won == 0 && resetting == 0 && firstPress == 0) {
-		scr_save_grid();
-	}
-}
-
-saveTimer+= deltaTimeS;
-if (saveTimer > 10  && lost == 0 && won == 0 && resetting == 0 && firstPress == 0) {
-	scr_save_grid();
-	saveTimer = 0;
-}
-
 
 var _len = ds_list_size(toBeCleared);
 for (var i=0;i<_len;i++) {
@@ -446,11 +436,69 @@ for (var i=0;i<_len;i++) {
 	}
 }
 
-if (pitch > 0) {
-	pitch-= deltaTimeS*10;
-	if (pitch < 0) {
-		pitch = 0;	
+#endregion
+
+#region audio
+if (minePitch > 0) {
+	minePitch-= deltaTimeS*10;
+	if (minePitch < 0) {
+		minePitch = 0;	
 	}
+}
+
+///Clearing sounds
+for (var i=0; i<soundsToPlay; i+=_extracted) {
+	var _valsLeft = soundsToPlay-i;
+	var _extracted = 1;
+	var _aud = aBleepFlat;
+	
+	if (_valsLeft >= 4) {
+		_extracted = 4;
+		_aud = aBleepChord4;
+	} else if (_valsLeft >= 3) {
+		_extracted = 3;
+		_aud = aBleepChord3;
+	}
+	
+	if (random(log10(clearPitch+1)) < 0.1) {
+		log(audio_get_name(_aud));
+		audio_play(_aud,clamp(0.5 - log10(clearPitch+1),0.1,0.5),random_range(0.8,1.2) + log10(clearPitch+1));
+		clearPitch += 0.1;
+	}
+}
+soundsToPlay = 0;
+
+clearPitch -= deltaTimeS*10;
+if (clearPitch < 0) {
+	clearPitch = 0;	
+}
+
+//Flag sounds
+flagPitchTimer = clamp(flagPitchTimer-deltaTimeS,0,1);
+if (flagPitchTimer <= 0) {
+	flagPitch -= deltaTimeS * (1+flagPitch*0.2);
+	flagPitch -= deltaTimeS;
+	if (flagPitch <= 0) {
+		flagPitch = 0;
+		flagPitchRandomOffset = random_range(0,.2);
+	}
+}
+
+#endregion
+
+if ((os_type == os_android || os_type == os_ios) && os_is_paused()) {
+	redrawFrames = 3;
+	oCamera.forceCheck = 5;
+	if (lost == 0 && won == 0 && resetting == 0 && firstPress == 0) {
+		scr_save_grid();
+	}
+}
+
+
+saveTimer+= deltaTimeS;
+if (saveTimer > 10  && lost == 0 && won == 0 && resetting == 0 && firstPress == 0) {
+	scr_save_grid();
+	saveTimer = 0;
 }
 
 	

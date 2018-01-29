@@ -14,7 +14,11 @@ if (file_exists("save.json")) {
 	if (!global.onPhone) {
 		var _windowSize = _map[? "window_size"];
 		if (_windowSize != undefined) {
-			global.windowWidth  = ds_map_find_default(_windowSize, "width" , global.windowWidth );
+			if (!global.onPhone) {
+				global.forceWindowX = ds_map_find_default(_windowSize, "x", window_get_x());
+				global.forceWindowY = ds_map_find_default(_windowSize, "y", window_get_y());
+			}
+			global.windowWidth	= ds_map_find_default(_windowSize, "width" , global.windowWidth );
 			global.windowHeight = ds_map_find_default(_windowSize, "height", global.windowHeight);	
 		}
 	}

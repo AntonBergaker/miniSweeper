@@ -21,10 +21,7 @@ if (flagGrid[# _xx, _yy]) {
 
 if !(clearedGrid[# _xx, _yy]) {
 	clearedGrid[# _xx, _yy] = true;
-	if (random(log10(pitch+1)) < 0.1) {
-		audio_play(aBleep,clamp(0.5 - log10(pitch+1),0.1,0.5),random_range(0.5,1.5) + log10(pitch+1));
-		pitch += 0.1;
-	}
+	soundsToPlay++;
 	leftToClear--;
 }
 

@@ -8,7 +8,11 @@ ds_map_add_map(_map,"grid_size",_gridSize)
 
 
 if (!global.onPhone) {
-	var _windowSize = ds_map_create();	
+	var _windowSize = ds_map_create();
+		if (!global.onPhone) {
+			ds_map_add(_windowSize, "x", int64(global.lastWindowX));
+			ds_map_add(_windowSize, "y", int64(global.lastWindowY));
+		}
 		ds_map_add(_windowSize, "width" , int64(global.windowWidth));
 		ds_map_add(_windowSize, "height", int64(global.windowHeight));
 	ds_map_add_map(_map,"window_size",_windowSize)

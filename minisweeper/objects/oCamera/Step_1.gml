@@ -20,8 +20,21 @@ if (_check) {
 			global.guiWidth = display_get_gui_width();
 			global.guiHeight = display_get_gui_height();
 			global.dpi = display_get_dpi_x();
+			
+			if (global.forceWindowX != -1 && global.forceWindowY != -1) {
+				var _xx = global.forceWindowX;
+				var _yy = global.forceWindowY;
+				_xx = clamp(_xx, 0, display_get_width() - window_get_width());
+				_yy = clamp(_yy, 0, display_get_height() - window_get_height());
+				window_set_position(_xx, _yy);
+				if (forceCheck == 1) {
+					global.forceWindowX = -1;
+					global.forceWindowY = -1;
+				}
+			}
+			
 		
-			if (!global.onPhone) {
+			if (!global.onPhone && forceCheck <= 1) {
 				scr_save_settings();
 			}
 		
@@ -45,6 +58,13 @@ if (_check) {
 			camera_set_view_size(camera,width,height);
 			forceCheck--;
 		}
+	}
+	
+	if (!global.onPhone && (window_get_x() != global.lastWindowX || window_get_y() != global.lastWindowY)) {
+		
+		global.lastWindowX = window_get_x();
+		global.lastWindowY = window_get_y();
+		scr_save_settings();
 	}
 }
 
