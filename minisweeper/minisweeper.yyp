@@ -415,6 +415,14 @@
             }
         },
         {
+            "Key": "4dc2a326-cec7-4702-a83a-3cb1947b55d4",
+            "Value": {
+                "id": "e085b077-e254-4784-9e3e-e700c960bda6",
+                "resourcePath": "sounds\\aBleepDouble2\\aBleepDouble2.yy",
+                "resourceType": "GMSound"
+            }
+        },
+        {
             "Key": "4ff0e0a3-a7e4-4b83-a557-64370fc54c69",
             "Value": {
                 "id": "69a454b7-3d82-4580-aad2-347d579f0ea8",
@@ -1023,6 +1031,14 @@
             }
         },
         {
+            "Key": "af6d6aff-4a51-4fa4-b56e-105eba19e19e",
+            "Value": {
+                "id": "86b00c5c-0f13-4a38-9ac6-61e907ae7801",
+                "resourcePath": "sounds\\aBleepDouble1\\aBleepDouble1.yy",
+                "resourceType": "GMSound"
+            }
+        },
+        {
             "Key": "b1a7243a-f18f-4c78-ac10-d8d02d408ece",
             "Value": {
                 "id": "f40bc60a-24c5-49b7-8473-d8d73c02297a",
@@ -1060,6 +1076,14 @@
                 "id": "1c6a9cfc-a56a-4db1-b7cc-5c4e8fa22396",
                 "resourcePath": "scripts\\macros\\macros.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "b81a1103-198b-454d-bdf2-e53ae23ea9ec",
+            "Value": {
+                "id": "e8c2e8b3-5224-4182-a5e8-d732745df28f",
+                "resourcePath": "sounds\\aBleepDouble3\\aBleepDouble3.yy",
+                "resourceType": "GMSound"
             }
         },
         {

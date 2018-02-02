@@ -34,7 +34,7 @@ if (os_type == os_android || os_type == os_ios) {
 	global.lastWindowY = 0;
 }
 
-show_debug_overlay(1)
+//show_debug_overlay(1)
 
 global.clearAnimation = true;
 global.tweenEnabled = true;

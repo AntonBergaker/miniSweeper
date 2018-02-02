@@ -2,8 +2,8 @@ gridWidth = global.gridWidth;
 gridHeight = global.gridHeight;
 gridMines = global.mineCount;
 
-//a variable keeping track of how many clearing sounds to play 
-soundsToPlay = 0;
+//a list keeping track of how many clearing sounds to play and when
+soundsToPlay = ds_list_create();
 
 //a list keeping track of current sounds playing so we don't play too loudly
 

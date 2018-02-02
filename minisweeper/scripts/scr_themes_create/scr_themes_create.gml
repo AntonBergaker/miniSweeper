@@ -107,4 +107,4 @@ _theme = scr_theme_create(
 ds_map_add(global.themes, _theme[? "name"], _theme);
 
 
-global.themeNames = ["Default", "Dark", "Red", "Contrast", "Night", "SidorOak", "Mini"];
+global.themeNames = ["Default", "Dark", "Red", "Contrast", "Night", "Mini", "SidorOak"];

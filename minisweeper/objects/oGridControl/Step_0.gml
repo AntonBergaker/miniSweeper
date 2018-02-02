@@ -447,26 +447,39 @@ if (minePitch > 0) {
 }
 
 ///Clearing sounds
-for (var i=0; i<soundsToPlay; i+=_extracted) {
-	var _valsLeft = soundsToPlay-i;
-	var _extracted = 1;
-	var _aud = aBleepFlat;
+for (var i=0; i<ds_list_size(soundsToPlay); i+= 1) {
+	var _extracted = 0;
+	var _aud = noone;
 	
-	if (_valsLeft >= 4) {
-		_extracted = 4;
-		_aud = aBleepChord4;
-	} else if (_valsLeft >= 3) {
-		_extracted = 3;
-		_aud = aBleepChord3;
+	for (var ii=0;ii<4;ii++) {
+		if (i >= ds_list_size(soundsToPlay)) {
+			break;	
+		}
+		if (gameTime - soundsToPlay[| i] > 0.05 - (_extracted*0.0125)) {
+			_extracted++;
+			ds_list_delete(soundsToPlay,i);
+		}
 	}
 	
-	if (random(log10(clearPitch+1)) < 0.1) {
-		log(audio_get_name(_aud));
-		audio_play(_aud,clamp(0.5 - log10(clearPitch+1),0.1,0.5),random_range(0.8,1.2) + log10(clearPitch+1));
-		clearPitch += 0.1;
+	if (_extracted >= 4) {
+		_aud = aBleepChord4;
+	} else if (_extracted >= 3) {
+		_aud = aBleepChord3;
+	} else if (_extracted >= 2) {
+		_aud = choose(aBleepDouble1, aBleepDouble2, aBleepDouble3);
+	} else if (_extracted >= 1) {
+		_aud = aBleepFlat;
+	}
+	
+	if _extracted > 0 {
+		i--;
+		if (random(log10(clearPitch+1)) < 0.1) {
+			audio_play(_aud,clamp(0.5 - log10(clearPitch+1),0.1,0.5),random_range(0.8,1.2) + log10(clearPitch+1));
+			clearPitch += 0.05;
+		}
 	}
 }
-soundsToPlay = 0;
+
 
 clearPitch -= deltaTimeS*10;
 if (clearPitch < 0) {
@@ -476,11 +489,11 @@ if (clearPitch < 0) {
 //Flag sounds
 flagPitchTimer = clamp(flagPitchTimer-deltaTimeS,0,1);
 if (flagPitchTimer <= 0) {
-	flagPitch -= deltaTimeS * (1+flagPitch*0.2);
+	flagPitch -= deltaTimeS * (1+flagPitch);
 	flagPitch -= deltaTimeS;
 	if (flagPitch <= 0) {
 		flagPitch = 0;
-		flagPitchRandomOffset = random_range(0,.2);
+		flagPitchRandomOffset = random_range(-.1,.3);
 	}
 }
 
