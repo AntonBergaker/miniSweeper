@@ -8,5 +8,5 @@ if (lastH != height || lastW != width || lastX != x || lastY != y) {
 	scr_calculate_button_area();
 }
 
-clickedFade -= deltaTimeS;
+clickedFade -= deltaTimeS*3;
 checkedTimer = value_shift(checkedTimer, checked, deltaTimeS*3);

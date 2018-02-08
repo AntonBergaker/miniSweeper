@@ -42,7 +42,7 @@ with (argument0) {
 
 	#region buttons
 	var _len = ds_list_size(buttons);
-	if (_pressed) {
+	if (_pressed && _i.touchCompleted[_pressedIndex] == false) {
 		var _x = (_i.touchPressXGui[_pressedIndex]*_width - x/width);
 		var _y = (_i.touchPressYGui[_pressedIndex]*_height - y/height);
 	

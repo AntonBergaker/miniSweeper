@@ -40,7 +40,6 @@ for ( var i=0;i<5;i++) {
 				}
 					
 				var _timePressed = _i.touchPressTime[i];
-				log(point_distance(_xx1,_yy1,_xx2,_yy2));
 					
 				if (point_distance(_xx1,_yy1,_xx2,_yy2) > _dpi/2 && _timePressed > 0.10) {
 					_i.touchAction[i] = TouchAction.MenuPan;

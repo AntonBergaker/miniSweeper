@@ -591,6 +591,14 @@
             }
         },
         {
+            "Key": "6bff08b2-22e1-4a66-8471-ffebb22a914c",
+            "Value": {
+                "id": "1c41c6e4-c17e-49d9-bbf2-6661346ab96c",
+                "resourcePath": "sprites\\sFlag\\sFlag.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "6caf3da8-55e3-4c97-917d-097e1144a39f",
             "Value": {
                 "id": "b8ded64d-45d5-4fc2-9c89-691bdee574fa",
@@ -1335,6 +1343,14 @@
             }
         },
         {
+            "Key": "e486c11f-5f0a-4ff4-a713-159af4526b17",
+            "Value": {
+                "id": "3f3e6f27-bdb2-470f-910c-b97ae52b3472",
+                "resourcePath": "sprites\\sFlagPole\\sFlagPole.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "e7488d9f-0e6a-4289-b49f-f8334b74a478",
             "Value": {
                 "id": "42faf6d2-c57d-449d-9a9f-537884f14504",
@@ -1458,7 +1474,7 @@
             "Key": "fac618f9-3197-4e17-b9ab-637ef9873abc",
             "Value": {
                 "id": "99fe612f-fdac-4535-84c9-87e434d2fda6",
-                "resourcePath": "sprites\\sFlag\\sFlag.yy",
+                "resourcePath": "sprites\\sFlagStand\\sFlagStand.yy",
                 "resourceType": "GMSprite"
             }
         },

@@ -9,6 +9,6 @@ lastX = x;
 lastY = y;
 pressedX = 0;
 pressedY = 0;
-pressedTime = 0;
+pressedTime = 99999999999;
 pressedFinger = -1;
 clickedFade = 0;
