@@ -446,6 +446,7 @@ if (minePitch > 0) {
 	}
 }
 
+
 ///Clearing sounds
 for (var i=0; i<ds_list_size(soundsToPlay); i+= 1) {
 	var _extracted = 0;
@@ -475,13 +476,13 @@ for (var i=0; i<ds_list_size(soundsToPlay); i+= 1) {
 		i--;
 		if (random(log10(clearPitch+1)) < 0.1) {
 			audio_play(_aud,clamp(0.5 - log10(clearPitch+1),0.1,0.5),random_range(0.8,1.2) + log10(clearPitch+1));
-			clearPitch += 0.05;
+			clearPitch += 0.1*_extracted;
 		}
 	}
 }
 
 
-clearPitch -= deltaTimeS*10;
+clearPitch -= deltaTimeS*5;
 if (clearPitch < 0) {
 	clearPitch = 0;	
 }
@@ -532,6 +533,7 @@ if (won==1) {
 		if (file_exists("save.sav")) {
 			file_delete("save.sav");	
 		}
+		var _newHighscore = false;
 		var _str = scr_format_gridstring_unordered(gridWidth, gridHeight, gridMines);
 		var _val = ds_map_find_value(global.highScores, _str);
 		if (_val == undefined) {
@@ -539,11 +541,13 @@ if (won==1) {
 			scr_save_settings();
 		} else if (gameplayTime < _val) {
 			ds_map_replace(global.highScores, _str, gameplayTime);
+			_newHighscore = true;
 			scr_save_settings();
 		}
 		
 		
-		instance_create_layer(x,y,"MenuGameEnd",oMenuGameEnd);
+		var _inst = instance_create_layer(x,y,"MenuGameEnd",oMenuGameEnd);
+		_inst.newHighscore = _newHighscore;
 	}
 }
 

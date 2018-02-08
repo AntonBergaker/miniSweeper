@@ -21,6 +21,8 @@ locked = false;
 updateDrawing = false;
 firstStep = true;
 
+gameplayTime = 0;
+
 instance_create_depth(0,0,0,oCamera);
 
 //If a save exists import it
@@ -51,8 +53,6 @@ lostTimer = 0;
 timerX = 0;
 minesX = 0;
 minesGuiBounce = 0;
-
-gameplayTime = 0;
 
 resetting = 0;
 hideOnReset = false;

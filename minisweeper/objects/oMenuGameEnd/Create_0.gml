@@ -11,7 +11,10 @@ t_won = "You Won";
 t_retry = "Retry";
 t_again = "Again";
 
+t_record = "You Got a New Record!";
+
 lost = false;
+newHighscore = false;
 destroy = false;
 destroyTimer = false;
 
@@ -31,7 +34,8 @@ playButton = scr_menu_create_button(menu,0.5,0.55,lost ? t_retry : t_again,"retr
 
 settingsButton = scr_menu_create_button(menu,0.5,0.73,"Menu","menu",false);
 	
-scr_menu_set_button_settings(menu,fa_center,fa_middle,fThinMenu,0.55,0.13)
+scr_menu_set_button_settings(menu,fa_center,fa_middle,fThinMenu,0.9,0.13)
 nameLabel = scr_menu_create_label(menu, 0.5, 0.22, lost ? t_lost : t_won);
 
+scr_menu_set_button_settings(menu,fa_center,fa_middle,fThinMenu,0.55,0.13)
 backGround = scr_menu_create_sprite(menu, 0.5,0.45,1.7,1.7,sBigBox, ThemeColors.Card);

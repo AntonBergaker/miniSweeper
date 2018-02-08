@@ -14,6 +14,11 @@ if (!firstStep && introTimer > 0) {
 	}
 }
 
+//Make the box draggable
+//var _xOff = menu.width*_guiX*0.065;
+//draw_rectangle(menu.x*_guiX-_xOff,menu.y*_guiY,menu.x*_guiX+_xOff + menu.width*_guiX,menu.y*_guiY+menu.height*_guiY*0.9,0);
+
+
 timer = clamp(timer,0,1);
 
 var _sRatio = 212/166;
@@ -51,6 +56,10 @@ if (destroy) {
 
 if (firstStep) {
 	firstStep = false;	
-	nameLabel.text = lost ? t_lost : t_won;
+	if (newHighscore) {
+		nameLabel.text = t_record;
+	} else {
+		nameLabel.text = lost ? t_lost : t_won;
+	}
 	playButton.text = lost ? t_retry : t_again;
 }

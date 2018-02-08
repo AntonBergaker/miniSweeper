@@ -9,6 +9,7 @@ var _y = y * _guiH;
 var _scaleW = _guiW * width;
 var _scaleH = _guiH * height;
 
+
 draw_set_color(global.textColor);
 
 _len = ds_list_size(sprites);
