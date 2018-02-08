@@ -18,9 +18,24 @@ newHighscore = false;
 destroy = false;
 destroyTimer = false;
 
+inputController = instance_find(oInput,0);
+
 introTimer = 2;
 
 firstStep = true;
+
+menuOffsetX = 0;
+menuOffsetY = 0;
+
+lastPanX = 0;
+lastPanY = 0;
+panSpeedX = 0;
+panSpeedY = 0;
+
+for (var i=4;i>=0;i--) {
+	panDiffsX[i] = 0;
+	panDiffsY[i] = 0;
+}
 
 //spawn outside the screen
 startY = _guiY + height/2
@@ -28,6 +43,7 @@ startY = _guiY + height/2
 targetY = _guiY/2;
 
 menu = scr_menu_create(-1,-1,0.6,0.6);
+menu.handlesStep = false;
 menu.depth = depth-1;
 scr_menu_set_button_settings(menu,fa_center,fa_middle,fLightMenu,0.5,0.17)
 playButton = scr_menu_create_button(menu,0.5,0.55,lost ? t_retry : t_again,"retry",true);

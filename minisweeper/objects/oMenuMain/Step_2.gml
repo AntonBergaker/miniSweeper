@@ -11,7 +11,7 @@ if (!fadeOut) {
 							scr_grid_update_size();
 						}
 						scr_reset_grid();	
-						locked = false;
+						locked = LockedState.Unlocked;
 						firstPress = true;
 					}
 				}

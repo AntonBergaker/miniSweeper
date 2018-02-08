@@ -5,8 +5,6 @@ var _guiH = global.guiHeight;
 var _ratio = _guiW/_guiH;
 
 
-//appdata
-
 
 if (_ratio) > 0.6 {
 	menu.width = 0.6/_ratio;

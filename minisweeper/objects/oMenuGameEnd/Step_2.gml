@@ -8,7 +8,7 @@ if (!destroy) {
 						scr_reset_place_recursive( irandom(gridWidth-1), irandom(gridHeight-1));
 					}
 					resetting = true;
-					locked = false;
+					locked = LockedState.Unlocked;
 				}
 				toMenu = false;
 				introTimer = -1;
@@ -20,7 +20,7 @@ if (!destroy) {
 					repeat(3) {
 						scr_reset_place_recursive( irandom(gridWidth-1), irandom(gridHeight-1));
 					}
-					locked = true;
+					locked = LockedState.Locked;
 					resetting = true;
 					hideOnReset = true;
 					hideOnResetTimer = 0;

@@ -24,4 +24,6 @@ sprites = ds_list_create();
 sliders = ds_list_create();
 toggles = ds_list_create();
 
-scr_mouse_init();
+inputController = instance_find(oInput,0);
+
+handlesStep = true;

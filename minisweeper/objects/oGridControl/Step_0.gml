@@ -3,54 +3,64 @@ if (!enabled) {
 	exit;	
 }
 
+if (instance_exists(oMenuGameEnd)) {
+	with oMenuGameEnd {
+		event_perform(ev_other,ev_user0);	
+	}
+}
+
+var _i = inputController;
+
 if (firstStep) {
 	updateDrawing = true;
 	firstStep = false;
 }
 
 #region Mouse controls
-if (locked == false) {
+if (locked != LockedState.Locked) {
 	for (var i=0;i<5;i++) {
-		if (touchAction[i] == TouchAction.None) {
+		if (_i.touchAction[i] == TouchAction.None) {
 		
-			//Check clicking
-			if (touchReleased[i]) {
-				var _xx = touchReleaseX[i];
-				var _yy = touchReleaseY[i];
+			if (locked == LockedState.Unlocked) {
+				//Check clicking
+				if (_i.touchReleased[i]) {
+					var _xx = _i.touchReleaseX[i];
+					var _yy = _i.touchReleaseY[i];
 				
-				//Check if you clicked the settings button
-				var _guiX = coord_to_gui_x(_xx);
-				var _guiY = coord_to_gui_y(_yy);
-				if (_guiY < global.guiHeight-60) {
+					//Check if you clicked the settings button
+					var _guiX = coord_to_gui_x(_xx);
+					var _guiY = coord_to_gui_y(_yy);
+					if (_guiY < global.guiHeight-60) {
 						
-				}
+					}
 		
-				_xx = coord_to_grid_x(_xx);
-				_yy = coord_to_grid_y(_yy);
+					_xx = coord_to_grid_x(_xx);
+					_yy = coord_to_grid_y(_yy);
 		
-				//Check if you released and clicked at the same square
-				var _xx2 = coord_to_grid_x(touchPressX[i]);
-				var _yy2 = coord_to_grid_y(touchPressY[i]);
+					//Check if you released and clicked at the same square
+					var _xx2 = coord_to_grid_x(_i.touchPressX[i]);
+					var _yy2 = coord_to_grid_y(_i.touchPressY[i]);
 		
-				if (inside_grid(_xx,_yy)) {
-					if (_xx2 == _xx && _yy2 == _yy) {
-						if (touchPressTime[i] < 0.3 - mineGrid[# _xx,_yy]*0.1) {
-							if (resetting) {
-								scr_reset_grid();	
-							}
-							
-							if (!flagGrid[# _xx,_yy]) {
-								if (firstPress) {
-									scr_grid_mines_from_press(_xx, _yy);
-									minesLeft -= ds_grid_get_sum(flagGrid, 0, 0, gridWidth-1, gridHeight-1)
-									firstPress = false;
+					if (inside_grid(_xx,_yy)) {
+						if (_xx2 == _xx && _yy2 == _yy) {
+							if (_i.touchPressTime[i] < 0.3 - mineGrid[# _xx,_yy]*0.1) {
+								if (resetting) {
+									scr_reset_grid();	
 								}
-								if (!clearedGrid[# _xx, _yy]) {
-									scr_clear_place(_xx, _yy);
-								} else {
-									var _nearFlags = scr_get_nearby(flagGrid, _xx, _yy);
-									if (_nearFlags == nearGrid[# _xx, _yy]) {
-										scr_clear_near(_xx,_yy);
+							
+								if (!flagGrid[# _xx,_yy]) {
+									if (firstPress) {
+										scr_grid_mines_from_press(_xx, _yy);
+										minesLeft -= ds_grid_get_sum(flagGrid, 0, 0, gridWidth-1, gridHeight-1)
+										firstPress = false;
+									}
+									if (!clearedGrid[# _xx, _yy]) {
+										scr_clear_place(_xx, _yy);
+									} else {
+										var _nearFlags = scr_get_nearby(flagGrid, _xx, _yy);
+										if (_nearFlags == nearGrid[# _xx, _yy]) {
+											scr_clear_near(_xx,_yy);
+										}
 									}
 								}
 							}
@@ -60,16 +70,16 @@ if (locked == false) {
 			}
 		
 			//Check pinching
-			if (touchPressed[i]) {
+			if (_i.touchPressed[i]) {
 				//Check if we have two fingers down
 				for (var ii=0;ii<5;ii++) {
 					if (ii != i) {
-						if (touchPressed[ii]) {
-							if (touchAction[ii] == TouchAction.Pan || touchCompleted[ii] == false) {
-								touchAction[i]  = TouchAction.Pinch1;
-								touchAction[ii] = TouchAction.Pinch2;
-								touchCompleted[i]  = true;
-								touchCompleted[ii] = true;
+						if (_i.touchPressed[ii]) {
+							if (_i.touchAction[ii] == TouchAction.Pan || _i.touchCompleted[ii] == false) {
+								_i.touchAction[i]  = TouchAction.Pinch1;
+								_i.touchAction[ii] = TouchAction.Pinch2;
+								_i.touchCompleted[i]  = true;
+								_i.touchCompleted[ii] = true;
 							
 								pinchStartScale = oCamera.width;
 								pinchStartDistance = point_distance(
@@ -85,12 +95,12 @@ if (locked == false) {
 		
 	
 			//Check panning
-			if (touchPressed[i]) {
-				var _xx1 = touchX[i];
-				var _yy1 = touchY[i];
-				var _xx2 = touchPressX[i];
-				var _yy2 = touchPressY[i];
-				if (!touchCompleted[i] && touchAction[i] == TouchAction.None) {
+			if (_i.touchPressed[i]) {
+				var _xx1 = _i.touchX[i];
+				var _yy1 = _i.touchY[i];
+				var _xx2 = _i.touchPressX[i];
+				var _yy2 = _i.touchPressY[i];
+				if (!_i.touchCompleted[i] && _i.touchAction[i] == TouchAction.None) {
 	
 					if (global.onPhone) {
 						var _dpi = global.dpi/7;
@@ -98,49 +108,51 @@ if (locked == false) {
 						var _dpi = 30;
 					}
 					
-					var _timePressed = touchPressTime[i];
+					var _timePressed = _i.touchPressTime[i];
 					
 					if (point_distance(_xx1,_yy1,_xx2,_yy2) > _dpi*(oCamera.width/global.internalWidth) && _timePressed > 0.10) {
-						touchAction[i] = TouchAction.Pan;
+						_i.touchAction[i] = TouchAction.Pan;
 						lastPanX = _xx2 - oCamera.x;
 						lastPanY = _yy2 - oCamera.y;
-						touchCompleted[i] = true;
+						_i.touchCompleted[i] = true;
 					}
 				}
 			}
 		
-		
-			if device_mouse_check_button_pressed(i,mb_right) {
-				var _xx = touchX[i];
-				var _yy = touchY[i];
-		
-				_xx = coord_to_grid_x(_xx);
-				_yy = coord_to_grid_y(_yy);	
-				
-				if (inside_grid(_xx,_yy) && !clearedGrid[# _xx, _yy]) {
-					scr_flag_cell(_xx,_yy);
-				}
-			}
-		
-			//Check holding
-			if (touchPressed[i] && !touchCompleted[i]) {
-				if (touchPressTime[i] > 0.4) {
-					var _xx = touchX[i];
-					var _yy = touchY[i];
+			if (locked == LockedState.Unlocked) {
+			
+				if device_mouse_check_button_pressed(i,mb_right) {
+					var _xx = _i.touchX[i];
+					var _yy = _i.touchY[i];
 		
 					_xx = coord_to_grid_x(_xx);
-					_yy = coord_to_grid_y(_yy);
-			
-					var _xx2 = coord_to_grid_x(touchPressX[i]);
-					var _yy2 = coord_to_grid_y(touchPressY[i]);
-			
-					if (_xx2 == _xx && _yy2 == _yy) {
-						if (inside_grid(_xx,_yy) && !clearedGrid[# _xx, _yy]) {
-							scr_flag_cell(_xx,_yy);
-						}
+					_yy = coord_to_grid_y(_yy);	
+				
+					if (inside_grid(_xx,_yy) && !clearedGrid[# _xx, _yy]) {
+						scr_flag_cell(_xx,_yy);
 					}
+				}
+		
+				//Check holding
+				if (_i.touchPressed[i] && !_i.touchCompleted[i]) {
+					if (_i.touchPressTime[i] > 0.4) {
+						var _xx = _i.touchX[i];
+						var _yy = _i.touchY[i];
+		
+						_xx = coord_to_grid_x(_xx);
+						_yy = coord_to_grid_y(_yy);
 			
-					touchCompleted[i] = true;
+						var _xx2 = coord_to_grid_x(_i.touchPressX[i]);
+						var _yy2 = coord_to_grid_y(_i.touchPressY[i]);
+			
+						if (_xx2 == _xx && _yy2 == _yy) {
+							if (inside_grid(_xx,_yy) && !clearedGrid[# _xx, _yy]) {
+								scr_flag_cell(_xx,_yy);
+							}
+						}
+			
+						_i.touchCompleted[i] = true;
+					}
 				}
 			}
 		}
@@ -149,9 +161,9 @@ if (locked == false) {
 
 	///panning
 	for (var i=0;i<5;i++) {
-		if (touchAction[i] == TouchAction.Pan) {
-			var _xx = touchX[i] - oCamera.x;
-			var _yy = touchY[i] - oCamera.y;
+		if (_i.touchAction[i] == TouchAction.Pan) {
+			var _xx = _i.touchX[i] - oCamera.x;
+			var _yy = _i.touchY[i] - oCamera.y;
 		
 			panSpeedX = (lastPanX - _xx);
 			panSpeedY = (lastPanY - _yy);
@@ -169,7 +181,7 @@ if (locked == false) {
 		
 			//If its the last frame set the speed to the last 5 highest,
 			//because your movement can stop otherwise when releasing
-			if (touchReleased[i]) {
+			if (_i.touchReleased[i]) {
 				for (var ii=1;ii<4;ii++) {
 					if (abs(panSpeedX) < abs(panDiffsX[ii])) {
 						panSpeedX = panDiffsX[ii];	
@@ -178,23 +190,25 @@ if (locked == false) {
 						panSpeedY = panDiffsY[ii];	
 					}
 				}
+				panSpeedX = (panSpeedX + array_average(panDiffsX)) / 2;
+				panSpeedY = (panSpeedY + array_average(panDiffsY)) / 2;
 			}
 		}
 	}
 
 	//Pinching
 	for (var i=0;i<5;i++) {
-		if (touchAction[i] == TouchAction.Pinch1 || touchAction[i] == TouchAction.Pinch2) {
+		if (_i.touchAction[i] == TouchAction.Pinch1 || _i.touchAction[i] == TouchAction.Pinch2) {
 			updateDrawing = true;
 		
-			var _opposite = touchAction[i] == TouchAction.Pinch1 ? TouchAction.Pinch2 : TouchAction.Pinch1;
+			var _opposite = _i.touchAction[i] == TouchAction.Pinch1 ? TouchAction.Pinch2 : TouchAction.Pinch1;
 			var _foundOther = false;
 			for (var ii=0;ii<5;ii++) {
-				if (ii != i && touchAction[ii] == _opposite) {
+				if (ii != i && _i.touchAction[ii] == _opposite) {
 					_foundOther = true;
 				
-					var _normalX = ((touchX[i]-oCamera.x) + (touchX[ii]-oCamera.x)) / (oCamera.width*2);
-					var _normalY = ((touchY[i]-oCamera.y) + (touchY[ii]-oCamera.y)) / (oCamera.height*2);
+					var _normalX = ((_i.touchX[i]-oCamera.x) + (_i.touchX[ii]-oCamera.x)) / (oCamera.width*2);
+					var _normalY = ((_i.touchY[i]-oCamera.y) + (_i.touchY[ii]-oCamera.y)) / (oCamera.height*2);
 				
 					var _mX = oCamera.x + oCamera.width * _normalX;
 					var _mY = oCamera.y + oCamera.height* _normalY;
@@ -223,26 +237,26 @@ if (locked == false) {
 					oCamera.y = _mY - oCamera.height* _normalY;
 				
 					//Convert the other to a pan
-					if (touchReleased[i]) {
-						if (!touchReleased[ii]) {
-							touchAction[ii] = TouchAction.Pan;
-							lastPanX = touchX[ii] - oCamera.x;
-							lastPanY = touchY[ii] - oCamera.y;
-							touchCompleted[ii] = true;
+					if (_i.touchReleased[i]) {
+						if (!_i.touchReleased[ii]) {
+							_i.touchAction[ii] = TouchAction.Pan;
+							_i.lastPanX = touchX[ii] - oCamera.x;
+							_i.lastPanY = touchY[ii] - oCamera.y;
+							_i.touchCompleted[ii] = true;
 						}
 					}
-					else if (touchReleased[ii]) {
-						if (!touchReleased[i]) {
-							touchAction[i] = TouchAction.Pan;
-							lastPanX = touchX[i] - oCamera.x;
-							lastPanY = touchY[i] - oCamera.y;
-							touchCompleted[i] = true;
+					else if (_i.touchReleased[ii]) {
+						if (!_i.touchReleased[i]) {
+							_i.touchAction[i] = TouchAction.Pan;
+							_i.lastPanX = touchX[i] - oCamera.x;
+							_i.lastPanY = touchY[i] - oCamera.y;
+							_i.touchCompleted[i] = true;
 						}
 					}
 				}
 			}
 			if (!_foundOther) {
-				touchAction[i] = TouchAction.None;	
+				_i.touchAction[i] = TouchAction.None;	
 			}
 		}
 	}
@@ -402,9 +416,10 @@ if (resetting) {
 	if (_len == 0 || hideOnResetTimer >= 0.9999) {
 		if (hideOnReset) {
 			enabled = false;
-			locked = false;
+			locked = LockedState.Unlocked;
 			scr_reset_grid();
 		}
+		firstPress = true;
 	} else {
 		gameplayTime = lerp_time(gameplayTime,0,0.1,deltaTimeS);
 		minesLeft = lerp_time(minesLeft,gridMines,0.1,deltaTimeS);
@@ -519,12 +534,12 @@ if (saveTimer > 10  && lost == 0 && won == 0 && resetting == 0 && firstPress == 
 
 if (won == 0 && leftToClear <= 0 && enabled && !firstPress && lost == 0) {
 	won = 1;
-	locked = true;
 }
 
 
 
 if (won==1) {
+	locked = LockedState.InputLocked;
 	wonTimer+=deltaTimeS;	
 	if (wonTimer > 1) {
 		won = 2;
@@ -552,7 +567,7 @@ if (won==1) {
 }
 
 if (lost == 1) {
-	locked = true;
+	locked = LockedState.InputLocked;
 	lost = 2;
 	if (file_exists("save.sav")) {
 		file_delete("save.sav");	

@@ -16,13 +16,13 @@ flagPitchRandomOffset = 0;
 minePitch = 0;
 
 enabled = false;
-locked = false;
+locked = LockedState.Unlocked;
 
 updateDrawing = false;
 firstStep = true;
 
 gameplayTime = 0;
-
+inputController = instance_create_depth(0,0,0,oInput);
 instance_create_depth(0,0,0,oCamera);
 
 //If a save exists import it
@@ -40,6 +40,11 @@ lastPanX = 0;
 lastPanY = 0;
 panSpeedX = 0;
 panSpeedY = 0;
+
+for (var i=4;i>=0;i--) {
+	panDiffsX[i] = 0;
+	panDiffsY[i] = 0;
+}
 
 redrawFrames = 0;
 
@@ -64,10 +69,6 @@ fieldHeight = gridHeight*160+ 50;
 pinchStartDistance = 0;
 pinchStartScale = 0;
 
-for (var i=4;i>=0;i--) {
-	panDiffsX[i] = 0;
-	panDiffsY[i] = 0;
-}
 
 mip = 1;
 mipScale = power(2,mip);
@@ -82,14 +83,18 @@ gameTime = 0;
 toBeCleared = ds_list_create();
 
 
-scr_mouse_init();
-
 enum TouchAction {
 	None,
 	Pan,
+	MenuPan,
 	Pinch1,
 	Pinch2
 }
 
+enum LockedState {
+	Locked,
+	Unlocked,
+	InputLocked
+}
 
 scr_calculate_grid_near();
