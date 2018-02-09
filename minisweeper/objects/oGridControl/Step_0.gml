@@ -105,12 +105,12 @@ if (locked != LockedState.Locked) {
 					if (global.onPhone) {
 						var _dpi = global.dpi/7;
 					} else {
-						var _dpi = 30;
+						var _dpi = 15;
 					}
 					
 					var _timePressed = _i.touchPressTime[i];
 					
-					if (point_distance(_xx1,_yy1,_xx2,_yy2) > _dpi*(oCamera.width/global.internalWidth) && _timePressed > 0.10) {
+					if (point_distance(_xx1,_yy1,_xx2,_yy2) > _dpi*(oCamera.width/global.internalWidth) && _timePressed > 0.06) {
 						_i.touchAction[i] = TouchAction.Pan;
 						lastPanX = _xx2 - oCamera.x;
 						lastPanY = _yy2 - oCamera.y;
@@ -276,9 +276,6 @@ if (locked != LockedState.Locked) {
 
 	panSpeedY = lerp_time(panSpeedY,0,0.2,deltaTimeS*2.5);
 	panSpeedY = value_shift(panSpeedY, 0, abs(lengthdir_y(_len,_dir)) * deltaTimeS);
-	if (!firstPress) {
-		gameplayTime += deltaTimeS;
-	}
 }
 
 #endregion
@@ -523,6 +520,10 @@ if ((os_type == os_android || os_type == os_ios) && os_is_paused()) {
 	}
 }
 
+if (!firstPress && locked == LockedState.Unlocked) {
+	gameplayTime += deltaTimeS;
+}
+
 
 saveTimer+= deltaTimeS;
 if (saveTimer > 10  && lost == 0 && won == 0 && resetting == 0 && firstPress == 0) {
@@ -553,6 +554,7 @@ if (won==1) {
 		var _val = ds_map_find_value(global.highScores, _str);
 		if (_val == undefined) {
 			global.highScores[? _str] = gameplayTime;
+			_newHighscore = true;
 			scr_save_settings();
 		} else if (gameplayTime < _val) {
 			ds_map_replace(global.highScores, _str, gameplayTime);

@@ -16,7 +16,6 @@ if (_mineCount < _cellsCount - 9) {
 		ds_grid_clear(mineGrid,0);
 		scr_grid_place_random_mines(gridMines);
 		if (i++ > 1) {
-			log("hah");
 			_broke = true;
 			break;
 		}

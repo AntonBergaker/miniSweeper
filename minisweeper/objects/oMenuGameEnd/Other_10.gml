@@ -36,12 +36,12 @@ for ( var i=0;i<5;i++) {
 				if (global.onPhone) {
 					var _dpi = global.dpi/7;
 				} else {
-					var _dpi = 30;
+					var _dpi = 20;
 				}
 					
 				var _timePressed = _i.touchPressTime[i];
 					
-				if (point_distance(_xx1,_yy1,_xx2,_yy2) > _dpi/2 && _timePressed > 0.10) {
+				if (point_distance(_xx1,_yy1,_xx2,_yy2) > _dpi/2 && _timePressed > 0.05) {
 					_i.touchAction[i] = TouchAction.MenuPan;
 					lastPanX = _xx2;
 					lastPanY = _yy2;
@@ -71,6 +71,8 @@ for (var i=0;i<5;i++) {
 		
 		lastPanX = _xx;
 		lastPanY = _yy;
+		bounceOffXSpd = 0;
+		bounceOffYSpd = 0;
 		
 		//If its the last frame set the speed to the last 5 highest,
 		//because your movement can stop otherwise when releasing
@@ -122,12 +124,64 @@ panSpeedY = lerp_time(panSpeedY,0,0.2,deltaTimeS*2.5);
 panSpeedY = value_shift(panSpeedY, 0, abs(lengthdir_y(_len,_dir)) * deltaTimeS);
 
 
+if (menuOffsetX < -0.5+menu.width/2 || menuOffsetX > 0.5-menu.width/2) {
+	if (abs(bounceOffXSpd) < abs(panSpeedX)) {
+		bounceOffXSpd = -panSpeedX;
+		bounceOffTimerX = 1;
+	}
+	panSpeedX = 0;
+	menuOffsetX = clamp(menuOffsetX, -.5+menu.width /2, 0.5-menu.width /2);
+}
 
-menuOffsetX = clamp(menuOffsetX, -.5+menu.width /2, 0.5-menu.width /2);
-menuOffsetY = clamp(menuOffsetY, -.5+menu.height/2, 0.5-menu.height/2);
+if (menuOffsetY < -0.5+menu.height/2 || menuOffsetY > 0.5-menu.height/2) {
+	if (abs(bounceOffYSpd) < abs(panSpeedY)) {
+		bounceOffYSpd = -panSpeedY;
+		bounceOffTimerY = 1;
+	}
+	panSpeedY = 0;
+	menuOffsetY = clamp(menuOffsetY, -.5+menu.height/2, 0.5-menu.height/2);
+}
 
-menu.x = 0.5 - menu.width/2 - menuOffsetX;
-menu.y = ease_quadOut(2, 0.5 - menu.height/2, timer,1) - menuOffsetY;
+var _bounceX = 0;
+
+if bounceOffTimerX > 0 {
+	bounceOffTimerX-=deltaTimeS;
+	if (bounceOffTimerX < 0) {
+		bounceOffTimerX = 0;
+		bounceOffX = 0;
+		bounceOffXSpd = 0;
+	}
+	bounceOffX += bounceOffXSpd;
+	bounceOffX = bounceOffX * bounceOffTimerX;
+	_bounceX = bounceOffX/_guiX;
+}
+
+var _bounceY = 0;
+
+if bounceOffTimerY > 0 {
+	bounceOffTimerY-=deltaTimeS;
+	if (bounceOffTimerY < 0) {
+		bounceOffTimerY = 0;
+		bounceOffY = 0;
+		bounceOffYSpd = 0;
+	}
+	bounceOffY += bounceOffYSpd;
+	bounceOffY = bounceOffY * bounceOffTimerY;
+	_bounceY = bounceOffY/_guiY;
+}
+
+
+bounceOffXSpd = lerp_time(bounceOffXSpd,0,0.2,deltaTimeS*2.5);
+bounceOffXSpd = value_shift(bounceOffXSpd, 0, abs(lengthdir_x(_len,_dir)) * deltaTimeS);
+
+bounceOffYSpd = lerp_time(bounceOffYSpd,0,0.2,deltaTimeS*2.5);
+bounceOffYSpd = value_shift(bounceOffYSpd, 0, abs(lengthdir_y(_len,_dir)) * deltaTimeS);
+
+_bounceX = value_suppress(_bounceX, 3);
+_bounceY = value_suppress(_bounceY, 3);
+
+menu.x = 0.5 - menu.width/2 - menuOffsetX + _bounceX;
+menu.y = ease_quadOut(2, 0.5 - menu.height/2, timer,1) - menuOffsetY + _bounceY;
 
 
 if (introTimer > 0) {
@@ -135,7 +189,7 @@ if (introTimer > 0) {
 }
 if (destroy) {
 	destroyTimer+= deltaTimeS*1.5;
-	menu.y = ease_quadIn(0.5 - menu.height/2, -1.5, destroyTimer, 1)
+	menu.y = ease_quadIn(menu.y, -1, destroyTimer, 1)
 	if (destroyTimer > 1)  {
 		instance_destroy();	
 		exit;
