@@ -23,6 +23,9 @@ if (_inst) {
 			menu.enabled = false;
 			scr_menu_stack_pushtoend(menu);
 			fadeOut = true;
+			if (inGame) {
+				oGridControl.locked = gridPreLock;	
+			}
 			break;
 	}
 }

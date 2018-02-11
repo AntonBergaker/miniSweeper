@@ -6,6 +6,9 @@ tMinesFive = "5 Left";
 tMinesAlways = "Always";
 tMinesNever = "Never";
 
+inGame = false;
+gridPreLock = LockedState.Unlocked;
+
 scr_menu_set_button_settings(menu,fa_left,fa_middle,fLightMenu,0.8,0.05);
 var i=1.5;
 

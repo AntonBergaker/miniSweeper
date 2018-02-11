@@ -53,5 +53,12 @@ if (minesX > 0 || _showMines) {
 
 minesGuiBounce = clamp(minesGuiBounce-deltaTimeS*6,0,1);
 
+var _scale = 1;
+if (settingsButtonTime > 0) {
+	_scale *= ease_quadInOut_peek(1,1.15, settingsButtonTime,0.9,1);
+}
+if (settingsButtonFade > 0) {
+	_scale *= 1 + settingsButtonFade*0.1;
+}
 
-draw_sprite_ext(sPauseSquare, 0, _guiX-40*_dpiScale,_dpiScale*40, _dpiScale/2, _dpiScale/2, 0, merge_color(global.textColor, global.backColor, 0.7), 1);
+draw_sprite_ext(sPauseSquare, 0, _guiX-40*_dpiScale,_dpiScale*40, _scale*_dpiScale/2, _scale*_dpiScale/2, 0+(_scale-1)*300, merge_color(global.textColor, global.backColor, 0.7), 1);

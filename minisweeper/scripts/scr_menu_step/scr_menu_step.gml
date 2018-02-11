@@ -57,6 +57,7 @@ with (argument0) {
 					_inst.pressedTime = menuTime-_i.touchPressTime[_pressedIndex];
 					_inst.pressedFinger = _pressedIndex;
 					_inst.clickedFade = 1;
+					_i.touchCompleted[_pressedIndex] = true;
 				}
 			}
 		}

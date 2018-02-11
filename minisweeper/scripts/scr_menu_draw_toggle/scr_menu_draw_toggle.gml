@@ -29,8 +29,8 @@ var _fade = _inst.clickedFade;
 var _raidus = ease_quadOut(0.1,0.5,_pressIn*2,2);
 var _alpha = ease_quadInOut_peek(0, 0.2, _pressIn, 0.5, 1) + _pressIn * 0.1*_fade;
 
-var _col2 = merge_color(global.backColor, global.textColor,0.6);
-
-draw_sprite_ext(sCircle,0,_x+_xx,_y,_scale*_raidus,_scale*_raidus,0,_col2,alpha*_inst.alpha*_alpha);
-
+if (_alpha > 0) {
+	var _col2 = merge_color(global.backColor, global.textColor,0.6);
+	draw_sprite_ext(sCircle,0,_x+_xx,_y,_scale*_raidus,_scale*_raidus,0,_col2,alpha*_inst.alpha*_alpha);
+}
 draw_sprite_ext(sCircleSmall,0,_x+_xx,_y,_scale,_scale,0,global.backColor,alpha*_inst.alpha);

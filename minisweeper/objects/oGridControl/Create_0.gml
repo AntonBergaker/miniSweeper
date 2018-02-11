@@ -69,6 +69,9 @@ fieldHeight = gridHeight*160+ 50;
 pinchStartDistance = 0;
 pinchStartScale = 0;
 
+settingsButtonFinger = -1;
+settingsButtonTime = 0;
+settingsButtonFade = 0;
 
 mip = 1;
 mipScale = power(2,mip);

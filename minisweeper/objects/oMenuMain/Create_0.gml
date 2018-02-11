@@ -10,6 +10,8 @@ updateSize = false;
 customTimer = 0;
 bestTimeTimer = 0;
 
+var _wide = global.guiWidth > global.guiHeight;
+
 
 if (file_exists("save.sav")) {
 	oGridControl.enabled = true;
@@ -40,9 +42,14 @@ if (file_exists("save.sav")) {
 	nameLabelYCustom = 0.17;
 	nameLabel = scr_menu_create_label(menu, 0.5, 0.2, "miniSweeper")
 	
+	/*scr_menu_set_button_settings(menu,fa_center,fa_middle,fThinMenu,0.08,0.08)
+	audioButton = scr_menu_create_button(menu, 0.1,0.9, " ", "audio", false);
+	audioSprite = scr_menu_create_sprite(menu, 0.1, 0.9, 0.08, 0.08, sNote, ThemeColors.Text);
+	audioSprite.alpha = 0.8;
+	*/
 	scr_menu_set_button_settings(menu, fa_center, fa_middle, fLightMenu, 0.9, 0.09);
 	var _startString = scr_format_gridstring(global.gridWidth, global.gridHeight, global.mineCount);
-	if (global.onPhone) {
+	if (!_wide) {
 		var _array = ["7x10 10*", "12x22 40*","18x32 100*"];
 	} else {
 		var _array = ["10x7 10*", "22x12 40*","32x18 100*"];	

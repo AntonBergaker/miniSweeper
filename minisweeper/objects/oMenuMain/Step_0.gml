@@ -80,6 +80,8 @@ sliderMineLabel.alpha    = lerp(0,0.7,_ease);
 
 sizeToggle.text = global.presetGrid ? "Custom" : "Preset"
 
+//audioSprite.width = (global.guiHeight*audioSprite.height)/(menu.width*global.guiWidth);
+//audioButton.width = audioSprite.width;
 
 if (customTimer) < 1  {
 	sizeSelection.enabled = true;
