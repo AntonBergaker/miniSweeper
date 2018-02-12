@@ -36,6 +36,8 @@ if (os_type == os_android || os_type == os_ios) {
 
 //show_debug_overlay(1)
 
+global.vibrate = true;
+global.audioVolume = 1;
 global.clearAnimation = true;
 global.tweenEnabled = true;
 global.showTimer = true;

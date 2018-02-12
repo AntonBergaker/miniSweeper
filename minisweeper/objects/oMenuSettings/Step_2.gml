@@ -19,6 +19,14 @@ if (_inst) {
 			global.showTimerMenu = _inst.checked;
 			_updated = true;
 			break;
+		case "vibrate":
+			global.vibrate = _inst.checked;
+			_update = true;
+			break;
+		case "audio":
+			global.audioVolume = _inst.checked;
+			_updated = true;
+			break;
 		case "back":
 			menu.enabled = false;
 			scr_menu_stack_pushtoend(menu);

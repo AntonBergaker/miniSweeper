@@ -28,4 +28,6 @@ if (global.tweenEnabled) {
 	flagEaseGrid[# _xx, _yy] = flagGrid[# _xx, _yy];
 	ds_list_add(updateCellList, [_xx, _yy]);
 }
-Haptics_VibrateIntensity(100,2);
+if (global.vibrate) {
+	Haptics_VibrateIntensity(100,2);
+}

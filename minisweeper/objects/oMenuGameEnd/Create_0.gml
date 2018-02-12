@@ -5,15 +5,15 @@ timer = 0;
 var _guiX = global.guiWidth;
 var _guiY = global.guiHeight;
 
-t_lost = "You Lost";
-t_won = "You Won";
+tLost = "You Lost";
+tWon = "You Won";
 
-t_retry = "Retry";
-t_again = "Again";
+tRetry = "Retry";
+tAgain = "Again";
 
-t_menu = "Menu";
+tMenu = "Menu";
 
-t_record = "You Got a New Record!";
+tRecord = "You Got a New Record!";
 
 lost = false;
 newHighscore = false;
@@ -55,12 +55,12 @@ menu = scr_menu_create(-1,-1,0.6,0.6);
 menu.handlesStep = false;
 menu.depth = depth-1;
 scr_menu_set_button_settings(menu,fa_center,fa_middle,fLightMenu,0.5,0.17)
-playButton = scr_menu_create_button(menu,0.5,0.55,lost ? t_retry : t_again,"retry",true);
+playButton = scr_menu_create_button(menu,0.5,0.55,lost ? tRetry : tAgain,"retry",true);
 
-settingsButton = scr_menu_create_button(menu,0.5,0.73,t_menu,"menu",false);
+settingsButton = scr_menu_create_button(menu,0.5,0.73,tMenu,"menu",false);
 	
 scr_menu_set_button_settings(menu,fa_center,fa_middle,fThinMenu,0.9,0.13)
-nameLabel = scr_menu_create_label(menu, 0.5, 0.22, lost ? t_lost : t_won);
+nameLabel = scr_menu_create_label(menu, 0.5, 0.22, lost ? tLost : tWon);
 
 scr_menu_set_button_settings(menu,fa_center,fa_middle,fThinMenu,0.55,0.13)
 backGround = scr_menu_create_sprite(menu, 0.5,0.45,1.7,1.7,sBigBox, ThemeColors.Card);

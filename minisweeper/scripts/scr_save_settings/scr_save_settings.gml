@@ -22,7 +22,10 @@ var _highScores = ds_map_create();
 	ds_map_copy(_highScores, global.highScores);
 ds_map_add_map(_map, "highscores" , _highScores)
 
-ds_map_add(_map, "theme", global.currentTheme);
+
+ds_map_add(_map, "theme"		  , global.currentTheme);
+ds_map_add(_map, "volume"		  , global.audioVolume);
+ds_map_add(_map, "vibrate"		  , global.vibrate == true);
 ds_map_add(_map, "clear_animation", global.clearAnimation == true);
 ds_map_add(_map, "tween"          , global.tweenEnabled == true);
 ds_map_add(_map, "timer"          , global.showTimer == true);

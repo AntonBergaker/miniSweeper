@@ -27,6 +27,8 @@ if (file_exists("save.json")) {
 		ds_map_copy(global.highScores, _highScores);	
 	}
 	
+	global.vibrate		   = ds_map_find_default(_map, "vibrate"		, global.vibrate);
+	global.audioVolume		   = ds_map_find_default(_map, "volume"			, global.audioVolume);
 	global.currentTheme    = ds_map_find_default(_map, "theme"          , global.currentTheme);
 	global.clearAnimation  = ds_map_find_default(_map, "clear_animation", global.clearAnimation);
 	global.tweenEnabled    = ds_map_find_default(_map, "tween"          , global.tweenEnabled);

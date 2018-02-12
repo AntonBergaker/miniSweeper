@@ -199,9 +199,9 @@ if (destroy) {
 if (firstStep) {
 	firstStep = false;	
 	if (newHighscore) {
-		nameLabel.text = t_record;
+		nameLabel.text = tRecord;
 	} else {
-		nameLabel.text = lost ? t_lost : t_won;
+		nameLabel.text = lost ? tLost : tWon;
 	}
-	playButton.text = lost ? t_retry : t_again;
+	playButton.text = lost ? tRetry : tAgain;
 }
