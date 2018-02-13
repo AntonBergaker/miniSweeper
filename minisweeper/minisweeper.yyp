@@ -447,6 +447,14 @@
             }
         },
         {
+            "Key": "51958b6a-254f-4045-9790-ebab1e8989b4",
+            "Value": {
+                "id": "38a179a8-a2f5-403f-8f09-e5cf5c08d8c0",
+                "resourcePath": "sprites\\sFlag\\sFlag.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "51b70d2a-67a1-4de7-bab5-e069d00557a1",
             "Value": {
                 "id": "7e3a5086-5857-4fde-a194-3552128171be",
@@ -604,14 +612,6 @@
                 "id": "2878c335-0b1c-4054-9f7c-85d76fff0735",
                 "resourcePath": "scripts\\ease_backIn\\ease_backIn.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "6bff08b2-22e1-4a66-8471-ffebb22a914c",
-            "Value": {
-                "id": "1c41c6e4-c17e-49d9-bbf2-6661346ab96c",
-                "resourcePath": "sprites\\sFlag\\sFlag.yy",
-                "resourceType": "GMSprite"
             }
         },
         {
@@ -932,6 +932,14 @@
                 "id": "d358121c-3391-4670-8e56-adc7f8d66134",
                 "resourcePath": "scripts\\coord_to_gui_y\\coord_to_gui_y.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "94f0da23-9f3c-4328-bedf-b26f81c6ab34",
+            "Value": {
+                "id": "e1afc42f-52e6-437a-86ea-5817e8aff5e3",
+                "resourcePath": "sprites\\sFlagPole\\sFlagPole.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -1279,6 +1287,14 @@
             }
         },
         {
+            "Key": "d3d3c8be-e13d-4b7d-885b-0bb6b8ae7f2a",
+            "Value": {
+                "id": "954f39f6-36ca-4cc1-85f1-cfbbb8edcac1",
+                "resourcePath": "sprites\\sFlagStand\\sFlagStand.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "d3dd04c2-818d-4179-b3af-e216017d0e90",
             "Value": {
                 "id": "9ea8f150-24a9-48fb-b795-6f03eaf95be1",
@@ -1356,14 +1372,6 @@
                 "id": "04c46075-5ff0-41e0-95dc-0bba85331775",
                 "resourcePath": "options\\android\\options_android.yy",
                 "resourceType": "GMAndroidOptions"
-            }
-        },
-        {
-            "Key": "e486c11f-5f0a-4ff4-a713-159af4526b17",
-            "Value": {
-                "id": "3f3e6f27-bdb2-470f-910c-b97ae52b3472",
-                "resourcePath": "sprites\\sFlagPole\\sFlagPole.yy",
-                "resourceType": "GMSprite"
             }
         },
         {
@@ -1484,14 +1492,6 @@
                 "id": "c97763ff-54bc-42a4-86ed-021adb277bdb",
                 "resourcePath": "scripts\\draw_text_mip\\draw_text_mip.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "fac618f9-3197-4e17-b9ab-637ef9873abc",
-            "Value": {
-                "id": "99fe612f-fdac-4535-84c9-87e434d2fda6",
-                "resourcePath": "sprites\\sFlagStand\\sFlagStand.yy",
-                "resourceType": "GMSprite"
             }
         },
         {

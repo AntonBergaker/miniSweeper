@@ -13,7 +13,7 @@
     "option_android_display_name": "miniSweeper",
     "option_android_facebook_app_display_name": "",
     "option_android_facebook_id": "",
-    "option_android_gamepad_support": true,
+    "option_android_gamepad_support": false,
     "option_android_gcm_sender_id": "",
     "option_android_google_apk_expansion": false,
     "option_android_google_cloud_saving": false,

@@ -91,7 +91,8 @@ enum TouchAction {
 	Pan,
 	MenuPan,
 	Pinch1,
-	Pinch2
+	Pinch2,
+	Slider
 }
 
 enum LockedState {

@@ -158,7 +158,7 @@ with (argument0) {
 				_inst.pressedLastX = _x;
 			}
 		
-		} else if (_pressed) {
+		} else if (_pressed && _i.touchCompleted[_pressedIndex] == false && _i.touchAction[_pressedIndex] == TouchAction.None) {
 			if (_inst.enabled && !_inst.locked) {
 				var _x = (_i.touchPressXGui[_pressedIndex]*_width - x/width);
 				var _y = (_i.touchPressYGui[_pressedIndex]*_height - y/height);	
@@ -167,11 +167,12 @@ with (argument0) {
 					_inst.pressed = true;
 					_inst.pressedFinger = _pressedIndex;
 					_inst.pressedLastX = _x;
+					_i.touchAction[_pressedIndex] = TouchAction.Slider;
 				}
 			}
 		}
 	}
-	#endregion sliders
+	#endregion 
 	#region toggles
 	var _len = ds_list_size(toggles);
 	if (_pressed) {

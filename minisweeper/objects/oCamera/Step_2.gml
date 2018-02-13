@@ -5,12 +5,12 @@ if room == rMain {
 	}
 	
 	//Camera offsets so you can always reach the mine under the settings
-	var _minY = -(height/global.guiHeight)*70*_dpiScale;
+	var _minY = -(min(oGridControl.fieldHeight, height)/global.guiHeight)*70*_dpiScale;
 	var _maxY = 0;
 	
 	var _fieldWidth  = oGridControl.fieldWidth;
 	var _fieldHeight = oGridControl.fieldHeight - _minY + _maxY;
-	
+
 	//also fit the zoom
 	if (width > _fieldWidth && height > _fieldHeight) {
 		var _fieldRatio = _fieldWidth/_fieldHeight;
@@ -32,8 +32,9 @@ if room == rMain {
 	if (height < _fieldHeight) {
 		y = clamp(y, _minY, oGridControl.fieldHeight-height+_maxY);
 	} else {
-		y = (oGridControl.fieldHeight+_minY/2-height)/2;	
+		y = (oGridControl.fieldHeight/2+_minY/2-height/2);	
 	}
+	
 	
 	camera_set_view_pos(camera,x,y);
 	camera_set_view_size(camera,width,height);
