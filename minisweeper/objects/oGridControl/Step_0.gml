@@ -457,10 +457,12 @@ if (resetting) {
 			scr_reset_grid();
 		}
 		firstPress = true;
-	} else {
-		gameplayTime = lerp_time(gameplayTime,0,0.1,deltaTimeS);
-		minesLeft = lerp_time(minesLeft,gridMines,0.1,deltaTimeS);
 	}
+}
+
+if (firstPress || resetting) {
+	gameplayTime = lerp_time(gameplayTime,0,0.1,deltaTimeS);
+	minesLeft = lerp_time(minesLeft,gridMines,0.1,deltaTimeS);	
 }
 
 if (hideOnReset) {
@@ -614,6 +616,10 @@ if (won==1) {
 			ds_map_replace(global.highScores, _str, gameplayTime);
 			_newHighscore = true;
 			scr_save_settings();
+		}
+		//Don't show in the menu if timers are disabled that you got a new highscore
+		if (global.showTimer == false && global.showTimerMenu == false) {
+			_newHighscore = false;
 		}
 		
 		

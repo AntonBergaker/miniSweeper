@@ -4,9 +4,10 @@ if room == rMain {
 		_dpiScale*=0.4;	
 	}
 	
+	var _off = (min(oGridControl.fieldHeight, height)/global.guiHeight)*70*_dpiScale;
 	//Camera offsets so you can always reach the mine under the settings
-	var _minY = -(min(oGridControl.fieldHeight, height)/global.guiHeight)*70*_dpiScale;
-	var _maxY = 0;
+	var _minY = -_off;
+	var _maxY = _off*0.9;
 	
 	var _fieldWidth  = oGridControl.fieldWidth;
 	var _fieldHeight = oGridControl.fieldHeight - _minY + _maxY;
