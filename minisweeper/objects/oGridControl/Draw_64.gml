@@ -19,7 +19,7 @@ draw_set_color(global.textColor);
 draw_set_halign(fa_right);
 
 if (global.showTimer) {
-	var _str = scr_get_formatted__time(gameplayTime);
+	var _str = scr_get_formatted_time(gameplayTime);
 	var _targetX = string_width(_str)+20*_dpiScale;
 	if (_targetX > timerX || resetting) {
 		timerX = lerp_time(timerX,_targetX,0.1,deltaTimeS);

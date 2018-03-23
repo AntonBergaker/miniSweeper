@@ -17,6 +17,7 @@ tRecord = "You Got a New Record!";
 
 lost = false;
 newHighscore = false;
+newHighscoreValue = "0";
 destroy = false;
 destroyTimer = false;
 
@@ -57,7 +58,7 @@ menu.depth = depth-1;
 scr_menu_set_button_settings(menu,fa_center,fa_middle,fLightMenu,0.5,0.17)
 playButton = scr_menu_create_button(menu,0.5,0.55,lost ? tRetry : tAgain,"retry",true);
 
-settingsButton = scr_menu_create_button(menu,0.5,0.73,tMenu,"menu",false);
+menuButton = scr_menu_create_button(menu,0.5,0.73,tMenu,"menu",false);
 	
 scr_menu_set_button_settings(menu,fa_center,fa_middle,fThinMenu,0.9,0.13)
 nameLabel = scr_menu_create_label(menu, 0.5, 0.22, lost ? tLost : tWon);

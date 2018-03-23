@@ -77,20 +77,6 @@ _theme = scr_theme_create(
 ds_map_add(global.themes, _theme[? "name"], _theme);
 
 
-_theme = scr_theme_create(
-	"SidorOak",
-	$030608,
-	$485579,
-	$202C4B,
-	c_white,
-	c_white,
-	c_black,
-	$485579,
-	c_white,
-	$333333
-);
-ds_map_add(global.themes, _theme[? "name"], _theme);
-
 
 _theme = scr_theme_create(
 	"Mini",
@@ -107,4 +93,4 @@ _theme = scr_theme_create(
 ds_map_add(global.themes, _theme[? "name"], _theme);
 
 
-global.themeNames = ["Default", "Dark", "Red", "Contrast", "Night", "Mini", "SidorOak"];
+global.themeNames = ["Default", "Dark", "Red", "Contrast", "Night", "Mini"];

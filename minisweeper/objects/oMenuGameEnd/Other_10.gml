@@ -189,7 +189,7 @@ if (introTimer > 0) {
 }
 if (destroy) {
 	destroyTimer+= deltaTimeS*1.5;
-	menu.y = ease_quadIn(menu.y, -1, destroyTimer, 1)
+	menu.y = ease_quadIn(menu.y, -1, destroyTimer, 1);
 	if (destroyTimer > 1)  {
 		instance_destroy();	
 		exit;
@@ -200,6 +200,17 @@ if (firstStep) {
 	firstStep = false;	
 	if (newHighscore) {
 		nameLabel.text = tRecord;
+		
+		//move the buttons down
+		playButton.x = 0.25;
+		playButton.y = 0.70;
+		menuButton.x = 0.75;
+		menuButton.y = 0.70;
+		menuButton.width = 0.43;
+		playButton.width = 0.43;
+		
+		scr_menu_set_button_settings(menu,fa_center,fa_middle,fLightMenuLarge,0.9,0.15);
+		scoreLabel = scr_menu_create_label(menu, 0.5, 0.43, newHighscoreValue);
 	} else {
 		nameLabel.text = lost ? tLost : tWon;
 	}

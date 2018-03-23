@@ -4,7 +4,7 @@ var _guiY = global.guiHeight;
 
 var _ratio = _guiX/_guiY;
 
-var _i = oInput;
+var _in = oInput;
 
 
 if (_ratio) > 0.6 {
@@ -37,11 +37,11 @@ if (fadeOut) {
 
 for ( var i=0;i<5;i++) {
 	//Check panning
-	if (_i.touchPressed[i]) {
-		var _yy1 = _i.touchYGui[i];
-		var _yy2 = _i.touchPressYGui[i];
+	if (_in.touchPressed[i]) {
+		var _yy1 = _in.touchYGui[i];
+		var _yy2 = _in.touchPressYGui[i];
 
-		if (!_i.touchCompleted[i] && _i.touchAction[i] == TouchAction.None) {
+		if (!_in.touchCompleted[i] && _in.touchAction[i] == TouchAction.None) {
 	
 			if (global.onPhone) {
 				var _dpi = global.dpi/7;
@@ -49,12 +49,12 @@ for ( var i=0;i<5;i++) {
 				var _dpi = 20;
 			}
 					
-			var _timePressed = _i.touchPressTime[i];
+			var _timePressed = _in.touchPressTime[i];
 					
-			if (point_distance(0,_yy1, 0,_yy2) > _dpi/2 && _timePressed > 0.05) {
-				_i.touchAction[i] = TouchAction.MenuPan;
+			if (abs(_yy1 - _yy2) > _dpi/2 && _timePressed > 0.05) {
+				_in.touchAction[i] = TouchAction.MenuPan;
 				lastPanY = _yy2;
-				_i.touchCompleted[i] = true;
+				_in.touchCompleted[i] = true;
 			}
 		}
 	}
@@ -62,8 +62,8 @@ for ( var i=0;i<5;i++) {
 
 ///panning
 for (var i=0;i<5;i++) {
-	if (_i.touchAction[i] == TouchAction.MenuPan) {
-		var _yy = _i.touchYGui[i]; 
+	if (_in.touchAction[i] == TouchAction.MenuPan) {
+		var _yy = _in.touchYGui[i]; 
 		
 		panSpeedY = (lastPanY - _yy);
 		
@@ -79,7 +79,7 @@ for (var i=0;i<5;i++) {
 		
 		//If its the last frame set the speed to the last 5 highest,
 		//because your movement can stop otherwise when releasing
-		if (_i.touchReleased[i]) {
+		if (_in.touchReleased[i]) {
 			for (var ii=1;ii<4;ii++) {
 				if (abs(panSpeedY) < abs(panDiffsY[ii])) {
 					panSpeedY = panDiffsY[ii];	
@@ -103,3 +103,6 @@ menuOffsetY = clamp(menuOffsetY, 0, menuHeight-menu.height);
 menu.alpha = alpha;
 menu.x = 0.5-menu.width/2;
 menu.y = 0.5-menu.height/2 - menuOffsetY;
+
+
+scr_menu_step(menu)

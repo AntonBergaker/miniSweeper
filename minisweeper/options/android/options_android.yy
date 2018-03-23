@@ -60,7 +60,7 @@
     "option_android_tv_isgame": true,
     "option_android_use_facebook": false,
     "option_android_version": {
-        "build": 0,
+        "build": 4,
         "major": 1,
         "minor": 0,
         "revision": 0

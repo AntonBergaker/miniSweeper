@@ -1,6 +1,7 @@
 menu = scr_menu_create(0,0,1,1);
 menu.depth = depth-1;
 menu.alpha = 0;
+menu.handlesStep = false;
 
 tMinesFive = "5 Left";
 tMinesAlways = "Always";

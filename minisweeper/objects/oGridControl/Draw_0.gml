@@ -32,8 +32,9 @@ if (surface_exists(surf)) {
 		var _len1 = ds_list_size(removeEaseList);
 		var _len2 = ds_list_size(flagEaseList);
 		var _len3 = ds_list_size(updateCellList);
+		var _len4 = ds_list_size(previewEaseList);
 		
-		if (_len1 || _len2 || _len3) {
+		if (_len1 || _len2 || _len3 || _len4) {
 			draw_set_color(global.textColor);
 			draw_set_valign(fa_middle);
 			draw_set_halign(fa_center);	
@@ -59,6 +60,13 @@ if (surface_exists(surf)) {
 			var _y = _arr[1];
 			scr_draw_cell(_x,_y,1);
 			ds_list_delete(updateCellList,i);
+		}
+		
+		for (var i=0;i<_len4;i++) {
+			var _arr = previewEaseList[| i];
+			var _x = _arr[0];
+			var _y = _arr[1];
+			scr_draw_cell(_x,_y,1);
 		}
 	}
 	surface_reset_target();

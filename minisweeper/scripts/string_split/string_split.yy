@@ -1,8 +1,8 @@
 {
-    "id": "e0a9a550-b621-42f0-85fd-2d148309a934",
+    "id": "303ce89e-4490-4849-a2bc-7b02e68f7804",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "scr_get_formatted__time",
+    "name": "string_split",
     "IsCompatibility": false,
     "IsDnD": false
 }

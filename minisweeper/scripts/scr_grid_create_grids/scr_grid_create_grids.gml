@@ -8,9 +8,11 @@ aboutToClearGrid = ds_grid_create(gridWidth, gridHeight);
 flagEaseGrid = ds_grid_create(gridWidth, gridHeight);
 removeEaseGrid = ds_grid_create(gridWidth, gridHeight);
 mineEaseGrid = ds_grid_create(gridWidth, gridHeight);
+previewEaseGrid = ds_grid_create(gridWidth, gridHeight);
 
 aboutToResetGrid = ds_grid_create(gridWidth, gridHeight);
 
+previewEaseList = ds_list_create();
 flagEaseList = ds_list_create();
 removeEaseList = ds_list_create();
 mineEaseList = ds_list_create();

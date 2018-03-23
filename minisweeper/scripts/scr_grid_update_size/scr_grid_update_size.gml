@@ -6,6 +6,7 @@ ds_grid_resize(aboutToClearGrid,gridWidth,gridHeight);
 ds_grid_resize(aboutToResetGrid,gridWidth,gridHeight);
 ds_grid_resize(clearedGrid,gridWidth,gridHeight);
 ds_grid_resize(mineEaseGrid,gridWidth,gridHeight);
+ds_grid_resize(previewEaseGrid, gridWidth, gridHeight);
 
 ds_grid_resize(removeEaseGrid,gridWidth,gridHeight);
 ds_grid_resize(flagEaseGrid,gridWidth,gridHeight);

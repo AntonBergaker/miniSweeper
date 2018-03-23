@@ -49,6 +49,42 @@ if (locked != LockedState.Locked) {
 
 		if (_in.touchAction[i] == TouchAction.None) {
 			if (locked == LockedState.Unlocked) {
+				
+				//Check holding down for preview
+				if (_in.touchPressed[i] && _in.touchAction[i] == TouchAction.None && _in.touchCompleted[i] == false && settingsButtonFinger != i) {
+						var _xx = _in.touchX[i];
+						var _yy = _in.touchY[i];
+
+						_xx = coord_to_grid_x(_xx);
+						_yy = coord_to_grid_y(_yy);
+		
+						//Check if you released and clicked at the same square
+						var _xx2 = coord_to_grid_x(_in.touchPressX[i]);
+						var _yy2 = coord_to_grid_y(_in.touchPressY[i]);
+						
+						if (inside_grid(_xx,_yy)) {
+							if (_xx2 == _xx && _yy2 == _yy) {
+								if (_in.touchPressTime[i] < 0.3) {
+									if (clearedGrid[# _xx, _yy] && nearGrid[# _xx, _yy] > 0) {
+										var _nearFlags = scr_get_nearby(flagGrid, _xx, _yy);
+										if (_nearFlags == nearGrid[# _xx, _yy]) {
+											for (var j=max(_xx-1, 0);j<=min(_xx+1, gridWidth-1);j++) {
+												for (var jj=max(_yy-1, 0);jj<=min(_yy+1, gridHeight-1);jj++) {
+													if (!flagGrid[# j, jj]) {
+														if (previewEaseGrid[# j, jj] <= 0) {
+															ds_list_add(previewEaseList, [j, jj]);	
+														}
+														ds_list_add(previewUpdateList, [j, jj]);
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+				}
+				
 				//Check clicking
 				if (_in.touchReleased[i]) {
 					if (settingsButtonFinger == i) {
@@ -82,7 +118,7 @@ if (locked != LockedState.Locked) {
 		
 						if (inside_grid(_xx,_yy)) {
 							if (_xx2 == _xx && _yy2 == _yy) {
-								if (_in.touchPressTime[i] < 0.3 - mineGrid[# _xx,_yy]*0.1) {
+								if ((_in.touchPressTime[i] < 0.3 - mineGrid[# _xx,_yy]*0.1) || (_in.touchPressTime[i] < 0.4 && clearedGrid[# _xx, _yy])) {
 									if (resetting) {
 										scr_reset_grid();	
 									}
@@ -334,6 +370,36 @@ for (var i=0;i<_len;i++) {
 	flagEaseGrid[# _x, _y] = _val;
 	if (_val == 0 || _val == 1) {
 		ds_list_delete(flagEaseList,0);
+		i--;
+		_len--;
+		ds_list_add(updateCellList,[_x,_y]);
+	}
+}
+
+var _len = ds_list_size(previewUpdateList);
+
+for (var i=0;i<_len;i++) {
+	var _arr = previewUpdateList[| i];
+	var _x = _arr[0];
+	var _y = _arr[1];
+	
+	previewEaseGrid[# _x, _y] += deltaTimeS*12;
+}
+
+ds_list_clear(previewUpdateList);
+
+var _len = ds_list_size(previewEaseList);
+
+for (var i=0;i<_len;i++) {
+	var _arr = previewEaseList[| i];
+	var _x = _arr[0];
+	var _y = _arr[1];
+	
+	var _val = previewEaseGrid[# _x, _y];
+	_val -= deltaTimeS*7.5;
+	previewEaseGrid[# _x, _y] = clamp(_val,0,1);
+	if (_val <= 0) {
+		ds_list_delete(previewEaseList,i);
 		i--;
 		_len--;
 		ds_list_add(updateCellList,[_x,_y]);
@@ -625,6 +691,9 @@ if (won==1) {
 		
 		var _inst = instance_create_layer(x,y,"MenuGameEnd",oMenuGameEnd);
 		_inst.newHighscore = _newHighscore;
+		if (_newHighscore) {
+			_inst.newHighscoreValue = gameplayTime;	
+		}
 	}
 }
 

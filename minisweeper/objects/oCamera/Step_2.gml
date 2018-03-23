@@ -33,10 +33,13 @@ if room == rMain {
 	if (height < _fieldHeight) {
 		y = clamp(y, _minY, oGridControl.fieldHeight-height+_maxY);
 	} else {
-		y = (oGridControl.fieldHeight/2+_minY/2-height/2);	
+		y = ((oGridControl.fieldHeight+_minY+_maxY)/2-height/2);	
 	}
 	
 	
 	camera_set_view_pos(camera,x,y);
 	camera_set_view_size(camera,width,height);
+	
+	mip = clamp(round(log2(width/global.windowWidth)/1.5),0,3);
+	mipScale = power(2,mip);
 }

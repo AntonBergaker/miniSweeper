@@ -44,7 +44,9 @@ if (clearedGrid[# xx,yy]) {
 			
 			
 } else {
-	draw_sprite_ext(sSquare,mip,_xx,_yy,_scale,_scale,0,global.solidColor,1);
+	var _previewInc = previewEaseGrid[# xx, yy];
+	
+	draw_sprite_ext(sSquare,mip,_xx,_yy,_scale*(1-_previewInc*0.2),_scale*(1-_previewInc*0.2),_previewInc*5,global.solidColor,1);
 		
 	if (flagEaseGrid[# xx,yy] > 0) {
 		var _ySize = ease_backOut(0,1,flagEaseGrid[# xx,yy],1, 3.5);

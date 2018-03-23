@@ -36,6 +36,8 @@ if (file_exists("save.sav")) {
 	leftToClear = gridWidth * gridHeight - gridMines;
 }
 
+previewUpdateList = ds_list_create();
+
 lastPanX = 0;
 lastPanY = 0;
 panSpeedX = 0;

@@ -28,7 +28,7 @@ if (file_exists("save.json")) {
 	}
 	
 	global.vibrate		   = ds_map_find_default(_map, "vibrate"		, global.vibrate);
-	global.audioVolume		   = ds_map_find_default(_map, "volume"			, global.audioVolume);
+	global.audioVolume	   = ds_map_find_default(_map, "volume"			, global.audioVolume);
 	global.currentTheme    = ds_map_find_default(_map, "theme"          , global.currentTheme);
 	global.clearAnimation  = ds_map_find_default(_map, "clear_animation", global.clearAnimation);
 	global.tweenEnabled    = ds_map_find_default(_map, "tween"          , global.tweenEnabled);
@@ -41,6 +41,10 @@ if (file_exists("save.json")) {
 		global.showMines = ShowMinesState.Always;
 	} else {
 		global.showMines = ShowMinesState.Five;
+	}
+	
+	if (!ds_map_exists(global.themes, global.currentTheme)) {
+		global.currentTheme = "Default";	
 	}
 	
 	file_text_close(_file);
