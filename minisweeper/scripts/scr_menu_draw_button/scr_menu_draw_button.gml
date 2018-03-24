@@ -63,6 +63,9 @@ if (_inst.filled) {
 			var _raidus = ease_quadIn(0,width*2*374*5,_pressIn,1);
 			var _xx = _inst.pressedX * _width;
 			var _yy = _inst.pressedY * _height;
+			
+			
+			
 			var _alpha = ((0.3 - _pressIn * 0.25) * _fade) * alpha;
 			
 			var _rHeight = 84;
@@ -71,7 +74,7 @@ if (_inst.filled) {
 			gpu_set_blendenable(false)
 			gpu_set_colorwriteenable(false,false,false,true);
 			draw_set_alpha(0);
-			draw_rectangle(0,0, global.internalWidth,global.internalHeight, false);
+			draw_rectangle(0,0, global.guiWidth,global.guiHeight, false);
 			
 			
 			draw_set_alpha(1);

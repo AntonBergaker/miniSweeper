@@ -919,6 +919,14 @@
             }
         },
         {
+            "Key": "8eea30f1-a8b8-42f7-83a4-1ce19f1c033f",
+            "Value": {
+                "id": "90cfbf71-1790-4bbd-b283-b362c5cb0561",
+                "resourcePath": "sprites\\sDropshadow\\sDropshadow.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "8f226589-f303-4710-a4be-a2595c7969a9",
             "Value": {
                 "id": "3e14de84-949c-4792-b111-1ef6ded52ead",
@@ -1108,14 +1116,6 @@
                 "id": "40764a99-3fce-40da-86b1-ed0d2758cfbc",
                 "resourcePath": "scripts\\ease_quadOut_peek\\ease_quadOut_peek.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "abcda8a3-5fd0-49a8-a153-95f5728d8982",
-            "Value": {
-                "id": "8452f143-9d13-4116-86e6-74b79c81ec34",
-                "resourcePath": "sprites\\sPauseSquare\\sPauseSquare.yy",
-                "resourceType": "GMSprite"
             }
         },
         {

@@ -23,7 +23,7 @@ for (var i=0;i<_len;i++) {
 _len = ds_list_size(buttons);
 for (var i=0;i<_len;i++) {
 	var _inst = buttons[|i];
-	if (instance_exists(_inst)) {
+	if (instance_exists(_inst) && _inst.visible) {
 		scr_menu_draw_button(_inst, _x + _inst.x * _scaleW, _y + _inst.y * _scaleH, _scaleW * _inst.width, _scaleH * _inst.height);	
 	}
 }

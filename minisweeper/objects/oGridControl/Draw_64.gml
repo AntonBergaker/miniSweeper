@@ -1,16 +1,30 @@
+var _guiX = global.guiWidth;
+var _guiY = global.guiHeight;
+
+var _dpiScale = global.dpiScale;
+
+var _scale = 1;
+if (settingsButtonTime > 0) {
+	_scale *= ease_quadInOut_peek(1,1.15, settingsButtonTime,0.9,1);
+}
+if (settingsButtonFade > 0) {
+	_scale *= 1 + settingsButtonFade*0.1;
+}
+
+gearX = _guiX-40*_dpiScale;
+gearY = _dpiScale*40;
+gearScale = _scale*_dpiScale/2;
+gearRot = (_scale-1)*300;
+gearColor = merge_color(global.textColor, global.backColor, 0.6);
+
+
 if (!enabled) {
 	exit;	
 }
 
 draw_surface(surf,0,0);
 
-var _guiX = global.guiWidth;
-var _guiY = global.guiHeight;
 
-var _dpiScale = global.dpi/72;
-if (global.onPhone) {
-	_dpiScale*=0.4;	
-}
 
 var _yy = _guiY-30*_dpiScale;
 
@@ -53,12 +67,7 @@ if (minesX > 0 || _showMines) {
 
 minesGuiBounce = clamp(minesGuiBounce-deltaTimeS*6,0,1);
 
-var _scale = 1;
-if (settingsButtonTime > 0) {
-	_scale *= ease_quadInOut_peek(1,1.15, settingsButtonTime,0.9,1);
-}
-if (settingsButtonFade > 0) {
-	_scale *= 1 + settingsButtonFade*0.1;
-}
 
-draw_sprite_ext(sPauseSquare, 0, _guiX-40*_dpiScale,_dpiScale*40, _scale*_dpiScale/2, _scale*_dpiScale/2, 0+(_scale-1)*300, merge_color(global.textColor, global.backColor, 0.7), 1);
+if (!instance_exists(oMenuSettingsTitlebar)) {
+	draw_sprite_ext(sBackGearAnimation, 0, gearX, gearY, gearScale, gearScale, gearRot, gearColor, 1);
+}

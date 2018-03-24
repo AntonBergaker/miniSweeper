@@ -1,5 +1,3 @@
-if (live_call()) return live_result;
-
 var _guiX = global.guiWidth;
 var _guiY = global.guiHeight;
 
@@ -32,14 +30,18 @@ if (fadeOut) {
 		instance_destroy();
 		exit;
 	}
-	alpha = fadeIn;
+	if (inMenu) {
+		alpha = fadeIn;
+	}
 } else {
 	if (fadeIn < 1) {
 		fadeIn+= deltaTimeS*2;
 		if (fadeIn > 1) {
 			fadeIn = 1;
 		}
-		alpha = fadeIn;
+		if (inMenu) {
+			alpha = fadeIn;
+		}
 	}
 }
 
@@ -115,5 +117,14 @@ menu.alpha = alpha;
 menu.x = 0.5-menu.width/2;
 menu.y = 0.5-menu.height/2 - menuOffsetY;
 
+if (!inMenu) {
+	menu.alpha = 1;
+	alpha = 1;
+	menu.x += ease_quadOut(1, 0, fadeIn, 1);	
+	titlebar.x = ease_quadOut(1, 0, fadeIn, 1);
+} else {
+	titlebar.x = 0;	
+	titlebar.alpha = alpha;
+}
 
 scr_menu_step(menu)

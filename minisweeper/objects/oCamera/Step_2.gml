@@ -1,8 +1,9 @@
 if room == rMain {
-	var _dpiScale = global.dpi/72;
+	global.dpiScale = global.dpi/72;
 	if (global.onPhone) {
-		_dpiScale*=0.4;	
+		global.dpiScale *= 0.4;	
 	}
+	var _dpiScale = global.dpiScale;
 	
 	var _off = (min(oGridControl.fieldHeight, height)/global.guiHeight)*70*_dpiScale;
 	//Camera offsets so you can always reach the mine under the settings

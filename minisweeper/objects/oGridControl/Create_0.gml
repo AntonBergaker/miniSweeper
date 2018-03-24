@@ -87,6 +87,11 @@ gameTime = 0;
 
 toBeCleared = ds_list_create();
 
+gearX = 0;
+gearY = 0;
+gearScale = 1;
+gearRot = 0;
+gearColor = c_white;
 
 enum TouchAction {
 	None,

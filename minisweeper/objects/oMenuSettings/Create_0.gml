@@ -3,7 +3,6 @@ menu.depth = depth-1;
 menu.alpha = 0;
 menu.handlesStep = false;
 
-titlebar = instance_create_depth(0,0, depth-2, oMenuSettingsTitlebar);
 
 tMinesFive = "5 Left";
 tMinesAlways = "Always";
@@ -28,29 +27,37 @@ var i=2;
 //If you're not in the menu
 inMenu = instance_exists(oMenuMain);
 
+titlebar = instance_create_depth(inMenu ? 0:1,0, depth-2, oMenuSettingsTitlebar);
+
+//Created first so it's always clicked first
+scr_menu_set_button_settings(menu,fa_center,fa_middle,fLightMenu,0.09,0.09);
+exitButton = scr_menu_create_button(menu, 0, 0, "   ", "back", 0);
+exitButton.visible = false;
+titlebar.exitButton = exitButton;
+
 if (!inMenu) {
 	scr_menu_set_button_settings(menu,fa_center,fa_middle,fLightMenu,0.07,0.07);
-	flagSprite = scr_menu_create_sprite(menu, 0.12, 0.1*i, 0.1, 0.1, sFlag, ThemeColors.Text);
-	squareSprite = scr_menu_create_sprite(menu, 0.6, 0.1*i-0.021, 0.05, 0.05, sSquare, ThemeColors.Solid);
+	flagSprite = scr_menu_create_sprite(menu, 0.16, 0.1*i, 0.1, 0.1, sFlag, ThemeColors.Text);
+	squareSprite = scr_menu_create_sprite(menu, 0.66, 0.1*i-0.021, 0.05, 0.05, sSquare, ThemeColors.Solid);
 	
-	timerSprite = scr_menu_create_sprite(menu, 0.12, 0.1*i+0.085, 0.068, 0.068, sClock, ThemeColors.Text);
+	timerSprite = scr_menu_create_sprite(menu, 0.16, 0.1*i+0.085, 0.068, 0.068, sClock, ThemeColors.Text);
 
 	var _str;
 	_str = string(oGridControl.gridMines-oGridControl.minesLeft) + "/" + string(oGridControl.gridMines);
 	scr_menu_set_button_settings(menu,fa_left,fa_middle,fLightMenu,0.3,0.06);
-	flagLabel = scr_menu_create_label(menu, 0.18, 0.1*i-0.02, _str);
+	flagLabel = scr_menu_create_label(menu, 0.22, 0.1*i-0.02, _str);
 	
 	var _val = oGridControl.firstPress || oGridControl.resetting ?
 		100 :
 		ceil(100 * oGridControl.leftToClear / (oGridControl.gridWidth * oGridControl.gridHeight - oGridControl.gridMines));
 	_str = string(_val)+"%";
-	squareLabel = scr_menu_create_label(menu, 0.67, 0.1*i-0.02, _str);
+	squareLabel = scr_menu_create_label(menu, 0.73, 0.1*i-0.02, _str);
 	
 	_str = scr_get_formatted_time(oGridControl.gameplayTime);
 	_str += string_delete( string(oGridControl.gameplayTime mod 1), 1, 1);	
 
 	scr_menu_set_button_settings(menu,fa_left,fa_middle,fLightMenu,0.6,0.06);
-	timerLabel = scr_menu_create_label(menu, 0.19, 0.1*i+0.09, _str);
+	timerLabel = scr_menu_create_label(menu, 0.22, 0.1*i+0.09, _str);
 	i+=2.4;
 	
 	scr_menu_set_button_settings(menu,fa_center,fa_middle,fLightMenu,0.5,0.09);
@@ -59,6 +66,9 @@ if (!inMenu) {
 	
 	splitSprite = scr_menu_create_sprite(menu, 0.5, 0.1*i, 1, 0.01, sSliderLine, ThemeColors.Text);
 	i+=1.2;
+} else {
+	titlebar.alpha = 0;
+	titlebar.inMenu = true;
 }
 
 var _toggleStart = i;
@@ -114,8 +124,6 @@ showMineSlider = scr_menu_create_slider(menu, 0.5, 0.1*i++, true, [tMinesAlways,
 
 
 i+=0.4;
-scr_menu_set_button_settings(menu,fa_center,fa_middle,fLightMenu,0.5,0.09);
-exitButton = scr_menu_create_button(menu, 0.5, 0.1*i++, "Back", "back", 0);
 
 menuHeight = i*0.1;
 

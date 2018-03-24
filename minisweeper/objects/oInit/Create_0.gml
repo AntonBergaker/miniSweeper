@@ -3,6 +3,7 @@ if (os_type == os_windows || os_type == os_macosx || os_type == os_linux || os_t
 	global.onPhone = false;	
 }
 
+
 if (os_type == os_android || os_type == os_ios) {
 	global.displayRatio = window_get_width()/window_get_height();
 	global.internalWidth = window_get_width();
@@ -16,7 +17,7 @@ if (os_type == os_android || os_type == os_ios) {
 	global.forceWindowY = window_get_y();
 	global.lastWindowX = window_get_x();
 	global.lastWindowY = window_get_y();
-	
+
 } else {
 	var _width = clamp(display_get_width(),0,1366);
 	var _height = clamp(display_get_height(),0,768);
@@ -36,6 +37,10 @@ if (os_type == os_android || os_type == os_ios) {
 
 //show_debug_overlay(1)
 
+global.dpiScale = global.dpi/72;
+if (global.onPhone) {
+	global.dpiScale *= 0.4;	
+}
 
 global.vibrate = true;
 global.audioVolume = 1;

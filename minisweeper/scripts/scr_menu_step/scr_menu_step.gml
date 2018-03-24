@@ -52,8 +52,8 @@ with (argument0) {
 			if (_inst.enabled && !_inst.locked) {
 				if (point_in_rectangle(_x,_y,_inst.x0,_inst.y0,_inst.x1,_inst.y1)) {
 					_inst.pressed = true;
-					_inst.pressedX = _x-_inst.x;
-					_inst.pressedY = _y-_inst.y;
+					_inst.pressedX = (_x-_inst.x) / _inst.width;
+					_inst.pressedY = (_y-_inst.y) / _inst.height;
 					_inst.pressedTime = menuTime-_i.touchPressTime[_pressedIndex];
 					_inst.pressedFinger = _pressedIndex;
 					_inst.clickedFade = 1;

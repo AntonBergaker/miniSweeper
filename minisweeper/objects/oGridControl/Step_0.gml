@@ -33,10 +33,7 @@ if (locked != LockedState.Locked) {
 				var _guiX = global.guiWidth;
 				var _guiY = global.guiHeight;
 
-				var _dpiScale = global.dpi/72;
-				if (global.onPhone) {
-					_dpiScale*=0.4;	
-				}
+				var _dpiScale = global.dpiScale;
 				
 				if (point_in_rectangle(_xx, _yy, _guiX-65*_dpiScale, 0, _guiX, 65*_dpiScale)) {
 					settingsButtonFinger = i;
@@ -94,10 +91,7 @@ if (locked != LockedState.Locked) {
 						var _guiX = global.guiWidth;
 						var _guiY = global.guiHeight;
 
-						var _dpiScale = global.dpi/72;
-						if (global.onPhone) {
-							_dpiScale*=0.4;	
-						}
+						var _dpiScale = global.dpiScale;
 				
 						if (point_in_rectangle(_xx, _yy, _guiX-65*_dpiScale, 0, _guiX, 65*_dpiScale)) {
 							var _inst = instance_create_layer(0,0, "MenuSettings", oMenuSettings);

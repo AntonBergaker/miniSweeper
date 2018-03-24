@@ -17,7 +17,7 @@ tRecord = "You Got a New Record!";
 
 lost = false;
 newHighscore = false;
-newHighscoreValue = "0";
+newHighscoreValue = 0;
 destroy = false;
 destroyTimer = false;
 

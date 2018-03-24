@@ -210,7 +210,11 @@ if (firstStep) {
 		playButton.width = 0.43;
 		
 		scr_menu_set_button_settings(menu,fa_center,fa_middle,fLightMenuLarge,0.9,0.15);
-		scoreLabel = scr_menu_create_label(menu, 0.5, 0.43, newHighscoreValue);
+		var _time = scr_get_formatted_time(newHighscoreValue);
+		
+		_time += string_delete( string(newHighscoreValue mod 1), 1, 1)
+		
+		scoreLabel = scr_menu_create_label(menu, 0.5, 0.43, _time);
 	} else {
 		nameLabel.text = lost ? tLost : tWon;
 	}

@@ -35,6 +35,27 @@ if (_inst) {
 				oGridControl.locked = gridPreLock;	
 			}
 			break;
+		case "menu":
+			with (oGridControl) {
+				repeat(3) {
+					scr_reset_place_recursive( irandom(gridWidth-1), irandom(gridHeight-1));
+				}
+				locked = LockedState.Locked;
+				resetting = true;
+				hideOnReset = true;
+				hideOnResetTimer = 0;
+			}
+			if (file_exists("save.sav")) {
+				file_delete("save.sav");	
+			}
+			var _inst = instance_create_layer(0,0,"MenuMain",oMenuMain);
+			_inst.fadeIn = true;
+			_inst.fadeInInit = false;
+			_inst.rebootGrid = true;
+			menu.enabled = false;
+			scr_menu_stack_pushtoend(menu);
+			fadeOut = true;
+			break;
 	}
 }
 

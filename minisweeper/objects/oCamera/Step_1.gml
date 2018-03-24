@@ -11,7 +11,7 @@ if (_check) {
 	|| forceCheck > 0) {
 		if (window_get_width() != 0 && window_get_height() != 0) {
 			var _preZoom = width / global.internalWidth;
-		
+			display_set_gui_maximise();
 			global.displayRatio = window_get_width()/window_get_height();
 			global.internalWidth = window_get_width();
 			global.internalHeight = window_get_height();
@@ -19,6 +19,7 @@ if (_check) {
 			global.windowHeight = window_get_height();
 			global.guiWidth = display_get_gui_width();
 			global.guiHeight = display_get_gui_height();
+			log(global.guiHeight);
 			global.dpi = display_get_dpi_x();
 			
 			if (global.forceWindowX != -1 && global.forceWindowY != -1) {
