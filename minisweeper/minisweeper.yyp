@@ -367,6 +367,14 @@
             }
         },
         {
+            "Key": "440cda38-bb63-49d6-93c6-7d60611afd95",
+            "Value": {
+                "id": "a43d65bf-e99c-44d2-8d90-6c897fa9dfab",
+                "resourcePath": "sprites\\sClock\\sClock.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "4489550c-62b6-4000-857c-c486614df96b",
             "Value": {
                 "id": "bee105a6-2758-408d-b4b4-bc3c9afe3c66",
@@ -564,6 +572,14 @@
                 "id": "0253f55c-a0d9-4498-82ca-a2bb782614a4",
                 "resourcePath": "scripts\\scr_grid_mines_from_press\\scr_grid_mines_from_press.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "63191bc6-1684-4044-9599-2ffca5650a19",
+            "Value": {
+                "id": "f540f2de-47de-425d-a7f7-b731e2b68856",
+                "resourcePath": "sprites\\sBackGearAnimation\\sBackGearAnimation.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -1268,6 +1284,14 @@
                 "id": "b317245e-b377-49ae-a426-a20e07e73363",
                 "resourcePath": "scripts\\ease_bounceIn\\ease_bounceIn.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "ce3b60bb-a8a1-4e67-afc4-94f24f1168da",
+            "Value": {
+                "id": "9115e07b-f195-4683-a799-ab70e5e9fe7b",
+                "resourcePath": "objects\\oMenuSettingsTitlebar\\oMenuSettingsTitlebar.yy",
+                "resourceType": "GMObject"
             }
         },
         {

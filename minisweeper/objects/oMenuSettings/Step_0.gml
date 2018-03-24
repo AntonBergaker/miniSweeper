@@ -1,3 +1,5 @@
+if (live_call()) return live_result;
+
 var _guiX = global.guiWidth;
 var _guiY = global.guiHeight;
 
@@ -15,13 +17,22 @@ if (_ratio) > 0.6 {
 
 menu.height = 1;
 
+var _spriteRatio = global.guiHeight/(menu.width*global.guiWidth);
+
+
+if (!inMenu) {
+	flagSprite.width   =-flagSprite.height   * _spriteRatio;
+	squareSprite.width = squareSprite.height * _spriteRatio;
+	timerSprite.width  = timerSprite.height  * _spriteRatio;
+}
+
 if (fadeOut) {
-		fadeIn-= deltaTimeS*2;
-		if (fadeIn < 0) {
-			instance_destroy();
-			exit;
-		}
-		alpha = fadeIn;
+	fadeIn-= deltaTimeS*2;
+	if (fadeIn < 0) {
+		instance_destroy();
+		exit;
+	}
+	alpha = fadeIn;
 } else {
 	if (fadeIn < 1) {
 		fadeIn+= deltaTimeS*2;
