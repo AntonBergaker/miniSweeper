@@ -80,6 +80,10 @@ mipScale = power(2,mip);
 
 surf = -1;
 
+finalActive = false;
+finalPressX = 0;
+finalPressY = 0;
+finalPressTime = 0;
 
 saveTimer = 0;
 

@@ -19,8 +19,9 @@ if (_check) {
 			global.windowHeight = window_get_height();
 			global.guiWidth = display_get_gui_width();
 			global.guiHeight = display_get_gui_height();
-			log(global.guiHeight);
 			global.dpi = display_get_dpi_x();
+			global.dpiScale = global.dpi/72;
+			global.dpiScale *= global.dpiScaleFactor;	
 			
 			if (global.forceWindowX != -1 && global.forceWindowY != -1) {
 				var _xx = global.forceWindowX;

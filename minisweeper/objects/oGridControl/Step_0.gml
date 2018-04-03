@@ -125,10 +125,14 @@ if (locked != LockedState.Locked) {
 										}
 										if (!clearedGrid[# _xx, _yy]) {
 											scr_clear_place(_xx, _yy);
+											finalPressX = _in.touchReleaseX[i];
+											finalPressY = _in.touchReleaseY[i];
 										} else {
 											var _nearFlags = scr_get_nearby(flagGrid, _xx, _yy);
 											if (_nearFlags == nearGrid[# _xx, _yy]) {
 												scr_clear_near(_xx,_yy);
+												finalPressX = _in.touchReleaseX[i];
+												finalPressY = _in.touchReleaseY[i];
 											}
 										}
 									}
@@ -651,14 +655,25 @@ if (instance_exists(oColorChanger)) {
 }
 
 if (won == 0 && leftToClear <= 0 && enabled && !firstPress && lost == 0) {
+	finalPressTime = 0;
+	finalActive = true;
 	won = 1;
+}
+
+if finalActive {
+	finalPressTime+=deltaTimeS;
+	updateDrawing = true;
+	log(finalPressX, finalPressY);
+	if finalPressTime > 5 {
+		finalActive = false;	
+	}
 }
 
 
 if (won==1) {
 	locked = LockedState.InputLocked;
 	wonTimer+=deltaTimeS;	
-	if (wonTimer > 1) {
+	if (wonTimer > 0.5) {
 		won = 2;
 		wonTimer = 0;
 		lost = 2;

@@ -10,6 +10,21 @@ var _yy = (100+yy*160 - oCamera.y)*_scale;
 var _sScale = _scale;
 _scale = _scale * mipScale;
 
+if finalActive {
+	var _time = (finalPressTime * 120) - 7;
+	var _xx2 = 100+xx*160;
+	var _yy2 = 100+yy*160;
+	var _dist = point_distance(finalPressX, finalPressY, _xx2, _yy2)/2;
+	var _intense = 1-abs(100 - power(_dist,0.9999) + (value_suppress(_time+7,0.05)-7)*10)/100;
+	if _intense >= 0 && _dist < 900 {
+		_intense *= (1-_dist/900);
+		var _dir = point_direction(finalPressX, finalPressY, _xx2, _yy2)
+		_scale *= 1+_intense/3.5;
+		_xx += lengthdir_x(_intense*18,_dir)*_sScale;
+		_yy += lengthdir_y(_intense*18,_dir)*_sScale;
+	}
+}
+
 if (_mask) {
 	draw_sprite_ext(sMask,mip,_xx,_yy,_scale,_scale,0,global.backColor,1);
 }
@@ -20,6 +35,7 @@ if (clearedGrid[# xx,yy]) {
 		_alpha = 1 - hideOnResetTimer;
 	}
 	
+	if (global.clearedColor != global.backColor)
 	draw_sprite_ext(sSquare,mip,_xx,_yy,_scale,_scale,0,global.clearedColor,_alpha);
 	
 	var _count = nearGrid[# xx,yy];
@@ -52,6 +68,7 @@ if (clearedGrid[# xx,yy]) {
 		var _ySize = ease_backOut(0,1,flagEaseGrid[# xx,yy],1, 3.5);
 		var _xSize = lerp(_ySize, ease_expoIn(0,1, flagEaseGrid[# xx,yy], 1),0.5);
 		if (lost && mineGrid[# xx,yy]) {
+			#region Flagged mine on loss
 			var _mineEase = mineEaseGrid[# xx,yy];
 			var _shiftX = _sScale*-2*_mineEase;
 			var _shiftY = lerp(30,15,_mineEase)*_sScale;
@@ -65,7 +82,7 @@ if (clearedGrid[# xx,yy]) {
 			var _size = ease_backOut(0,0.76,mineEaseGrid[# xx,yy],1, 3.5);
 			var _shift = _sScale*15*_mineEase;
 			draw_sprite_ext(sMine,mip,_xx+_shift,_yy+_shift,_scale*_size,_scale*_size,0,global.mineColor,1);
-			
+			#endregion
 		} else {
 			draw_sprite_ext(sFlag,mip,_xx,_yy+30*_sScale,_scale*_xSize,_scale*_ySize,0,global.flagColor,1);	
 		}

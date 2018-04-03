@@ -1,4 +1,5 @@
 global.onPhone = true;
+global.dpiScaleFactor = 1;
 if (os_type == os_windows || os_type == os_macosx || os_type == os_linux || os_type == os_uwp) {
 	global.onPhone = false;	
 }
@@ -39,8 +40,14 @@ if (os_type == os_android || os_type == os_ios) {
 
 global.dpiScale = global.dpi/72;
 if (global.onPhone) {
-	global.dpiScale *= 0.4;	
+	global.dpiScaleFactor = 0.4;
 }
+if (os_device = device_ios_ipad || os_device = device_ios_ipad_retina) {
+	global.dpiScaleFactor = 0.7;	
+}
+
+
+global.dpiScale *= global.dpiScaleFactor;	
 
 global.vibrate = true;
 global.audioVolume = 1;
