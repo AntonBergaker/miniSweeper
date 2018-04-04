@@ -657,14 +657,15 @@ if (instance_exists(oColorChanger)) {
 if (won == 0 && leftToClear <= 0 && enabled && !firstPress && lost == 0) {
 	finalPressTime = 0;
 	finalActive = true;
+	finalLost = false;
 	won = 1;
 }
 
 if finalActive {
 	finalPressTime+=deltaTimeS;
 	updateDrawing = true;
-	log(finalPressX, finalPressY);
-	if finalPressTime > 5 {
+	if (finalLost && finalPressTime > 3)
+	|| (finalPressTime > 8) {
 		finalActive = false;	
 	}
 }
@@ -707,6 +708,9 @@ if (won==1) {
 }
 
 if (lost == 1) {
+	finalPressTime = 0;
+	finalActive = true;
+	finalLost = true;
 	locked = LockedState.InputLocked;
 	lost = 2;
 	if (file_exists("save.sav")) {

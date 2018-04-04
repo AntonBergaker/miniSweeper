@@ -43,7 +43,7 @@ if (!inMenu) {
 	timerSprite = scr_menu_create_sprite(menu, 0.16, 0.1*i+0.085, 0.068, 0.068, sClock, ThemeColors.Text);
 
 	var _str;
-	_str = string(oGridControl.gridMines-oGridControl.minesLeft) + "/" + string(oGridControl.gridMines);
+	_str = string(round(oGridControl.gridMines-oGridControl.minesLeft)) + "/" + string(oGridControl.gridMines);
 	scr_menu_set_button_settings(menu,fa_left,fa_middle,fLightMenu,0.3,0.06);
 	flagLabel = scr_menu_create_label(menu, 0.22, 0.1*i-0.02, _str);
 	

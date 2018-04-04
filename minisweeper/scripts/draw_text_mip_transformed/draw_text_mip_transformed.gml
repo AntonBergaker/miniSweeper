@@ -1,7 +1,8 @@
 /// @param x
 /// @param y
 /// @param text
-/// @scale
+/// @param scale
+/// @param rotation
 switch mip {
 	case 0:
 		draw_set_font(fMineTextMip0);
@@ -16,4 +17,4 @@ switch mip {
 		draw_set_font(fMineTextMip3);
 		break;
 }
-draw_text_transformed(argument0,argument1,argument2,argument3,argument3,0);
+draw_text_transformed(argument0,argument1,argument2,argument3,argument3,argument4);

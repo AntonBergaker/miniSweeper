@@ -495,6 +495,14 @@
             }
         },
         {
+            "Key": "54b55e5d-1a60-4042-b991-ab1e68149d4b",
+            "Value": {
+                "id": "efaedc84-cc16-4492-b776-a068c9a19210",
+                "resourcePath": "scripts\\draw_text_mip_transformed\\draw_text_mip_transformed.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "557f719f-bcb9-4fec-80c8-8689630c1bbc",
             "Value": {
                 "id": "9cdbe804-4507-4536-9b33-e1844d2212c7",
@@ -1629,6 +1637,7 @@
         "6217eb49-886c-4026-8ffe-273a12e1fe01",
         "e0a9a550-b621-42f0-85fd-2d148309a934",
         "f688510e-ca6f-4084-98f9-dbe97ce54a4b",
+        "54b55e5d-1a60-4042-b991-ab1e68149d4b",
         "5d6cc395-a1d4-4de4-b5d5-cb9a35a82a3e",
         "6946ce06-96bf-4096-b681-4e467bf3607a",
         "e7488d9f-0e6a-4289-b49f-f8334b74a478",

@@ -13,6 +13,7 @@ flagPitch = 0;
 flagPitchTimer = 0;
 flagPitchRandomOffset = 0;
 
+
 minePitch = 0;
 
 enabled = false;
@@ -84,6 +85,7 @@ finalActive = false;
 finalPressX = 0;
 finalPressY = 0;
 finalPressTime = 0;
+finalLost = false;
 
 saveTimer = 0;
 
