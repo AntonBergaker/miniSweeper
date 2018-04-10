@@ -56,11 +56,12 @@
     "option_android_sync_amazon": false,
     "option_android_target_sdk": 23,
     "option_android_texture_page": "2048x2048",
+    "option_android_tools_from_version": false,
     "option_android_tv_banner": "${options_dir}\\android\\banner.png",
     "option_android_tv_isgame": true,
     "option_android_use_facebook": false,
     "option_android_version": {
-        "build": 5,
+        "build": 6,
         "major": 1,
         "minor": 0,
         "revision": 0

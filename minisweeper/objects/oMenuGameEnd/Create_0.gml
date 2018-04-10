@@ -64,4 +64,4 @@ scr_menu_set_button_settings(menu,fa_center,fa_middle,fThinMenu,0.9,0.13)
 nameLabel = scr_menu_create_label(menu, 0.5, 0.22, lost ? tLost : tWon);
 
 scr_menu_set_button_settings(menu,fa_center,fa_middle,fThinMenu,0.55,0.13)
-backGround = scr_menu_create_sprite(menu, 0.5,0.45,1.7,1.7,sBigBox, ThemeColors.Card);
+backGround = scr_menu_create_sprite(menu, 0.5,0.45,1.2/1.06451612903226,1.2,sBigBox, ThemeColors.Card);

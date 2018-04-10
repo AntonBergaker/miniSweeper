@@ -21,7 +21,7 @@ if (flagGrid[# _xx, _yy]) {
 
 if !(clearedGrid[# _xx, _yy]) {
 	clearedGrid[# _xx, _yy] = true;
-	if ds_list_size(soundsToPlay) < 10 {
+	if ds_list_size(soundsToPlay) < 10 && !mineGrid[# _xx, _yy] {
 		ds_list_add(soundsToPlay,gameTime)
 	}
 	leftToClear--;

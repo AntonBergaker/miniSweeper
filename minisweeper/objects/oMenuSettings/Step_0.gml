@@ -127,4 +127,7 @@ if (!inMenu) {
 	titlebar.alpha = alpha;
 }
 
-scr_menu_step(menu)
+scr_menu_step(menu);
+if global.onPhone && keyboard_check_pressed(vk_backspace) {
+	menu.selected = exitButton;
+}

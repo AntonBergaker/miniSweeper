@@ -63,7 +63,7 @@ if (clearedGrid[# xx,yy]) {
 	
 	var _count = nearGrid[# xx,yy];
 	if (_count >= 1) {
-		draw_text_mip_transformed(_xx,_yy, string(nearGrid[# xx,yy]),_scale*_specialScale, _specialRot*2);
+		draw_text_mip_transformed(_xx,_yy, string(nearGrid[# xx,yy]),_scale*_specialScale, _specialRot*2,0.75);
 	}
 			
 	if (removeEaseGrid[# xx,yy] < 1) {

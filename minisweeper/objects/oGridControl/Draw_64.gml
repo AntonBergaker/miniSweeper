@@ -22,13 +22,17 @@ if (!enabled) {
 	exit;	
 }
 
-draw_surface(surf,0,0);
+if (surface_exists(surf)) {
+	gpu_set_blendmode_ext(bm_one, bm_zero)
+	draw_surface(surf,0,0);
+	gpu_set_blendmode(bm_normal);
+}
 
 
 
 var _yy = _guiY-30*_dpiScale;
 
-draw_set_font(fMineTextMip0);
+draw_set_font(fLightMenu);
 draw_set_color(global.textColor);
 draw_set_halign(fa_right);
 

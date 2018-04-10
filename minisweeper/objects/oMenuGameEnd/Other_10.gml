@@ -6,6 +6,10 @@ var _i = inputController;
 
 scr_menu_step(menu);
 
+if global.onPhone && keyboard_check_pressed(vk_backspace) {
+	menu.selected = menuButton;
+}
+
 introTimer -= deltaTimeS;
 if (introTimer <= 0) {
 	timer+=deltaTimeS;
@@ -21,7 +25,7 @@ if (!firstStep && introTimer > 0) {
 
 #region moveableBox
 //Make the box draggable
-var _xOff = menu.width*_guiX*0.065;
+var _yOff = menu.height*_guiY*0.02;
 
 for ( var i=0;i<5;i++) {
 	//Check panning
@@ -30,7 +34,12 @@ for ( var i=0;i<5;i++) {
 		var _yy1 = _i.touchYGui[i];
 		var _xx2 = _i.touchPressXGui[i];
 		var _yy2 = _i.touchPressYGui[i];
-		if (point_in_rectangle(_xx2,_yy2, menu.x*_guiX-_xOff,menu.y*_guiY,menu.x*_guiX+_xOff + menu.width*_guiX,menu.y*_guiY+menu.height*_guiY*0.9)) {
+		if (point_in_rectangle(_xx2,_yy2,
+			menu.x*_guiX,
+			menu.y*_guiY - _yOff,
+			menu.x*_guiX + menu.width *_guiX,
+			menu.y*_guiY + menu.height*_guiY*0.92)
+		) {
 			if (!_i.touchCompleted[i] && _i.touchAction[i] == TouchAction.None) {
 	
 				if (global.onPhone) {
@@ -94,7 +103,7 @@ for (var i=0;i<5;i++) {
 #endregion
 timer = clamp(timer,0,1);
 
-var _sRatio = 212/166;
+var _sRatio = 1015/627;
 
 
 var _wRatio = _guiX/_guiY;
@@ -202,10 +211,10 @@ if (firstStep) {
 		nameLabel.text = tRecord;
 		
 		//move the buttons down
-		playButton.x = 0.25;
-		playButton.y = 0.70;
-		menuButton.x = 0.75;
-		menuButton.y = 0.70;
+		playButton.x = 0.26;
+		playButton.y = 0.75;
+		menuButton.x = 0.74;
+		menuButton.y = 0.75;
 		menuButton.width = 0.43;
 		playButton.width = 0.43;
 		

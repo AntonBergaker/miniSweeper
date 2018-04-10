@@ -36,7 +36,7 @@ _theme = scr_theme_create(
 	"Red",
 	c_white,
 	$3539E5,
-	$D2CDFF,
+	$DDDDDD,
 	c_black,
 	c_white,
 	c_black,
@@ -91,6 +91,7 @@ _theme = scr_theme_create(
 	$eeeeee
 );
 ds_map_add(global.themes, _theme[? "name"], _theme);
+
 
 
 global.themeNames = ["Default", "Dark", "Red", "Contrast", "Night", "Mini"];

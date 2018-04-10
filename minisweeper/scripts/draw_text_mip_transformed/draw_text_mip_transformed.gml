@@ -3,6 +3,7 @@
 /// @param text
 /// @param scale
 /// @param rotation
+/// @param alpha
 switch mip {
 	case 0:
 		draw_set_font(fMineTextMip0);
@@ -17,4 +18,4 @@ switch mip {
 		draw_set_font(fMineTextMip3);
 		break;
 }
-draw_text_transformed(argument0,argument1,argument2,argument3,argument3,argument4);
+draw_text_transformed_color(argument0,argument1,argument2,argument3,argument3,argument4,global.textColor,global.textColor,global.textColor,global.textColor, argument5);

@@ -13,7 +13,6 @@ if (surface_exists(surf)) {
 		draw_set_color(global.backColor);
 		draw_rectangle(0,0,global.internalWidth,global.internalHeight,0);
 		
-		draw_set_color(global.textColor);
 		draw_set_valign(fa_middle);
 		draw_set_halign(fa_center);
 
@@ -69,6 +68,7 @@ if (surface_exists(surf)) {
 			scr_draw_cell(_x,_y,1);
 		}
 	}
+
 	surface_reset_target();
 }
 updateDrawing = false;

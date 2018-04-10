@@ -61,7 +61,7 @@ if (!inMenu) {
 	i+=2.4;
 	
 	scr_menu_set_button_settings(menu,fa_center,fa_middle,fLightMenu,0.5,0.09);
-	exitButton = scr_menu_create_button(menu, 0.5, 0.1*i, "Menu", "menu", 1);
+	menuButton = scr_menu_create_button(menu, 0.5, 0.1*i, "Menu", "menu", 1);
 	i+=0.9;
 	
 	splitSprite = scr_menu_create_sprite(menu, 0.5, 0.1*i, 1, 0.01, sSliderLine, ThemeColors.Text);

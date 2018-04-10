@@ -5,29 +5,40 @@ if (steps >= 5) {
 	steps = 0;
 }
 
+var _isBrowser = (os_browser != browser_not_a_browser);
+if _isBrowser {
+	var _windowW = browser_width;
+	var _windowH = browser_height;
+} else {
+	var _windowW = window_get_width();
+	var _windowH = window_get_height();
+}
+
 if (_check) {
-	if (global.windowWidth != window_get_width()      || global.windowHeight != window_get_height()
+	if (global.windowWidth != _windowW				  || global.windowHeight != _windowH
 	||  global.guiWidth    != display_get_gui_width() || global.guiHeight    != display_get_gui_height()
 	|| forceCheck > 0) {
-		if (window_get_width() != 0 && window_get_height() != 0) {
-			var _preZoom = width / global.internalWidth;
+		if (_windowW != 0 && _windowH != 0) {
 			display_set_gui_maximise();
-			global.displayRatio = window_get_width()/window_get_height();
-			global.internalWidth = window_get_width();
-			global.internalHeight = window_get_height();
-			global.windowWidth = window_get_width();
-			global.windowHeight = window_get_height();
+			var _preZoom = width / global.internalWidth;
+
+			global.displayRatio = _windowW/_windowH;
+			global.internalWidth = _windowW;
+			global.internalHeight = _windowH;
+			global.windowWidth = _windowW;
+			global.windowHeight = _windowH;
 			global.guiWidth = display_get_gui_width();
 			global.guiHeight = display_get_gui_height();
 			global.dpi = display_get_dpi_x();
 			global.dpiScale = global.dpi/72;
 			global.dpiScale *= global.dpiScaleFactor;	
 			
-			if (global.forceWindowX != -1 && global.forceWindowY != -1) {
+
+			if (!_isBrowser && global.forceWindowX != -1 && global.forceWindowY != -1) {
 				var _xx = global.forceWindowX;
 				var _yy = global.forceWindowY;
-				_xx = clamp(_xx, 0, display_get_width() - window_get_width());
-				_yy = clamp(_yy, 0, display_get_height() - window_get_height());
+				_xx = clamp(_xx, 0, display_get_width()  - _windowW);
+				_yy = clamp(_yy, 0, display_get_height() - _windowH);
 				window_set_position(_xx, _yy);
 				if (forceCheck == 1) {
 					global.forceWindowX = -1;
@@ -45,6 +56,7 @@ if (_check) {
 			if (surface_exists(oGridControl.surf)) {
 				surface_resize(oGridControl.surf,global.internalWidth,global.internalHeight);
 			}
+			
 			view_xport[0] = 0;
 			view_yport[0] = 0;
 			view_wport[0] = global.windowWidth;
@@ -62,7 +74,7 @@ if (_check) {
 		}
 	}
 	
-	if (!global.onPhone && (window_get_x() != global.lastWindowX || window_get_y() != global.lastWindowY)) {
+	if (!_isBrowser && !global.onPhone && (window_get_x() != global.lastWindowX || window_get_y() != global.lastWindowY)) {
 		
 		global.lastWindowX = window_get_x();
 		global.lastWindowY = window_get_y();

@@ -20,3 +20,7 @@ lastW = 0;
 lastH = 0;
 lastX = x;
 lastY = y;
+width = 1;
+height = 1;
+
+scr_calculate_button_area();

@@ -89,6 +89,7 @@ timer = 0;
 
 window_set_size(global.windowWidth,global.windowHeight);
 
+
 device_mouse_dbclick_enable(0);
 
 scr_init_variables();

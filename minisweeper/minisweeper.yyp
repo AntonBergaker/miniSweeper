@@ -751,6 +751,14 @@
             }
         },
         {
+            "Key": "75ac291e-7061-4bcb-8e8a-3b3545332d41",
+            "Value": {
+                "id": "4b6b2fac-4891-496f-b7f9-acf4578b23cd",
+                "resourcePath": "options\\html5\\options_html5.yy",
+                "resourceType": "GMHtml5Options"
+            }
+        },
+        {
             "Key": "76c6c155-3c9a-4ed7-9227-2f2b28b22888",
             "Value": {
                 "id": "247535c1-cca7-4a8d-8f7f-efe4b4093c7d",
@@ -1630,8 +1638,8 @@
         "4cb661d4-80f0-4929-ad5f-5f6c8e99bfb3",
         "4cb2da64-9821-4509-bd1d-98a89c35bab5",
         "7728f802-8893-4d89-afd1-e1ec86ba620c",
-        "c3a1cb1e-d130-42d8-a837-458638ad8307",
         "9073ef12-57bd-419c-94f0-a5b6da0eb773",
+        "c3a1cb1e-d130-42d8-a837-458638ad8307",
         "7da4f041-4c86-4181-87f2-00e5c7f971a0",
         "345f7719-1de5-4b6c-b335-a17b1c2e2d65",
         "6217eb49-886c-4026-8ffe-273a12e1fe01",
