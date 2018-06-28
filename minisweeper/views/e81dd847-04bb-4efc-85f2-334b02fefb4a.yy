@@ -9,7 +9,8 @@
         "32db2969-c167-443e-a7e6-69918920a81e",
         "0e804695-eb0d-4e3b-9ed6-024bf521283d",
         "d3dd04c2-818d-4179-b3af-e216017d0e90",
-        "6fc427fd-fa60-4fbe-ba7d-7e6975fb0c5c"
+        "6fc427fd-fa60-4fbe-ba7d-7e6975fb0c5c",
+        "3aef879a-9153-4618-8651-12c1b0e304b3"
     ],
     "filterType": "GMScript",
     "folderName": "saving and loading",

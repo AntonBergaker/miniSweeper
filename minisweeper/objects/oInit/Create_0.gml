@@ -36,7 +36,14 @@ if (os_type == os_android || os_type == os_ios) {
 	global.lastWindowY = 0;
 }
 
+if global.browser {
+	global.forceWindowX = 0;
+	global.forceWindowY = 0;
+}
+
 //show_debug_overlay(1)
+
+global.browser = (os_browser != browser_not_a_browser);
 
 global.dpiScale = global.dpi/72;
 if (global.onPhone) {

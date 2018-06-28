@@ -159,6 +159,14 @@
             }
         },
         {
+            "Key": "1b44039a-586b-42fb-b3ec-4c1a7e9ae47a",
+            "Value": {
+                "id": "42fe6784-f8a9-42e3-9729-05ecbe7eb554",
+                "resourcePath": "extensions\\ImageLoadBar\\ImageLoadBar.yy",
+                "resourceType": "GMExtension"
+            }
+        },
+        {
             "Key": "1b9bf9ec-777b-453a-adea-7b4277f4bc8e",
             "Value": {
                 "id": "50380e1c-88b2-4c81-92e4-1e4931f50509",
@@ -307,6 +315,14 @@
             "Value": {
                 "id": "c567bd6a-8bf3-4ac3-aafa-2690a8dce490",
                 "resourcePath": "scripts\\inside_grid\\inside_grid.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "3aef879a-9153-4618-8651-12c1b0e304b3",
+            "Value": {
+                "id": "592d2168-8b88-4aba-8608-538f3ddf1bf2",
+                "resourcePath": "scripts\\boolify\\boolify.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -1673,6 +1689,7 @@
         "0e804695-eb0d-4e3b-9ed6-024bf521283d",
         "d3dd04c2-818d-4179-b3af-e216017d0e90",
         "6fc427fd-fa60-4fbe-ba7d-7e6975fb0c5c",
+        "3aef879a-9153-4618-8651-12c1b0e304b3",
         "9d525101-9f3d-41e6-b1db-754d0dc757cd",
         "74e7d326-6cb7-42e8-af94-22fdc0bf889f",
         "6d220535-8d4f-47df-be8b-fa2df15456a2",

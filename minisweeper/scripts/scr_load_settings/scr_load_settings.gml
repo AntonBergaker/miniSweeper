@@ -11,7 +11,7 @@ if (file_exists("save.json")) {
 		global.presetGrid = ds_map_find_default(_gridSize,"preset" ,global.presetGrid);
 	}
 	
-	if (!global.onPhone) {
+	if (!global.onPhone && !global.browser) {
 		var _windowSize = _map[? "window_size"];
 		if (_windowSize != undefined) {
 			if (!global.onPhone) {

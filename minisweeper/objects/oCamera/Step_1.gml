@@ -5,10 +5,10 @@ if (steps >= 5) {
 	steps = 0;
 }
 
-var _isBrowser = (os_browser != browser_not_a_browser);
+var _isBrowser = global.browser;
 if _isBrowser {
-	var _windowW = browser_width;
-	var _windowH = browser_height;
+	var _windowW = browser_width-1;
+	var _windowH = browser_height-1;
 } else {
 	var _windowW = window_get_width();
 	var _windowH = window_get_height();
