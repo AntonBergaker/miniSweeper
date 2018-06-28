@@ -83,6 +83,11 @@ sizeToggle.text = global.presetGrid ? "Custom" : "Preset"
 //audioSprite.width = (global.guiHeight*audioSprite.height)/(menu.width*global.guiWidth);
 //audioButton.width = audioSprite.width;
 
+if menu.active && global.menuStack[| 0] == menu && keyboard_check_pressed(vk_backspace) {
+	keyboard_clear(vk_backspace);
+	game_end();	
+}
+
 if (customTimer) < 1  {
 	sizeSelection.enabled = true;
 } else {

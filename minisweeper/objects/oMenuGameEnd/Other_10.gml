@@ -7,6 +7,7 @@ var _i = inputController;
 scr_menu_step(menu);
 
 if global.onPhone && keyboard_check_pressed(vk_backspace) {
+	keyboard_clear(vk_backspace);
 	menu.selected = menuButton;
 }
 
