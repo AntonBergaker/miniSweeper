@@ -18,7 +18,6 @@ if finalActive {
 	var _xx2 = 100+xx*160;
 	var _yy2 = 100+yy*160;
 	if (finalLost) {
-		var _time = (finalPressTime * 120) - 7;
 		var _xx2 = 100+xx*160;
 		var _yy2 = 100+yy*160;
 		var _dist = point_distance(finalPressX, finalPressY, _xx2, _yy2)/2;

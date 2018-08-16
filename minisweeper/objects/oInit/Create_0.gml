@@ -4,6 +4,7 @@ if (os_type == os_windows || os_type == os_macosx || os_type == os_linux || os_t
 	global.onPhone = false;	
 }
 
+global.browser = (os_browser != browser_not_a_browser);
 
 if (os_type == os_android || os_type == os_ios) {
 	global.displayRatio = window_get_width()/window_get_height();
@@ -43,7 +44,6 @@ if global.browser {
 
 //show_debug_overlay(1)
 
-global.browser = (os_browser != browser_not_a_browser);
 
 global.dpiScale = global.dpi/72;
 if (global.onPhone) {
