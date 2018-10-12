@@ -35,9 +35,7 @@ if room == rMain {
 	}
 	
 	
-	camera_set_view_pos(camera,x,y);
-	camera_set_view_size(camera,width,height);
-	
+
 	mip = clamp(round(log2(width/global.windowWidth)/1.5),0,3);
 	mipScale = power(2,mip);
 }

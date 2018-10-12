@@ -2,8 +2,8 @@ for (var i=0;i<5;i++) {
 	var _xxG = device_mouse_x_to_gui(i);
 	var _yyG = device_mouse_y_to_gui(i);
 	
-	var _xx = device_mouse_x(i);
-	var _yy = device_mouse_y(i);
+	var _xx = oCamera.x + _xxG * (oCamera.width /global.guiWidth);
+	var _yy = oCamera.y + _yyG * (oCamera.height/global.guiHeight);
 	
 	touchReleased[i] = false;
 	

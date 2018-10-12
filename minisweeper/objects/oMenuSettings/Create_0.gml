@@ -36,12 +36,25 @@ exitButton.visible = false;
 titlebar.exitButton = exitButton;
 
 if (!inMenu) {
+	var _record = -1;
+	var _str = scr_format_gridstring_unordered(oGridControl.gridWidth, oGridControl.gridHeight, oGridControl.gridMines);
+	var _val = ds_map_find_value(global.highScores, _str);
+	if (_val != undefined) {
+		_record = _val;	
+	}
+	
 	scr_menu_set_button_settings(menu,fa_center,fa_middle,fLightMenu,0.07,0.07);
 	flagSprite = scr_menu_create_sprite(menu, 0.16, 0.1*i, 0.1, 0.1, sFlag, ThemeColors.Text);
 	squareSprite = scr_menu_create_sprite(menu, 0.66, 0.1*i-0.021, 0.05, 0.05, sSquare, ThemeColors.Solid);
 	
 	timerSprite = scr_menu_create_sprite(menu, 0.16, 0.1*i+0.085, 0.068, 0.068, sClock, ThemeColors.Text);
-
+	
+	if (_record >= 0) {
+		recordSprite = scr_menu_create_sprite(menu, 0.66, 0.1*i+0.085, 0.068, 0.068, sStar, ThemeColors.Text);
+	} else {
+		recordSprite = noone;	
+	}
+	
 	var _str;
 	_str = string(round(oGridControl.gridMines-oGridControl.minesLeft)) + "/" + string(oGridControl.gridMines);
 	scr_menu_set_button_settings(menu,fa_left,fa_middle,fLightMenu,0.3,0.06);
@@ -56,9 +69,18 @@ if (!inMenu) {
 	_str = scr_get_formatted_time(oGridControl.gameplayTime);
 	_str += string_delete( string(oGridControl.gameplayTime mod 1), 1, 1);	
 
-	scr_menu_set_button_settings(menu,fa_left,fa_middle,fLightMenu,0.6,0.06);
+	scr_menu_set_button_settings(menu,fa_left,fa_middle,fLightMenu,0.28,0.06);
 	timerLabel = scr_menu_create_label(menu, 0.22, 0.1*i+0.09, _str);
+	
+	if (_record >= 0) {
+		_str = scr_get_formatted_time(_record);
+		_str += string_delete( string(_record mod 1), 1, 1);	
+		recordLabel = scr_menu_create_label(menu, 0.73, 0.1*i+0.09, _str);
+	} else {
+		recordLabel = noone;	
+	}
 	i+=2.4;
+	
 	
 	scr_menu_set_button_settings(menu,fa_center,fa_middle,fLightMenu,0.5,0.09);
 	menuButton = scr_menu_create_button(menu, 0.5, 0.1*i, "Menu", "menu", 1);

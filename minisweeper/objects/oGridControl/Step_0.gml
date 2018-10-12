@@ -725,8 +725,8 @@ var _change = mouse_wheel_down() - mouse_wheel_up();
 
 if (_change != 0)
 	{
-	var _normalX = (mouse_x-oCamera.x)/oCamera.width;
-	var _normalY = (mouse_y-oCamera.y)/oCamera.height;
+	var _normalX = (_in.touchX[0]-oCamera.x)/oCamera.width;
+	var _normalY = (_in.touchY[0]-oCamera.y)/oCamera.height;
 	
 	var _mX = oCamera.x + oCamera.width *_normalX;
 	var _mY = oCamera.y + oCamera.height*_normalY;

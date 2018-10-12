@@ -56,11 +56,6 @@ if (_check) {
 			if (surface_exists(oGridControl.surf)) {
 				surface_resize(oGridControl.surf,global.internalWidth,global.internalHeight);
 			}
-			
-			view_xport[0] = 0;
-			view_yport[0] = 0;
-			view_wport[0] = global.windowWidth;
-			view_hport[0] = global.windowHeight;
 
 			width  = _preZoom * global.internalWidth;
 			height = _preZoom * global.internalHeight;
@@ -69,7 +64,6 @@ if (_check) {
 			oGridControl.updateDrawing = true;
 			timer = 3;
 		
-			camera_set_view_size(camera,width,height);
 			forceCheck--;
 		}
 	}
