@@ -5,8 +5,6 @@ var _map = json_decode(_str);
 
 buffer_delete(_bufferFile);
 
-log("CHEKCED FILES2", _str);
-
 var _saveVersion = _map[? "save_version"];
 if (_saveVersion == undefined) {
 	return;
@@ -14,11 +12,8 @@ if (_saveVersion == undefined) {
 
 gameplayTime = ds_map_find_default(_map, "time", 60*60*24);
 
-log("CHEKCED FILES");
-
 var _grid = _map[? "grid"];
 if (_grid != undefined) {
-	log("Found files");
 	
 	gridWidth  = ds_map_find_default(_grid, "width"      , gridWidth);
 	gridHeight = ds_map_find_default(_grid, "height"     , gridHeight);

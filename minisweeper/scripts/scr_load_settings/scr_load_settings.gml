@@ -53,6 +53,5 @@ if (file_exists("save.json")) {
 		global.currentTheme = "Default";	
 	}
 	
-	file_text_close(_file);
 	ds_map_destroy(_map)
 }

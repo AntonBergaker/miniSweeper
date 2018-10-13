@@ -91,9 +91,13 @@ if (global.showSwitchButton) {
 	var _scale = _ease*switchButtonScale;
 	
 	var _backCol  = switchButtonFlipTime < 0.5 ? global.backColor : global.solidColor;
-	var _thingCol = switchButtonFlipTime < 0.5 ? global.textColor : global.flagColor;
 	
 	draw_sprite_ext(sCircleShadow, 0, switchButtonX, switchButtonY, _scale*_flip, _scale, 1, c_white, _flip*0.5 + (1-_ease)*3);
 	draw_sprite_ext(sCircle      , 0, switchButtonX, switchButtonY, _scale*_flip, _scale, 0, _backCol, 1);
-	draw_sprite_ext(sBigFlag     , 0, switchButtonX, switchButtonY, _scale*_flip, _scale, 0, _thingCol, 1);
+	if (switchButtonFlipTime > 0.5) {
+		draw_sprite_ext(sBigFlag, 0, switchButtonX, switchButtonY, _scale*_flip, _scale, 0, global.flagColor, 1);
+	} else {
+		draw_sprite_ext(sSquare, 0, switchButtonX, switchButtonY, _scale*_flip, _scale, 0 , global.clearedColor, 1);
+		draw_sprite_ext(sSquareSlightRot, 0, switchButtonX, switchButtonY, _scale*_flip, _scale, 0, global.solidColor, 1);
+	}
 }

@@ -13,7 +13,7 @@ bestTimeTimer = 0;
 var _wide = global.guiWidth > global.guiHeight;
 
 
-if (global.saveExists) {
+if (global.saveExists || global.oldSaveExists) {
 	oGridControl.enabled = true;
 	menu = noone;
 	disabled = true;

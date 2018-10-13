@@ -20,7 +20,19 @@ if (!flagGrid[# _xx,_yy]) {
 	}
 	if (!clearedGrid[# _xx, _yy]) {
 		scr_clear_place(_xx, _yy);
-		finalPressX = _in.touchReleaseX[_input];
-		finalPressY = _in.touchReleaseY[_input];
-	} 
+		if (global.switchedControls) {
+			finalPressX = _in.touchX[_input];
+			finalPressY = _in.touchY[_input];
+		} else {
+			finalPressX = _in.touchReleaseX[_input];
+			finalPressY = _in.touchReleaseY[_input];
+		}
+	}
+	
+	
+	if (global.switchedControls) {
+		if (global.vibrate) {
+			Haptics_VibrateIntensity(100,2);
+		}
+	}
 }

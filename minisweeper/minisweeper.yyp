@@ -783,6 +783,14 @@
             }
         },
         {
+            "Key": "713aa90d-d921-4e7b-b5ce-a0ad879598f3",
+            "Value": {
+                "id": "5b1cf044-b25b-4d17-9610-12d2e92940cf",
+                "resourcePath": "sprites\\sSquareSlightRot\\sSquareSlightRot.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "7157eed0-b23d-42c6-8a68-682790fe3505",
             "Value": {
                 "id": "38e89f4d-d407-49ab-bf60-f3e60cfc6b7c",

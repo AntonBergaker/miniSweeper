@@ -130,7 +130,7 @@ if (locked != LockedState.Locked) {
 		
 						if (inside_grid(_xx,_yy)) {
 							if (_xx2 == _xx && _yy2 == _yy) {
-								if (clearedGrid[# _xx, _yy] && _in.touchPressTime[i] < 0.4) {
+								if (!resetting && clearedGrid[# _xx, _yy] && _in.touchPressTime[i] < 0.4) {
 									var _nearFlags = scr_get_nearby(flagGrid, _xx, _yy);
 									if (_nearFlags == nearGrid[# _xx, _yy]) {
 										scr_clear_near(_xx,_yy);
@@ -711,10 +711,10 @@ if (won==1) {
 		wonTimer = 0;
 		lost = 2;
 		
-		//if (global.saveExists) {
-		//	file_delete("game.json");
-		//	global.saveExists = false;
-		//}
+		if (global.saveExists) {
+			file_delete("game.json");
+			global.saveExists = false;
+		}
 		
 		var _newHighscore = false;
 		var _str = scr_format_gridstring_unordered(gridWidth, gridHeight, gridMines);
