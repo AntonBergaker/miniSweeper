@@ -1,8 +1,12 @@
 if (file_exists("save.json")) {
-	var _file = file_text_open_read("save.json");
+	var _bufferFile = buffer_load("save.json");
 	
-	var _str = file_text_read_string(_file);	
+	var _str = buffer_read(_bufferFile, buffer_string);
 	var _map = json_decode(_str);
+
+	buffer_delete(_bufferFile);
+	
+	
 	var _gridSize = _map[? "grid_size"];
 	if (_gridSize != undefined) {
 		global.gridWidth  = ds_map_find_default(_gridSize,"width"  ,global.gridWidth );
@@ -27,14 +31,16 @@ if (file_exists("save.json")) {
 		ds_map_copy(global.highScores, _highScores);	
 	}
 	
-	global.vibrate		   = ds_map_find_default(_map, "vibrate"		, global.vibrate);
-	global.audioVolume	   = ds_map_find_default(_map, "volume"			, global.audioVolume);
-	global.currentTheme    = ds_map_find_default(_map, "theme"          , global.currentTheme);
-	global.clearAnimation  = ds_map_find_default(_map, "clear_animation", global.clearAnimation);
-	global.tweenEnabled    = ds_map_find_default(_map, "tween"          , global.tweenEnabled);
-	global.showTimer	   = ds_map_find_default(_map, "timer"          , global.showTimer);
-	global.showTimerMenu   = ds_map_find_default(_map, "timer_menu"     , global.showTimerMenu);
-	var _showMines	       = ds_map_find_default(_map, "show_mines"     , "five");
+	global.vibrate		    = ds_map_find_default(_map, "vibrate"		   , global.vibrate);
+	global.audioVolume	    = ds_map_find_default(_map, "volume"		   , global.audioVolume);
+	global.currentTheme     = ds_map_find_default(_map, "theme"            , global.currentTheme);
+	global.clearAnimation   = ds_map_find_default(_map, "clear_animation"  , global.clearAnimation);
+	global.tweenEnabled     = ds_map_find_default(_map, "tween"            , global.tweenEnabled);
+	global.showTimer	    = ds_map_find_default(_map, "timer"            , global.showTimer);
+	global.showTimerMenu    = ds_map_find_default(_map, "timer_menu"       , global.showTimerMenu);
+	global.switchedControls = ds_map_find_default(_map, "switched_controls", global.switchedControls);
+	global.showSwitchButton = ds_map_find_default(_map, "switch_button"    , global.showSwitchButton);
+	var _showMines	        = ds_map_find_default(_map, "show_mines"       , "five");
 	if (_showMines == "never") {
 		global.showMines = ShowMinesState.Never;	
 	} else if (_showMines == "always") {

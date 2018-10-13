@@ -22,7 +22,9 @@ if (!inMenu) {
 	flagSprite.width   =-flagSprite.height   * _spriteRatio;
 	squareSprite.width = squareSprite.height * _spriteRatio;
 	timerSprite.width  = timerSprite.height  * _spriteRatio;
-	recordSprite.width = recordSprite.height * _spriteRatio;
+	if (recordSprite != noone) {
+		recordSprite.width = recordSprite.height * _spriteRatio;
+	}
 }
 
 if (fadeOut) {

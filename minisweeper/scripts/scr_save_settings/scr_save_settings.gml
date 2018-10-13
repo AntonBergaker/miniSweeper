@@ -23,20 +23,23 @@ var _highScores = ds_map_create();
 ds_map_add_map(_map, "highscores" , _highScores)
 
 
-ds_map_add(_map, "theme"		  , global.currentTheme);
-ds_map_add(_map, "volume"		  , global.audioVolume);
-ds_map_add(_map, "vibrate"		  , boolify(global.vibrate));
-ds_map_add(_map, "clear_animation", boolify(global.clearAnimation));
-ds_map_add(_map, "tween"          , boolify(global.tweenEnabled));
-ds_map_add(_map, "timer"          , boolify(global.showTimer));
-ds_map_add(_map, "timer_menu"     , boolify(global.showTimerMenu));
-ds_map_add(_map, "show_mines"     , scr_showmines_get_string(global.showMines));
+ds_map_add(_map, "theme"		    , global.currentTheme);
+ds_map_add(_map, "volume"		    , global.audioVolume);
+ds_map_add(_map, "vibrate"		    , boolify(global.vibrate));
+ds_map_add(_map, "clear_animation"  , boolify(global.clearAnimation));
+ds_map_add(_map, "tween"            , boolify(global.tweenEnabled));
+ds_map_add(_map, "timer"            , boolify(global.showTimer));
+ds_map_add(_map, "timer_menu"       , boolify(global.showTimerMenu));
+ds_map_add(_map, "switch_button"    , boolify(global.showSwitchButton));
+ds_map_add(_map, "switched_controls", boolify(global.switchedControls));
+ds_map_add(_map, "show_mines"       , scr_showmines_get_string(global.showMines));
 
-if (file_exists("save.json")) {
-	file_delete("save.json");	
-}
-var _file = file_text_open_write("save.json");
-file_text_write_string(_file,json_encode(_map));
-file_text_close(_file);
+var _json = json_encode(_map);
+var _saveBuffer = buffer_create(string_byte_length(_json), buffer_fixed, 1);
+buffer_write(_saveBuffer, buffer_text, _json);
 
+buffer_save(_saveBuffer, "save.json");
+
+
+buffer_delete(_saveBuffer);
 ds_map_destroy(_map);

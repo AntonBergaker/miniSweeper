@@ -19,6 +19,13 @@ if (_inst) {
 			global.showTimerMenu = _inst.checked;
 			_updated = true;
 			break;
+		case "switchcontrols":
+			global.switchedControls = _inst.checked;
+			_updated = true;
+		case "switchbutton":
+			global.showSwitchButton = _inst.checked;
+			_updated = true;
+			break;
 		case "vibrate":
 			global.vibrate = _inst.checked;
 			_update = true;
@@ -34,6 +41,7 @@ if (_inst) {
 			if (inGame) {
 				oGridControl.locked = gridPreLock;	
 			}
+			oGridControl.updateDrawing = true;
 			break;
 		case "menu":
 			with (oGridControl) {
@@ -45,9 +53,12 @@ if (_inst) {
 				hideOnReset = true;
 				hideOnResetTimer = 0;
 			}
-			if (file_exists("save.sav")) {
-				file_delete("save.sav");	
+			
+			if (global.saveExists) {
+				file_delete("game.json");
+				global.saveExists = false;
 			}
+			
 			var _inst = instance_create_layer(0,0,"MenuMain",oMenuMain);
 			_inst.fadeIn = true;
 			_inst.fadeInInit = false;

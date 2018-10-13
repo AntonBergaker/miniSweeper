@@ -6,6 +6,9 @@ if room == rMain {
 	//Camera offsets so you can always reach the mine under the settings
 	var _minY = -_off;
 	var _maxY = _off*0.9;
+	if (global.showSwitchButton) {
+			_maxY += _off;
+	}
 	
 	var _fieldWidth  = oGridControl.fieldWidth;
 	var _fieldHeight = oGridControl.fieldHeight - _minY + _maxY;

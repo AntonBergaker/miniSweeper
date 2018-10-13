@@ -24,21 +24,31 @@ if (firstStep) {
 if (locked != LockedState.Locked) {
 	for (var i=0;i<5;i++) {
 		
-		//Check for starting clicking settings rectangle
-		if (_in.touchAction[i] == TouchAction.None && _in.touchCompleted[i] == false && settingsButtonFinger == -1) {
-			if (_in.touchPressed[i]) {
-				var _xx = _in.touchPressXGui[i];
-				var _yy = _in.touchPressYGui[i];
+		if (locked == LockedState.Unlocked) {
+			//Check for starting clicking settings rectangle or switch button
+			if (_in.touchAction[i] == TouchAction.None && _in.touchCompleted[i] == false && switchButtonFinger == -1 && settingsButtonFinger == -1) {
+				if (_in.touchPressed[i]) {
+					var _xx = _in.touchPressXGui[i];
+					var _yy = _in.touchPressYGui[i];
 				
-				var _guiX = global.guiWidth;
-				var _guiY = global.guiHeight;
+					var _guiX = global.guiWidth;
+					var _guiY = global.guiHeight;
 
-				var _dpiScale = global.dpiScale;
+					var _dpiScale = global.dpiScale;
 				
-				if (point_in_rectangle(_xx, _yy, _guiX-65*_dpiScale, 0, _guiX, 65*_dpiScale)) {
-					settingsButtonFinger = i;
-					settingsButtonTime = 1;
-					settingsButtonFade = 0;
+					//If settings
+					if (point_in_rectangle(_xx, _yy, _guiX-65*_dpiScale, 0, _guiX, 65*_dpiScale)) {
+						settingsButtonFinger = i;
+						settingsButtonTime = 1;
+						settingsButtonFade = 0;
+					}
+					//If switch
+					if (global.showSwitchButton) {
+						if (point_distance(_xx, _yy, switchButtonX, switchButtonY)) < 256 * switchButtonScale {
+							switchButtonFinger = i;	
+							switchButtonTime = 0;
+						}
+					}
 				}
 			}
 		}
@@ -47,32 +57,32 @@ if (locked != LockedState.Locked) {
 		if (_in.touchAction[i] == TouchAction.None) {
 			if (locked == LockedState.Unlocked) {
 				
+			
 				//Check holding down for preview
 				if (_in.touchPressed[i] && _in.touchAction[i] == TouchAction.None && _in.touchCompleted[i] == false && settingsButtonFinger != i) {
-						var _xx = _in.touchX[i];
-						var _yy = _in.touchY[i];
+					var _xx = _in.touchX[i];
+					var _yy = _in.touchY[i];
 
-						_xx = coord_to_grid_x(_xx);
-						_yy = coord_to_grid_y(_yy);
+					_xx = coord_to_grid_x(_xx);
+					_yy = coord_to_grid_y(_yy);
 		
-						//Check if you released and clicked at the same square
-						var _xx2 = coord_to_grid_x(_in.touchPressX[i]);
-						var _yy2 = coord_to_grid_y(_in.touchPressY[i]);
+					//Check if you released and clicked at the same square
+					var _xx2 = coord_to_grid_x(_in.touchPressX[i]);
+					var _yy2 = coord_to_grid_y(_in.touchPressY[i]);
 						
-						if (inside_grid(_xx,_yy)) {
-							if (_xx2 == _xx && _yy2 == _yy) {
-								if (_in.touchPressTime[i] < 0.3) {
-									if (clearedGrid[# _xx, _yy] && nearGrid[# _xx, _yy] > 0) {
-										var _nearFlags = scr_get_nearby(flagGrid, _xx, _yy);
-										if (_nearFlags == nearGrid[# _xx, _yy]) {
-											for (var j=max(_xx-1, 0);j<=min(_xx+1, gridWidth-1);j++) {
-												for (var jj=max(_yy-1, 0);jj<=min(_yy+1, gridHeight-1);jj++) {
-													if (!flagGrid[# j, jj]) {
-														if (previewEaseGrid[# j, jj] <= 0) {
-															ds_list_add(previewEaseList, [j, jj]);	
-														}
-														ds_list_add(previewUpdateList, [j, jj]);
+					if (inside_grid(_xx,_yy)) {
+						if (_xx2 == _xx && _yy2 == _yy) {
+							if (_in.touchPressTime[i] < 0.3) {
+								if (clearedGrid[# _xx, _yy] && nearGrid[# _xx, _yy] > 0) {
+									var _nearFlags = scr_get_nearby(flagGrid, _xx, _yy);
+									if (_nearFlags == nearGrid[# _xx, _yy]) {
+										for (var j=max(_xx-1, 0);j<=min(_xx+1, gridWidth-1);j++) {
+											for (var jj=max(_yy-1, 0);jj<=min(_yy+1, gridHeight-1);jj++) {
+												if (!flagGrid[# j, jj]) {
+													if (previewEaseGrid[# j, jj] <= 0) {
+														ds_list_add(previewEaseList, [j, jj]);	
 													}
+													ds_list_add(previewUpdateList, [j, jj]);
 												}
 											}
 										}
@@ -80,11 +90,12 @@ if (locked != LockedState.Locked) {
 								}
 							}
 						}
+					}
 				}
 				
 				//Check clicking
 				if (_in.touchReleased[i]) {
-					if (settingsButtonFinger == i) {
+					if (settingsButtonFinger == i || switchButtonFinger == i) {
 						var _xx = _in.touchReleaseXGui[i];
 						var _yy = _in.touchReleaseYGui[i];
 				
@@ -92,12 +103,19 @@ if (locked != LockedState.Locked) {
 						var _guiY = global.guiHeight;
 
 						var _dpiScale = global.dpiScale;
-				
-						if (point_in_rectangle(_xx, _yy, _guiX-65*_dpiScale, 0, _guiX, 65*_dpiScale)) {
-							var _inst = instance_create_layer(0,0, "MenuSettings", oMenuSettings);
-							_inst.inGame = true;
-							_inst.gridPreLock = locked;
-							locked = LockedState.Locked;
+						
+						if (settingsButtonFinger == i) {
+							if (point_in_rectangle(_xx, _yy, _guiX-65*_dpiScale, 0, _guiX, 65*_dpiScale)) {
+								var _inst = instance_create_layer(0,0, "MenuSettings", oMenuSettings);
+								_inst.inGame = true;
+								_inst.gridPreLock = locked;
+								locked = LockedState.Locked;
+							}
+						} else {
+							if (point_distance(_xx, _yy, switchButtonX, switchButtonY)) < 256 * switchButtonScale {
+								global.switchedControls = !global.switchedControls;
+							}
+							
 						}
 					} else {
 						var _xx = _in.touchReleaseX[i];
@@ -112,28 +130,21 @@ if (locked != LockedState.Locked) {
 		
 						if (inside_grid(_xx,_yy)) {
 							if (_xx2 == _xx && _yy2 == _yy) {
-								if ((_in.touchPressTime[i] < 0.3 - mineGrid[# _xx,_yy]*0.1) || (_in.touchPressTime[i] < 0.4 && clearedGrid[# _xx, _yy])) {
-									if (resetting) {
-										scr_reset_grid();	
-									}
-							
-									if (!flagGrid[# _xx,_yy]) {
-										if (firstPress) {
-											scr_grid_mines_from_press(_xx, _yy);
-											minesLeft -= ds_grid_get_sum(flagGrid, 0, 0, gridWidth-1, gridHeight-1)
-											firstPress = false;
+								if (clearedGrid[# _xx, _yy] && _in.touchPressTime[i] < 0.4) {
+									var _nearFlags = scr_get_nearby(flagGrid, _xx, _yy);
+									if (_nearFlags == nearGrid[# _xx, _yy]) {
+										scr_clear_near(_xx,_yy);
+										finalPressX = _in.touchReleaseX[i];
+										finalPressY = _in.touchReleaseY[i];
+									}	
+								} else {
+									if (global.switchedControls) {
+										if (_in.touchPressTime[i] < 0.3) {
+											scr_execute_flag(_xx, _yy, i);
 										}
-										if (!clearedGrid[# _xx, _yy]) {
-											scr_clear_place(_xx, _yy);
-											finalPressX = _in.touchReleaseX[i];
-											finalPressY = _in.touchReleaseY[i];
-										} else {
-											var _nearFlags = scr_get_nearby(flagGrid, _xx, _yy);
-											if (_nearFlags == nearGrid[# _xx, _yy]) {
-												scr_clear_near(_xx,_yy);
-												finalPressX = _in.touchReleaseX[i];
-												finalPressY = _in.touchReleaseY[i];
-											}
+									} else {
+										if ((_in.touchPressTime[i] < 0.3 - mineGrid[# _xx,_yy]*0.1)) {
+											scr_execute_clear(_xx, _yy, i);
 										}
 									}
 								}
@@ -221,7 +232,11 @@ if (locked != LockedState.Locked) {
 			
 						if (_xx2 == _xx && _yy2 == _yy) {
 							if (inside_grid(_xx,_yy) && !clearedGrid[# _xx, _yy]) {
-								scr_flag_cell(_xx,_yy);
+								if (global.switchedControls) {
+									scr_execute_clear(_xx, _yy, i);
+								} else {
+									scr_execute_flag(_xx, _yy, i);	
+								}
 							}
 						}
 			
@@ -648,6 +663,23 @@ if (settingsButtonFinger >= 0) {
 } else {
 	settingsButtonFade -= deltaTimeS*3;	
 }
+if (switchButtonFinger >= 0) {
+	switchButtonTime = clamp(switchButtonTime + deltaTimeS*2.4, 0, 0.7);
+	
+	if (!_in.touchPressed[switchButtonFinger]
+	  || _in.touchAction[switchButtonFinger] != TouchAction.None) {
+		switchButtonFinger = -1;
+	}
+} else if (switchButtonTime != -1) {
+	switchButtonTime += deltaTimeS*4;
+	if (switchButtonTime > 1) {
+		switchButtonTime = -1;	
+	}
+}
+
+
+switchButtonFlipTime = value_shift(switchButtonFlipTime, global.switchedControls, deltaTimeS*3);
+
 settingsButtonTime -= deltaTimeS;
 
 if (instance_exists(oColorChanger)) {
@@ -678,9 +710,12 @@ if (won==1) {
 		won = 2;
 		wonTimer = 0;
 		lost = 2;
-		if (file_exists("save.sav")) {
-			file_delete("save.sav");	
-		}
+		
+		//if (global.saveExists) {
+		//	file_delete("game.json");
+		//	global.saveExists = false;
+		//}
+		
 		var _newHighscore = false;
 		var _str = scr_format_gridstring_unordered(gridWidth, gridHeight, gridMines);
 		var _val = ds_map_find_value(global.highScores, _str);
@@ -698,8 +733,11 @@ if (won==1) {
 			_newHighscore = false;
 		}
 		
-		
-		var _inst = instance_create_layer(x,y,"MenuGameEnd",oMenuGameEnd);
+		var _layer = layer_get_id("MenuGameEnd");
+		if (_layer < 0) {
+			_layer = layer_create(100, "MenuGameEnd");
+		}
+		var _inst = instance_create_layer(0, 0, _layer, oMenuGameEnd);
 		_inst.newHighscore = _newHighscore;
 		if (_newHighscore) {
 			_inst.newHighscoreValue = gameplayTime;	
@@ -713,10 +751,18 @@ if (lost == 1) {
 	finalLost = true;
 	locked = LockedState.InputLocked;
 	lost = 2;
-	if (file_exists("save.sav")) {
-		file_delete("save.sav");	
+	
+	if (global.saveExists) {
+		file_delete("game.json");
+		global.saveExists = false;
 	}
-	instance_create_layer(x,y,"MenuGameEnd",oMenuGameEnd);
+	
+	var _layer = layer_get_id("MenuGameEnd");
+	if (_layer < 0) {
+		_layer = layer_create(100, "MenuGameEnd");
+	}
+	instance_create_layer(0, 0, _layer, oMenuGameEnd);
+	
 	oMenuGameEnd.lost = true;
 }
 

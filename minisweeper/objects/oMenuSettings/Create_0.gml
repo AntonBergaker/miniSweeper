@@ -25,7 +25,7 @@ menuHeight = 2;
 var i=2;
 
 //If you're not in the menu
-inMenu = instance_exists(oMenuMain);
+inMenu = instance_exists(oMenuMain) && oMenuMain.fadeOut = false;
 
 titlebar = instance_create_depth(inMenu ? 0:1,0, depth-2, oMenuSettingsTitlebar);
 
@@ -58,24 +58,24 @@ if (!inMenu) {
 	var _str;
 	_str = string(round(oGridControl.gridMines-oGridControl.minesLeft)) + "/" + string(oGridControl.gridMines);
 	scr_menu_set_button_settings(menu,fa_left,fa_middle,fLightMenu,0.3,0.06);
-	flagLabel = scr_menu_create_label(menu, 0.22, 0.1*i-0.02, _str);
+	flagLabel = scr_menu_create_label(menu, 0.225, 0.1*i-0.02, _str);
 	
 	var _val = oGridControl.firstPress || oGridControl.resetting ?
 		100 :
 		ceil(100 * oGridControl.leftToClear / (oGridControl.gridWidth * oGridControl.gridHeight - oGridControl.gridMines));
 	_str = string(_val)+"%";
-	squareLabel = scr_menu_create_label(menu, 0.73, 0.1*i-0.02, _str);
+	squareLabel = scr_menu_create_label(menu, 0.735, 0.1*i-0.02, _str);
 	
 	_str = scr_get_formatted_time(oGridControl.gameplayTime);
 	_str += string_delete( string(oGridControl.gameplayTime mod 1), 1, 1);	
 
 	scr_menu_set_button_settings(menu,fa_left,fa_middle,fLightMenu,0.28,0.06);
-	timerLabel = scr_menu_create_label(menu, 0.22, 0.1*i+0.09, _str);
+	timerLabel = scr_menu_create_label(menu, 0.225, 0.1*i+0.09, _str);
 	
 	if (_record >= 0) {
 		_str = scr_get_formatted_time(_record);
-		_str += string_delete( string(_record mod 1), 1, 1);	
-		recordLabel = scr_menu_create_label(menu, 0.73, 0.1*i+0.09, _str);
+		_str += string_delete( string(_record mod 1), 1, 1);
+		recordLabel = scr_menu_create_label(menu, 0.735, 0.1*i+0.09, _str);
 	} else {
 		recordLabel = noone;	
 	}
@@ -101,10 +101,13 @@ textAudio       = scr_menu_create_label(menu, 0.07, 0.1*i++, "Audio");
 if (global.onPhone) {
 	textVibrations  = scr_menu_create_label(menu, 0.07, 0.1*i++, "Vibrations");
 }
-textTween       = scr_menu_create_label(menu, 0.07, 0.1*i++, "Animations");
-textInstant     = scr_menu_create_label(menu, 0.07, 0.1*i++, "Clear Animation");
-textTimer       = scr_menu_create_label(menu, 0.07, 0.1*i++, "Show Timer");
-textTimerMenu   = scr_menu_create_label(menu, 0.07, 0.1*i  , "Show Highscore");
+textTween        = scr_menu_create_label(menu, 0.07, 0.1*i++, "Animations");
+textInstant      = scr_menu_create_label(menu, 0.07, 0.1*i++, "Clear Animation");
+textTimer        = scr_menu_create_label(menu, 0.07, 0.1*i++, "Show Timer");
+textTimerMenu    = scr_menu_create_label(menu, 0.07, 0.1*i++, "Show Highscore");
+textSwitch       = scr_menu_create_label(menu, 0.07, 0.1*i++, "Reversed Flagging");
+textSwitchButton = scr_menu_create_label(menu, 0.07, 0.1*i++, "Reversed Flagging Button");
+
 
 scr_menu_set_button_settings(menu,fa_center,fa_middle,fLightMenu,0.2,0.08);
 
@@ -114,11 +117,12 @@ toggleAudio     = scr_menu_create_toggle(menu,0.8,0.1*i++,"audio"    , global.au
 if (global.onPhone) {
 	toggleVibration = scr_menu_create_toggle(menu,0.8,0.1*i++,"vibrate"  , global.vibrate);
 }
-toggleTween     = scr_menu_create_toggle(menu,0.8,0.1*i++,"tween"    , global.tweenEnabled);
-toggleInstant   = scr_menu_create_toggle(menu,0.8,0.1*i++,"instant"  , global.clearAnimation);
-toggleTimer     = scr_menu_create_toggle(menu,0.8,0.1*i++,"timer"    , global.showTimer);
-toggleTimerMenu = scr_menu_create_toggle(menu,0.8,0.1*i  ,"timermenu", global.showTimerMenu);
-
+toggleTween        = scr_menu_create_toggle(menu,0.8,0.1*i++,"tween"         , global.tweenEnabled);
+toggleInstant      = scr_menu_create_toggle(menu,0.8,0.1*i++,"instant"       , global.clearAnimation);
+toggleTimer        = scr_menu_create_toggle(menu,0.8,0.1*i++,"timer"         , global.showTimer);
+toggleTimerMenu    = scr_menu_create_toggle(menu,0.8,0.1*i++,"timermenu"     , global.showTimerMenu);
+toggleSwitch       = scr_menu_create_toggle(menu,0.8,0.1*i++,"switchcontrols", global.switchedControls);
+toggleSwitchButton = scr_menu_create_toggle(menu,0.8,0.1*i  ,"switchbutton"  , global.showSwitchButton);
 
 i+=0.8;
 scr_menu_set_button_settings(menu,fa_center,fa_middle,fLightMenu,0.8,0.05);

@@ -22,7 +22,6 @@ hideOnResetTimer = 0;
 wonTimer = 0;
 lostTimer = 0;
 gameplayTime = 0;
-timerX = 0;
 minesLeft = gridMines;
 updateDrawing = true;
 leftToClear = gridWidth * gridHeight - gridMines;

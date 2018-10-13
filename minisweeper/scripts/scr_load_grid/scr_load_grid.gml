@@ -1,47 +1,73 @@
-if (file_exists("save.sav")) {
-	var _file = file_text_open_read("save.sav");
-	var _str;
-	var _saveVersion = file_text_read_real(_file);
-	file_text_readln(_file);
-	gridWidth = file_text_read_real(_file);
-	file_text_readln(_file);
-	gridHeight = file_text_read_real(_file);
-	file_text_readln(_file);
-	gridMines = file_text_read_real(_file);
-	file_text_readln(_file);
+var _bufferFile = buffer_load("game.json");
+	
+var _str = buffer_read(_bufferFile, buffer_string);
+var _map = json_decode(_str);
+
+buffer_delete(_bufferFile);
+
+log("CHEKCED FILES2", _str);
+
+var _saveVersion = _map[? "save_version"];
+if (_saveVersion == undefined) {
+	return;
+}
+
+gameplayTime = ds_map_find_default(_map, "time", 60*60*24);
+
+log("CHEKCED FILES");
+
+var _grid = _map[? "grid"];
+if (_grid != undefined) {
+	log("Found files");
+	
+	gridWidth  = ds_map_find_default(_grid, "width"      , gridWidth);
+	gridHeight = ds_map_find_default(_grid, "height"     , gridHeight);
+	gridMines  = ds_map_find_default(_grid, "mines_total", gridMines);
+	
 	scr_grid_create_grids();
 	
-	_str = file_text_read_string(_file);
-	file_text_readln(_file);
-	ds_grid_read(mineGrid,_str);
+	var _val = _grid[? "cleared"];
+	if (_val != undefined) {
+		var _b = buffer_base64_decode(_val);
+		log("VALUE WE DECODE: ", _val)
+		buffer_read_bool_grid(_b, clearedGrid, gridWidth, gridHeight);
+		buffer_delete(_b);
+	}
 	
-	_str = file_text_read_string(_file);
-	file_text_readln(_file);
-	ds_grid_read(clearedGrid,_str);
+	var _val = _grid[? "flags"];
+	if (_val != undefined) {
+		var _b = buffer_base64_decode(_val);
+		buffer_read_bool_grid(_b, flagGrid, gridWidth, gridHeight);
+		buffer_delete(_b);
+	}
 	
-	_str = file_text_read_string(_file);
-	file_text_readln(_file);
-	ds_grid_read(flagGrid,_str);
+	var _val = _grid[? "mines"];
+	if (_val != undefined) {
+		var _b = buffer_base64_decode(_val);
+		buffer_read_bool_grid(_b, mineGrid, gridWidth, gridHeight);
+		buffer_delete(_b);
+	}
+} else {
+	scr_grid_create_grids();
+}
+
+var _camera = _map[? "camera"];
+if (_camera != undefined) {
+	oCamera.x = ds_map_find_default(_camera, "x", oCamera.x);
+	oCamera.y = ds_map_find_default(_camera, "y", oCamera.y);
 	
-	gameplayTime = file_text_read_real(_file);
-	file_text_readln(_file);
-	
-	oCamera.width = max(file_text_read_real(_file)*global.internalWidth, 1);
+	oCamera.width = ds_map_find_default(_camera, "zoom", oCamera.height);
+	oCamera.width = max(oCamera.width*global.internalWidth, 1);
 	oCamera.height = oCamera.width * global.displayRatio;
-	file_text_readln(_file);
-	
-	oCamera.x = file_text_read_real(_file);
-	file_text_readln(_file);
-	
-	oCamera.y = file_text_read_real(_file);
-	file_text_close(_file);
-	
-	ds_grid_copy(flagEaseGrid,flagGrid);
-	ds_grid_copy(aboutToClearGrid, clearedGrid);
-	ds_grid_copy(removeEaseGrid, clearedGrid);
+}
+
+ds_grid_copy(flagEaseGrid,flagGrid);
+ds_grid_copy(aboutToClearGrid, clearedGrid);
+ds_grid_copy(removeEaseGrid, clearedGrid);
 	
 
-	minesLeft = ds_grid_get_sum(mineGrid,0,0,gridWidth-1,gridHeight-1);
-	leftToClear = gridWidth*gridHeight - ds_grid_get_sum(clearedGrid,0,0,gridWidth-1,gridHeight-1) - minesLeft;
-	minesLeft -= ds_grid_get_sum(flagGrid,0,0,gridWidth-1,gridHeight-1);
-}
+minesLeft = ds_grid_get_sum(mineGrid,0,0,gridWidth-1,gridHeight-1);
+leftToClear = gridWidth*gridHeight - ds_grid_get_sum(clearedGrid,0,0,gridWidth-1,gridHeight-1) - minesLeft;
+minesLeft -= ds_grid_get_sum(flagGrid,0,0,gridWidth-1,gridHeight-1);
+
+ds_map_destroy(_map);

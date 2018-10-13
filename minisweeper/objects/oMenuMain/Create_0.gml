@@ -13,7 +13,7 @@ bestTimeTimer = 0;
 var _wide = global.guiWidth > global.guiHeight;
 
 
-if (file_exists("save.sav")) {
+if (global.saveExists) {
 	oGridControl.enabled = true;
 	menu = noone;
 	disabled = true;

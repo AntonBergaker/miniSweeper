@@ -27,7 +27,12 @@ inputController = instance_create_depth(0,0,0,oInput);
 instance_create_depth(0,0,0,oCamera);
 
 //If a save exists import it
-if (file_exists("save.sav")) {
+if (global.oldSaveExists) {
+	scr_load_grid_old();
+	file_delete("save.sav");
+	global.oldSaveExists = false;
+	firstPress = false;
+} else if (global.saveExists) {
 	scr_load_grid();
 	firstPress = false;
 } else {
@@ -58,9 +63,9 @@ wonTimer = 0;
 lost = 0;
 lostTimer = 0;
 
-timerX = 0;
 minesX = 0;
 minesGuiBounce = 0;
+
 
 resetting = 0;
 hideOnReset = false;
@@ -98,6 +103,14 @@ gearY = 0;
 gearScale = 1;
 gearRot = 0;
 gearColor = c_white;
+
+switchButtonFinger = -1;
+switchButtonX = 0;   
+switchButtonY = 0;   
+switchButtonScale = 0;
+switchButtonTime = -1;
+switchButtonFlipTime = 0;
+
 
 enum TouchAction {
 	None,
