@@ -26,16 +26,16 @@ if (global.saveExists || global.oldSaveExists) {
 	scr_menu_set_button_settings(menu,fa_center,fa_middle,fLightMenu,0.5,0.1);
 	playButtonY = 0.42;
 	playButtonYCustom = 0.33;
-	playButton = scr_menu_create_button(menu,0.5,playButtonY,"Play","play",true);
+	playButton = scr_menu_create_button(menu,0.5,playButtonY,"PLAY","play",true);
 
 	settingsButtonY = 0.75;
 	settingsButtonYCustom = 0.83;
-	settingsButton = scr_menu_create_button(menu,0.5,0.75,"Settings","settings",false);
+	settingsButton = scr_menu_create_button(menu,0.5,0.75,"SETTINGS","settings",false);
 	
 	scr_menu_set_button_settings(menu,fa_center,fa_middle,fLightMenu,0.4,0.07)
 	sizeToggleY = 0.62;
 	sizeToggleYCustom = 0.7;
-	sizeToggle = scr_menu_create_button(menu,0.5,0.62,"Custom","sizeToggle",false);
+	sizeToggle = scr_menu_create_button(menu,0.5,0.62, "CUSTOM","sizeToggle",false);
 	
 	scr_menu_set_button_settings(menu,fa_center,fa_middle,fThinMenu,0.8,0.2)
 	nameLabelY = 0.2;

@@ -42,7 +42,7 @@ if global.browser {
 	global.forceWindowY = 0;
 }
 
-//show_debug_overlay(1)
+show_debug_overlay(1)
 
 
 global.dpiScale = global.dpi/72;

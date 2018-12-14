@@ -105,8 +105,8 @@ textTween        = scr_menu_create_label(menu, 0.07, 0.1*i++, "Animations");
 textInstant      = scr_menu_create_label(menu, 0.07, 0.1*i++, "Clear Animation");
 textTimer        = scr_menu_create_label(menu, 0.07, 0.1*i++, "Show Timer");
 textTimerMenu    = scr_menu_create_label(menu, 0.07, 0.1*i++, "Show Highscore");
-textSwitch       = scr_menu_create_label(menu, 0.07, 0.1*i++, "Reversed Flagging");
-textSwitchButton = scr_menu_create_label(menu, 0.07, 0.1*i++, "Reversed Flagging Button");
+textSwitch       = scr_menu_create_label(menu, 0.07, 0.1*i++, "Reverse Controls");
+textSwitchButton = scr_menu_create_label(menu, 0.07, 0.1*i++, "Reverse Controls Button");
 
 
 scr_menu_set_button_settings(menu,fa_center,fa_middle,fLightMenu,0.2,0.08);

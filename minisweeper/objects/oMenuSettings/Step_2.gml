@@ -22,6 +22,7 @@ if (_inst) {
 		case "switchcontrols":
 			global.switchedControls = _inst.checked;
 			_updated = true;
+			break;
 		case "switchbutton":
 			global.showSwitchButton = _inst.checked;
 			_updated = true;

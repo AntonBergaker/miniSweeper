@@ -78,7 +78,7 @@ sliderWidthLabel.alpha   = lerp(0,0.7,_ease);
 sliderHeightLabel.alpha  = lerp(0,0.7,_ease);
 sliderMineLabel.alpha    = lerp(0,0.7,_ease);
 
-sizeToggle.text = global.presetGrid ? "Custom" : "Preset"
+sizeToggle.text = global.presetGrid ? "CUSTOM" : "PRESET"
 
 //audioSprite.width = (global.guiHeight*audioSprite.height)/(menu.width*global.guiWidth);
 //audioButton.width = audioSprite.width;

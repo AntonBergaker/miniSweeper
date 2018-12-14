@@ -8,10 +8,10 @@ var _guiY = global.guiHeight;
 tLost = "You Lost";
 tWon = "You Won";
 
-tRetry = "Retry";
-tAgain = "Again";
+tRetry = "RETRY";
+tAgain = "AGAIN";
 
-tMenu = "Menu";
+tMenu = "MENU";
 
 tRecord = "You Got a New Record!";
 
