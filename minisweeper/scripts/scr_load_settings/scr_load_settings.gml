@@ -1,4 +1,4 @@
-if (file_exists("save.json")) {
+if (file_exists_custom("save.json")) {
 	var _bufferFile = buffer_load("save.json");
 	
 	var _str = buffer_read(_bufferFile, buffer_string);

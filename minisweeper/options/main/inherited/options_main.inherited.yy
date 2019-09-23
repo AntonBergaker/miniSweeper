@@ -8,7 +8,7 @@
     "mipsToGenerate": 0,
     "border": 8,
     "scaled": true,
-    "autocrop": true
+    "autocrop": false
 }←7b2c4976-1e09-44e5-8256-c527145e03bb|{
     "targets": 461609314234257646
 }

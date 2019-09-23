@@ -1,14 +1,16 @@
 {
     "id": "76c6c155-3c9a-4ed7-9227-2f2b28b22888",
     "modelName": "GMFont",
-    "mvc": "1.0",
+    "mvc": "1.1",
     "name": "fLightMenu",
     "AntiAlias": 1,
     "TTFName": "",
+    "ascenderOffset": 0,
     "bold": false,
     "charset": 0,
     "first": 0,
     "fontName": "RobotoLightWithMine",
+    "glyphOperations": 0,
     "glyphs": [
         {
             "Key": 32,
@@ -2876,13 +2878,16 @@
             }
         }
     ],
-    "image": null,
+    "hinting": 0,
     "includeTTF": false,
+    "interpreter": 0,
     "italic": false,
     "kerningPairs": [
         
     ],
     "last": 0,
+    "maintainGms1Font": false,
+    "pointRounding": 0,
     "ranges": [
         {
             "x": 32,

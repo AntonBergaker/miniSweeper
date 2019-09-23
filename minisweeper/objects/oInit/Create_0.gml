@@ -86,8 +86,8 @@ global.currentTheme = "Default";
 
 scr_load_settings();
 
-global.oldSaveExists = file_exists("save.sav");
-global.saveExists    = file_exists("game.json");
+global.oldSaveExists = file_exists_custom("save.sav");
+global.saveExists    = file_exists_custom("game.json");
 
 if (!global.onPhone) {
 	var _width = global.windowWidth;

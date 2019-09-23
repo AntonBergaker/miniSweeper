@@ -38,7 +38,7 @@ var _json = json_encode(_map);
 var _saveBuffer = buffer_create(string_byte_length(_json), buffer_fixed, 1);
 buffer_write(_saveBuffer, buffer_text, _json);
 
-buffer_save(_saveBuffer, "save.json");
+buffer_save(_saveBuffer,"save.json");
 
 
 buffer_delete(_saveBuffer);

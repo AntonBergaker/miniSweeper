@@ -255,6 +255,14 @@
             }
         },
         {
+            "Key": "2c14b043-d498-493a-94c1-eea231f76f36",
+            "Value": {
+                "id": "0c40719d-008c-4ccf-9497-42858e2eb285",
+                "resourcePath": "scripts\\file_exists_custom\\file_exists_custom.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "2c403749-7bcf-4a0b-be38-2742e27aeb94",
             "Value": {
                 "id": "84b9d801-431b-4abf-a272-abe6e64d9a54",
@@ -332,6 +340,14 @@
                 "id": "c567bd6a-8bf3-4ac3-aafa-2690a8dce490",
                 "resourcePath": "scripts\\inside_grid\\inside_grid.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "3a5af38c-757d-41ae-98c0-5d4b09e14e6a",
+            "Value": {
+                "id": "b11e9431-ff2a-40e1-aded-6a79bb535a78",
+                "resourcePath": "options\\switch\\options_switch.yy",
+                "resourceType": "GMSwitchOptions"
             }
         },
         {
@@ -895,6 +911,14 @@
             }
         },
         {
+            "Key": "78541141-4db1-4e67-9bad-443e3b78fee8",
+            "Value": {
+                "id": "676e05a8-6428-4d69-91f9-7d9aea6da344",
+                "resourcePath": "notes\\compatibility_report_150819_170919919.yy",
+                "resourceType": "GMNotes"
+            }
+        },
+        {
             "Key": "7a11672a-2e6a-45ff-b79f-307b3a48314f",
             "Value": {
                 "id": "223dea9b-ce35-426f-85bb-0098358e6f5e",
@@ -972,6 +996,14 @@
                 "id": "a1ca55f2-1894-48bd-a20a-9c002e9c6b6b",
                 "resourcePath": "views\\80491f9d-ca0d-436c-978c-234f4b452a20.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "808aae3c-272c-430d-9d41-88664a639ea4",
+            "Value": {
+                "id": "9e58d416-2cf1-47bd-98b2-e6fceb5a2757",
+                "resourcePath": "extensions\\FileExistsHtml\\FileExistsHtml.yy",
+                "resourceType": "GMExtension"
             }
         },
         {
@@ -1092,6 +1124,14 @@
                 "id": "d358121c-3391-4670-8e56-adc7f8d66134",
                 "resourcePath": "scripts\\coord_to_gui_y\\coord_to_gui_y.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "93566aad-c3b3-48a9-8fa7-9c5ee19f74ac",
+            "Value": {
+                "id": "92c4af64-06cf-48bb-9f44-d50c37d9c646",
+                "resourcePath": "options\\tvos\\options_tvos.yy",
+                "resourceType": "GMtvOSOptions"
             }
         },
         {
@@ -1814,7 +1854,8 @@
         "6da9f797-04f6-4651-9276-10b9eb0871f9",
         "6ccbe44c-d91f-4c00-b3df-bba20f24b941",
         "7e34fbd0-41b5-466e-bd8b-e458cd033255",
-        "75020307-43a6-4d17-b9a7-f27e254a31d6"
+        "75020307-43a6-4d17-b9a7-f27e254a31d6",
+        "2c14b043-d498-493a-94c1-eea231f76f36"
     ],
     "tutorial": ""
 }

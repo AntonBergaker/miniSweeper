@@ -1,14 +1,16 @@
 {
     "id": "045138e9-641b-4ac7-812e-246ebd4a64ce",
     "modelName": "GMFont",
-    "mvc": "1.0",
+    "mvc": "1.1",
     "name": "fMineTextMip2",
     "AntiAlias": 1,
     "TTFName": "",
+    "ascenderOffset": 0,
     "bold": false,
     "charset": 0,
     "first": 0,
     "fontName": "Roboto",
+    "glyphOperations": 0,
     "glyphs": [
         {
             "Key": 32,
@@ -146,13 +148,16 @@
             }
         }
     ],
-    "image": null,
+    "hinting": 0,
     "includeTTF": false,
+    "interpreter": 0,
     "italic": false,
     "kerningPairs": [
         
     ],
     "last": 0,
+    "maintainGms1Font": false,
+    "pointRounding": 0,
     "ranges": [
         {
             "x": 49,
