@@ -35,6 +35,9 @@ if (_inst) {
 			global.audioVolume = _inst.checked;
 			_updated = true;
 			break;
+		case "controls":
+			instance_create_layer(1, 0, "MenuSettingsControls", oMenuSettingsControls);
+			break;
 		case "back":
 			menu.enabled = false;
 			scr_menu_stack_pushtoend(menu);

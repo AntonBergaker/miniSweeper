@@ -110,8 +110,12 @@ with _inst {
 	draw_set_halign(halign);
 	draw_set_font(font);
 
-	var _scale = min(_height/84,_width/374);
+	var _scale = min(_height/84,_width/374) * textScale;
 	var _col = filled ? global.buttonTextColor : global.textColor;
+	
+	if (halign = fa_left) {
+		_x -= _width/2 - textOffsetX*_width;
+	}
 
 	draw_text_transformed_color(_x,_y,text,_scale,_scale,0,_col, _col, _col, _col, other.alpha);
 }

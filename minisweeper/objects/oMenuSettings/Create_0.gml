@@ -28,6 +28,7 @@ var i=2;
 inMenu = instance_exists(oMenuMain) && oMenuMain.fadeOut = false;
 
 titlebar = instance_create_depth(inMenu ? 0:1,0, depth-2, oMenuSettingsTitlebar);
+titlebar.parentMenu = id;
 
 //Created first so it's always clicked first
 scr_menu_set_button_settings(menu,fa_center,fa_middle,fLightMenu,0.09,0.09);
@@ -93,9 +94,27 @@ if (!inMenu) {
 	titlebar.inMenu = true;
 }
 
+
+i+=0.8;
+scr_menu_set_button_settings(menu,fa_center,fa_middle,fLightMenu,0.8,0.05);
+textSlider = scr_menu_create_label(menu, 0.5, 0.1*i, "Theme");
+i+=0.7;
+scr_menu_set_button_settings(menu,fa_center,fa_middle,fLightMenu,0.8,0.09);
+themeSlider = scr_menu_create_slider(menu, 0.5, 0.1*i, true, global.themeNames, global.currentTheme, "Default")
+
+i+=1.4;
+
+
+scr_menu_set_button_settings(menu,fa_left,fa_middle,fLightMenu,0.6,0.08);
+buttonControls = scr_menu_create_button(menu, 0.3+0.07, 0.1*i++, "CHANGE CONTROLS...", "controls", false);
+buttonControls.textScale = 0.05/0.08;
+
+i+=0.2;
+
 var _toggleStart = i;
 
-scr_menu_set_button_settings(menu,fa_left,fa_middle,fLightMenu,0.8,0.05);
+
+scr_menu_set_button_settings(menu,fa_left,fa_middle,fLightMenu,0.6,0.05);
 
 textAudio       = scr_menu_create_label(menu, 0.07, 0.1*i++, "Audio");
 if (global.onPhone) {
@@ -105,8 +124,7 @@ textTween        = scr_menu_create_label(menu, 0.07, 0.1*i++, "Animations");
 textInstant      = scr_menu_create_label(menu, 0.07, 0.1*i++, "Clear Animation");
 textTimer        = scr_menu_create_label(menu, 0.07, 0.1*i++, "Show Timer");
 textTimerMenu    = scr_menu_create_label(menu, 0.07, 0.1*i++, "Show Highscore");
-textSwitch       = scr_menu_create_label(menu, 0.07, 0.1*i++, "Reverse Controls");
-textSwitchButton = scr_menu_create_label(menu, 0.07, 0.1*i++, "Reverse Controls Button");
+
 
 
 scr_menu_set_button_settings(menu,fa_center,fa_middle,fLightMenu,0.2,0.08);
@@ -121,15 +139,6 @@ toggleTween        = scr_menu_create_toggle(menu,0.8,0.1*i++,"tween"         , g
 toggleInstant      = scr_menu_create_toggle(menu,0.8,0.1*i++,"instant"       , global.clearAnimation);
 toggleTimer        = scr_menu_create_toggle(menu,0.8,0.1*i++,"timer"         , global.showTimer);
 toggleTimerMenu    = scr_menu_create_toggle(menu,0.8,0.1*i++,"timermenu"     , global.showTimerMenu);
-toggleSwitch       = scr_menu_create_toggle(menu,0.8,0.1*i++,"switchcontrols", global.switchedControls);
-toggleSwitchButton = scr_menu_create_toggle(menu,0.8,0.1*i  ,"switchbutton"  , global.showSwitchButton);
-
-i+=0.8;
-scr_menu_set_button_settings(menu,fa_center,fa_middle,fLightMenu,0.8,0.05);
-textSlider = scr_menu_create_label(menu, 0.5, 0.1*i, "Theme");
-i+=0.7;
-scr_menu_set_button_settings(menu,fa_center,fa_middle,fLightMenu,0.8,0.09);
-themeSlider = scr_menu_create_slider(menu, 0.5, 0.1*i, true, global.themeNames, global.currentTheme, "Default")
 
 i++;
 scr_menu_set_button_settings(menu,fa_center,fa_middle,fLightMenu,0.8,0.05);

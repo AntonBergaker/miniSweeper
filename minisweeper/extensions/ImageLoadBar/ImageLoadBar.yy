@@ -1,7 +1,7 @@
 {
     "id": "1b44039a-586b-42fb-b3ec-4c1a7e9ae47a",
     "modelName": "GMExtension",
-    "mvc": "1.0",
+    "mvc": "1.2",
     "name": "ImageLoadBar",
     "IncludedResources": [
         
@@ -20,6 +20,7 @@
     "copyToTargets": -1,
     "date": "2018-47-20 10:04:25",
     "description": "",
+    "exportToGame": true,
     "extensionName": "",
     "files": [
         {
@@ -76,14 +77,18 @@
     "iosThirdPartyFrameworkEntries": [
         
     ],
+    "iosdelegatename": null,
     "iosplistinject": "",
     "license": "Free to use, also for commercial games.",
     "maccompilerflags": "",
     "maclinkerflags": "",
     "macsourcedir": "",
+    "options": null,
+    "optionsFile": "options.json",
     "packageID": "",
     "productID": "ACBD3CFF4E539AD869A0E8E3B4B022DD",
     "sourcedir": "",
+    "supportedTargets": -1,
     "tvosProps": false,
     "tvosSystemFrameworkEntries": [
         
@@ -92,6 +97,7 @@
         
     ],
     "tvosclassname": null,
+    "tvosdelegatename": null,
     "tvosmaccompilerflags": null,
     "tvosmaclinkerflags": null,
     "tvosplistinject": null,

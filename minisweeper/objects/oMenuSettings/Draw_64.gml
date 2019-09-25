@@ -1,7 +1,3 @@
-draw_set_color(global.backColor);
-if (alpha != 1) {
-	draw_set_alpha(alpha);	
-}
 var _xx = 0;
 if (!inMenu) {
 	_xx = ease_quadOut(global.guiWidth, 0, fadeIn, 1);
@@ -14,7 +10,4 @@ if (!inMenu) {
 	}
 }
 
-draw_rectangle(_xx,0,_xx+global.guiWidth,global.guiHeight,0);
-if (alpha != 1) {
-	draw_set_alpha(1);	
-}
+draw_rect_color(_xx,0,_xx+global.guiWidth,global.guiHeight, global.backColor, alpha);

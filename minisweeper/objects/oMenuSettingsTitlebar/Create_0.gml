@@ -9,3 +9,5 @@ gearY = oGridControl.gearY;
 gearScale = oGridControl.gearScale;
 gearRot = oGridControl.gearRot;
 gearColor = oGridControl.gearColor;
+
+parentMenu = noone;

@@ -1,4 +1,4 @@
-if oMenuSettings.menu.y < 0 {
+if parentMenu.menu.y < 0 {
 	alphaTimer += deltaTimeS*5;
 } else {
 	alphaTimer -= deltaTimeS*5;
@@ -6,7 +6,7 @@ if oMenuSettings.menu.y < 0 {
 
 alphaTimer = clamp(alphaTimer,0,1);
 
-var _fadeIn = oMenuSettings.fadeIn;
+var _fadeIn = parentMenu.fadeIn;
 var _dpiScale = global.dpiScale;
 
 gearX = oGridControl.gearX;
@@ -21,7 +21,7 @@ gearX = clamp(_offX+40*_dpiScale, 0, gearX);
 gearRot = lerp(gearRot, 0, _fadeIn);
 gearColor = merge_color(gearColor, global.textColor, _fadeIn);
 
-var _menu = oMenuSettings.menu;
+var _menu = parentMenu.menu;
 exitButton.height = (_dpiScale*75) / global.guiHeight;
 exitButton.width = (global.guiHeight*exitButton.height)/(_menu.width*global.guiWidth)*1.1;
 exitButton.y = -_menu.y + exitButton.height/2;

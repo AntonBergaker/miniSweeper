@@ -1,7 +1,7 @@
 {
     "id": "fbf87ebf-5be2-48c6-893c-dbdd9cb8e01a",
     "modelName": "GMExtension",
-    "mvc": "1.0",
+    "mvc": "1.2",
     "name": "Haptics",
     "IncludedResources": [
         "Objects\\obj_haptics_demo",
@@ -21,6 +21,7 @@
     "copyToTargets": 8,
     "date": "2017-54-12 10:05:27",
     "description": "",
+    "exportToGame": true,
     "extensionName": "",
     "files": [
         {
@@ -197,14 +198,18 @@
     "iosThirdPartyFrameworkEntries": [
         
     ],
+    "iosdelegatename": null,
     "iosplistinject": "",
     "license": "Free to use, also for commercial games.",
     "maccompilerflags": "",
     "maclinkerflags": "",
     "macsourcedir": "",
+    "options": null,
+    "optionsFile": "options.json",
     "packageID": "com.gamephase.haptics",
     "productID": "",
     "sourcedir": "",
+    "supportedTargets": 8,
     "tvosProps": false,
     "tvosSystemFrameworkEntries": [
         
@@ -213,6 +218,7 @@
         
     ],
     "tvosclassname": null,
+    "tvosdelegatename": null,
     "tvosmaccompilerflags": null,
     "tvosmaclinkerflags": null,
     "tvosplistinject": null,

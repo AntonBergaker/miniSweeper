@@ -10,8 +10,7 @@ if (!surface_exists(surf)) {
 if (surface_exists(surf)) {
 	surface_set_target(surf);
 	if (updateDrawing) {
-		draw_set_color(global.backColor);
-		draw_rectangle(0,0,global.internalWidth,global.internalHeight,0);
+		draw_rect_color(0,0,global.internalWidth,global.internalHeight, global.backColor, 1);
 		
 		draw_set_valign(fa_middle);
 		draw_set_halign(fa_center);

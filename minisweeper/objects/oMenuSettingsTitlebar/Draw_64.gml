@@ -15,19 +15,11 @@ if (alphaTimer > 0) {
 	
 	var _dropScale = global.guiWidth/256;
 	draw_sprite_ext(sDropshadow, 0, _offX + global.guiWidth/2, 75*_dpiScale, _dpiScale ,_dropScale, 270, c_white, _alpha*0.5);
-	draw_set_color(_col2);
-	if (_alpha < 1) {
-		draw_set_alpha(_alpha);
-	}
 	
-	draw_rectangle(_offX,0,global.guiWidth,75*_dpiScale,0);
-	
-	if (_alpha < 1) {
-		draw_set_alpha(1);
-	}
+	draw_rect_color(_offX,0, global.guiWidth,75*_dpiScale, _col2, _alpha);
 }
 
-with oMenuSettings.menu {
+with parentMenu.menu {
 	var _guiW = global.guiWidth;
 	var _guiH = global.guiHeight;
 

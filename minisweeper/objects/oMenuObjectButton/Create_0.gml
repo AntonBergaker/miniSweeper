@@ -11,6 +11,8 @@ pressedTime = 0;
 pressedFinger = -1;
 tag = "";
 clickedFade = 0;
+textScale = 1;
+textOffsetX = 0;
 
 width = 0;
 height = 0;

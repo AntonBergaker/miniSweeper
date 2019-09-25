@@ -415,6 +415,14 @@
             }
         },
         {
+            "Key": "43595e54-dc19-444e-8174-142c6610dcb4",
+            "Value": {
+                "id": "c283ed6c-a0fd-4792-a4c6-0b322de5c0ce",
+                "resourcePath": "scripts\\draw_rect_color\\draw_rect_color.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "43c0e4e1-d3f9-435a-a484-e410411e9cdb",
             "Value": {
                 "id": "0bf493b0-135b-40ef-9e02-fd1027f05248",
@@ -692,6 +700,14 @@
                 "id": "aa80571c-9dde-4b88-b026-f62ca495dc8b",
                 "resourcePath": "scripts\\mod_negative\\mod_negative.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "6732db29-2de0-4792-9abf-7d6595a33b79",
+            "Value": {
+                "id": "51e79c64-55e4-47f0-bd66-21dfda97e677",
+                "resourcePath": "sprites\\sBigBoxCenter\\sBigBoxCenter.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -1591,6 +1607,14 @@
             }
         },
         {
+            "Key": "e490cd77-8b0b-4259-91c6-39b1a6cdfaf5",
+            "Value": {
+                "id": "30812f95-c3a8-4d16-ae39-e8636b057ae7",
+                "resourcePath": "objects\\oMenuSettingsControls\\oMenuSettingsControls.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "e7488d9f-0e6a-4289-b49f-f8334b74a478",
             "Value": {
                 "id": "42faf6d2-c57d-449d-9a9f-537884f14504",
@@ -1855,7 +1879,8 @@
         "6ccbe44c-d91f-4c00-b3df-bba20f24b941",
         "7e34fbd0-41b5-466e-bd8b-e458cd033255",
         "75020307-43a6-4d17-b9a7-f27e254a31d6",
-        "2c14b043-d498-493a-94c1-eea231f76f36"
+        "2c14b043-d498-493a-94c1-eea231f76f36",
+        "43595e54-dc19-444e-8174-142c6610dcb4"
     ],
     "tutorial": ""
 }
